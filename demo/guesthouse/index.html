@@ -58,6 +58,7 @@
     .hero-art { position: absolute; inset: 0; overflow: hidden; }
     .hero-art svg { width: 100%; height: 100%; }
     .hero-photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    .hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,30,30,.7) 0%, rgba(10,30,30,.35) 55%, rgba(10,30,30,.1) 100%); }
     .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,59,58,.25) 0%, rgba(15,59,58,0) 35%, rgba(15,59,58,.75) 100%); }
     .wave { animation: drift 9s ease-in-out infinite alternate; }
     .wave.w2 { animation-duration: 12s; } .wave.w3 { animation-duration: 15s; }
@@ -457,15 +458,15 @@
       email: "stay@driftwoodhouse.co.za",
       address: "Summerstrand, Gqeberha, 6001",
       mapQuery: "Pollock Beach, Summerstrand, Gqeberha",
-      heroPhoto: "",
-      aboutPhotos: ["", ""],
-      galleryPhotos: ["", "", "", "", "", "", ""],
+      heroPhoto: "pool-night.jpg",
+      aboutPhotos: ["pool-terrace.jpg", "front.jpg"],
+      galleryPhotos: ["pool-night.jpg", "front.jpg", "pool-terrace.jpg"],   // add more file names to fill more tiles
       rooms: [
-        { name: "Sea View Suite", price: 1650, sleeps: 2, bed: "King bed", size: "32 m²", photo: "",
+        { name: "Sea View Suite", price: 1650, sleeps: 2, bed: "King bed", size: "32 m²", photo: "pool-terrace.jpg",
           text: "Our best room. Wake up to ocean views from your private balcony." },
-        { name: "Garden Room", price: 1250, sleeps: 2, bed: "Queen bed", size: "24 m²", photo: "",
+        { name: "Garden Room", price: 1250, sleeps: 2, bed: "Queen bed", size: "24 m²", photo: "pool-night.jpg",
           text: "Opens straight onto the garden. Quiet, green and full of morning light." },
-        { name: "Family Loft", price: 1950, sleeps: 4, bed: "Queen + 2 singles", size: "40 m²", photo: "",
+        { name: "Family Loft", price: 1950, sleeps: 4, bed: "Queen + 2 singles", size: "40 m²", photo: "front.jpg",
           text: "Space for the whole family, with a kitchenette and its own entrance." }
       ]
     };
@@ -510,7 +511,13 @@
     }
     document.getElementById("aboutImg1").style.backgroundImage = bg(SITE.aboutPhotos[0], 0, "sea");
     document.getElementById("aboutImg2").style.backgroundImage = bg(SITE.aboutPhotos[1], 1, "plant");
-    document.querySelectorAll("#gal > div").forEach((d, i) => d.style.backgroundImage = bg(SITE.galleryPhotos[i], i + 2));
+    // With real photos, show only as many tiles as there are photos; with none, show the drawn artwork
+    const galPhotos = SITE.galleryPhotos.filter(Boolean);
+    document.querySelectorAll("#gal > div").forEach((d, i) => {
+      if (galPhotos.length && !galPhotos[i]) { d.remove(); return; }
+      d.style.backgroundImage = bg(galPhotos[i], i + 2);
+      if (galPhotos.length === 3 && i > 0) d.className = "wide reveal";
+    });
     document.querySelectorAll("#gal > div").forEach(d => { d.style.backgroundSize = "cover"; d.style.backgroundPosition = "center"; });
 
     // Rooms
