@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Njabulisto Digitals | Price Sheet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink: #0B0D17; --lime: #C8F560; --ocean: #1FB5A8; --coral: #FF6A4D; --paper: #F6F4EF; --muted: #5E6375; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Inter", sans-serif; background: #DCD9D2; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { width: min(210mm, 100%); min-height: 297mm; margin: 24px auto; background: var(--paper); box-shadow: 0 30px 60px -30px rgba(0,0,0,.4); overflow: hidden; display: flex; flex-direction: column; }
+    h1, h2, h3, .syne { font-family: "Syne", sans-serif; letter-spacing: -0.02em; line-height: 1.05; }
+    .top { background: var(--ink); color: #fff; padding: 36px 40px 40px; position: relative; overflow: hidden; }
+    .top::after { content: ""; position: absolute; width: 320px; height: 320px; border-radius: 50%; background: var(--ocean); filter: blur(80px); opacity: .45; right: -100px; top: -140px; }
+    .logo { display: flex; align-items: center; gap: 10px; font: 800 18px "Syne"; position: relative; z-index: 1; }
+    .mark { width: 34px; height: 34px; border-radius: 10px; background: var(--lime); color: var(--ink); display: grid; place-items: center; }
+    .top h1 { font-size: 40px; margin-top: 26px; position: relative; z-index: 1; }
+    .top h1 span { color: var(--lime); }
+    .top p { color: rgba(255,255,255,.7); margin-top: 10px; max-width: 460px; position: relative; z-index: 1; }
+    .body { padding: 30px 40px; flex: 1; }
+    .pkgs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .pkg { background: #fff; border-radius: 18px; padding: 22px 18px; border: 1px solid #E5E1D8; }
+    .pkg.feat { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .pkg .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; background: var(--lime); color: var(--ink); padding: 4px 10px; border-radius: 99px; margin-bottom: 10px; }
+    .pkg h3 { font-size: 19px; }
+    .pkg .price { font: 800 30px "Syne"; margin: 10px 0 2px; }
+    .pkg .once { font-size: 12px; color: var(--muted); }
+    .pkg.feat .once { color: rgba(255,255,255,.6); }
+    .pkg ul { list-style: none; margin-top: 14px; display: grid; gap: 8px; font-size: 13px; }
+    .pkg li { padding-left: 20px; position: relative; }
+    .pkg li::before { content: "✓"; position: absolute; left: 0; color: var(--ocean); font-weight: 700; }
+    .pkg.feat li::before { color: var(--lime); }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+    .box { background: #fff; border-radius: 18px; padding: 20px 22px; border: 1px solid #E5E1D8; }
+    .box h3 { font-size: 16px; margin-bottom: 8px; }
+    .box p, .box li { font-size: 13px; color: var(--muted); }
+    .box .price { font: 800 24px "Syne"; color: var(--ink); }
+    .addons { list-style: none; display: grid; gap: 6px; }
+    .addons li { display: flex; justify-content: space-between; border-bottom: 1px dashed #E5E1D8; padding-bottom: 6px; }
+    .addons li b { color: var(--ink); }
+    .promise { margin-top: 14px; background: var(--coral); color: #fff; border-radius: 18px; padding: 20px 24px; display: flex; gap: 18px; align-items: center; }
+    .promise .big { font: 800 22px "Syne"; flex: none; }
+    .promise p { font-size: 13.5px; opacity: .95; }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 14px; }
+    .steps div { background: #fff; border-radius: 14px; padding: 14px; font-size: 12.5px; border: 1px solid #E5E1D8; }
+    .steps b { display: block; font: 800 13px "Syne"; color: var(--ocean); margin-bottom: 4px; }
+    .foot { background: var(--lime); padding: 18px 40px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-weight: 600; font-size: 14px; }
+    .print-btn { position: fixed; right: 18px; bottom: 18px; background: var(--ink); color: #fff; border: 0; padding: 14px 22px; border-radius: 99px; font: 600 14px "Inter"; cursor: pointer; box-shadow: 0 10px 24px -10px rgba(0,0,0,.6); }
+    @media (max-width: 680px) {
+      .page { margin: 0; min-height: auto; }
+      .top, .body { padding-left: 18px; padding-right: 18px; }
+      .foot { padding: 18px; }
+      .pkgs, .row { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .promise { flex-direction: column; align-items: flex-start; }
+    }
+    @media print {
+      body { background: none; }
+      .page { margin: 0; box-shadow: none; width: 210mm; height: 297mm; }
+      .print-btn { display: none; }
+      @page { size: A4; margin: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="top">
+      <div class="logo"><span class="mark">N</span> Njabulisto Digitals</div>
+      <h1>Websites that bring <span>bookings</span>,<br>not just looks.</h1>
+      <p>For guesthouses and local businesses in Gqeberha. Live in 7 days. You own everything.</p>
+    </div>
+
+    <div class="body">
+      <div class="pkgs">
+        <div class="pkg">
+          <h3>Get Found</h3>
+          <div class="price">R1,500</div><div class="once">once-off</div>
+          <ul>
+            <li>Google Business Profile set up or fixed</li>
+            <li>Photos, hours, services, map pin</li>
+            <li>WhatsApp Business + auto-replies</li>
+            <li>Google review request link</li>
+          </ul>
+        </div>
+        <div class="pkg feat">
+          <span class="tag">Most popular</span>
+          <h3>Book Direct</h3>
+          <div class="price">R4,500</div><div class="once">once-off</div>
+          <ul>
+            <li>Mobile-first website</li>
+            <li>Rooms, prices, gallery, map</li>
+            <li>Booking form → your WhatsApp</li>
+            <li>.co.za domain, first year included</li>
+            <li>Everything in Get Found</li>
+          </ul>
+        </div>
+        <div class="pkg">
+          <h3>Book Direct Plus</h3>
+          <div class="price">R6,500</div><div class="once">once-off</div>
+          <ul>
+            <li>Everything in Book Direct</li>
+            <li>Logo refresh &amp; brand colours</li>
+            <li>Facebook &amp; Instagram set up</li>
+            <li>3 months Care Plan included</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="box">
+          <h3>Care Plan</h3>
+          <div class="price">R350 <span style="font:500 13px Inter;color:var(--muted)">/ month</span></div>
+          <p style="margin-top:6px">Hosting, security, price and photo updates, and a monthly Google post. Cancel anytime with 30 days' notice.</p>
+        </div>
+        <div class="box">
+          <h3>Add-ons</h3>
+          <ul class="addons">
+            <li>Extra page <b>R500</b></li>
+            <li>Logo design (new) <b>R1,200</b></li>
+            <li>Domain renewal (per year) <b>R250</b></li>
+            <li>Small change, no Care Plan <b>R250</b></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="promise">
+        <div class="big">50 / 50<br>promise</div>
+        <p>Pay 50% to start. Pay the other 50% only once your site is live and you're happy with it. You see a free mockup before you pay anything.</p>
+      </div>
+
+      <div class="steps">
+        <div><b>Day 0</b>Free mockup with your name on it</div>
+        <div><b>Day 1</b>50% deposit + your photos and details</div>
+        <div><b>Days 2–6</b>Build, review on your phone, changes</div>
+        <div><b>Day 7</b>Live. Pay the balance when happy.</div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <span>📍 Summerstrand, Gqeberha</span>
+      <span>💬 WhatsApp: 0XX XXX XXXX</span>
+      <span>✉ hello@njabulisto.co.za</span>
+    </div>
+  </div>
+  <button class="print-btn" onclick="window.print()">Save as PDF / Print</button>
+</body>
+</html>

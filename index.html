@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Njabulisto Digitals | Websites That Bring Bookings, Gqeberha</title>
+  <meta name="description" content="Njabulisto Digitals builds direct-booking websites and Google profiles for guesthouses and local businesses in Gqeberha. Live in 7 days. Pay 50% now, the rest when you're happy.">
+  <meta property="og:title" content="Njabulisto Digitals">
+  <meta property="og:description" content="Stop paying commission on every guest. Direct-booking websites for Gqeberha guesthouses, live in 7 days.">
+  <meta name="theme-color" content="#0B0D17">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0B0D17;
+      --ink-2: #151827;
+      --ink-3: #22263A;
+      --paper: #F6F4EF;
+      --white: #FFFFFF;
+      --lime: #C8F560;
+      --ocean: #1FB5A8;
+      --coral: #FF6A4D;
+      --muted: #9AA0B4;
+      --text: #1A1C26;
+      --radius: 22px;
+      --wrap: 1180px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      background: var(--paper);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    html, body { overflow-x: clip; }
+    h1, h2, h3, .display { font-family: "Syne", "Inter", sans-serif; line-height: 1.05; letter-spacing: -0.02em; }
+    a { color: inherit; text-decoration: none; }
+    img, svg { display: block; max-width: 100%; }
+    .wrap { width: min(var(--wrap), 100% - 32px); margin-inline: auto; }
+    .wrap > *, .row2 > * { min-width: 0; }
+    input, select, textarea { min-width: 0; max-width: 100%; }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 15px 26px; border-radius: 999px; border: 0;
+      font: 600 16px/1 "Inter", sans-serif; cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-lime { background: var(--lime); color: var(--ink); box-shadow: 0 10px 30px -10px rgba(200,245,96,.7); }
+    .btn-ghost { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,.25); }
+    .btn-ghost:hover { border-color: var(--lime); color: var(--lime); }
+    .btn-dark { background: var(--ink); color: var(--white); }
+    .btn svg { width: 20px; height: 20px; }
+
+    /* ---------- Nav ---------- */
+    .nav {
+      position: fixed; inset: 0 0 auto 0; z-index: 50;
+      transition: background .3s ease, backdrop-filter .3s ease, padding .3s ease;
+      padding: 18px 0;
+    }
+    .nav.scrolled { background: rgba(11,13,23,.82); backdrop-filter: blur(14px); padding: 12px 0; }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .logo { display: flex; align-items: center; gap: 10px; color: var(--white); font: 800 20px "Syne", sans-serif; }
+    .logo-mark {
+      width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center;
+      background: var(--lime); color: var(--ink); font-size: 20px;
+    }
+    .logo small { display: block; font: 500 11px "Inter"; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+    .nav-links { display: flex; gap: 28px; color: rgba(255,255,255,.75); font-weight: 500; font-size: 15px; }
+    .nav-links a:hover { color: var(--lime); }
+    .nav .btn { padding: 11px 20px; font-size: 14px; }
+    @media (max-width: 860px) { .nav-links { display: none; } }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative; background: var(--ink); color: var(--white);
+      padding: 150px 0 90px; overflow: hidden;
+    }
+    .blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .55; pointer-events: none; }
+    .blob.b1 { width: 520px; height: 520px; background: var(--ocean); top: -160px; right: -120px; }
+    .blob.b2 { width: 420px; height: 420px; background: #6A4DFF; bottom: -200px; left: -140px; opacity: .35; }
+    .grid-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 75%);
+    }
+    .hero .wrap { position: relative; display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,.85fr); gap: 56px; align-items: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 8px 16px; border-radius: 999px; font-size: 13px; font-weight: 600;
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.85);
+    }
+    .eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 4px rgba(200,245,96,.2); animation: pulse 2s infinite; }
+    @keyframes pulse { 50% { box-shadow: 0 0 0 8px rgba(200,245,96,0); } }
+    .hero h1 { font-size: clamp(34px, 9.4vw, 82px); font-weight: 800; margin: 24px 0 22px; }
+    .hero h1 .hl { color: var(--lime); position: relative; white-space: nowrap; }
+    .hero h1 .hl svg { position: absolute; left: 0; right: 0; bottom: -10px; width: 100%; height: 16px; }
+    .hero p.lead { font-size: clamp(17px, 2vw, 20px); color: rgba(255,255,255,.72); max-width: 560px; }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+    .trust { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 38px; color: rgba(255,255,255,.65); font-size: 14px; }
+    .trust span { display: inline-flex; align-items: center; gap: 8px; }
+    .trust svg { width: 18px; height: 18px; color: var(--lime); }
+
+    /* Phone mockup */
+    .phone-stage { position: relative; display: grid; place-items: center; min-height: 520px; }
+    .phone {
+      width: 270px; height: 540px; border-radius: 42px; padding: 12px;
+      background: linear-gradient(160deg, #2A2E44, #11131F);
+      box-shadow: 0 50px 100px -30px rgba(0,0,0,.8), inset 0 0 0 1.5px rgba(255,255,255,.12);
+      transform: rotate(-4deg); animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float { 50% { transform: rotate(-4deg) translateY(-14px); } }
+    .screen { width: 100%; height: 100%; border-radius: 32px; overflow: hidden; background: #FBF8F2; position: relative; color: var(--text); }
+    .screen .notch { position: absolute; top: 8px; left: 50%; translate: -50% 0; width: 80px; height: 22px; border-radius: 20px; background: #11131F; z-index: 3; }
+    .mini-hero { height: 230px; position: relative; }
+    .mini-hero svg { width: 100%; height: 100%; }
+    .mini-hero .mini-title { position: absolute; left: 16px; bottom: 16px; color: #fff; }
+    .mini-title b { display: block; font: 800 22px "Syne"; }
+    .mini-title span { font-size: 11px; opacity: .9; }
+    .mini-body { padding: 14px 16px; }
+    .mini-book {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 12px; border-radius: 14px; background: #fff; box-shadow: 0 6px 20px -8px rgba(0,0,0,.2); font-size: 11px;
+    }
+    .mini-book .go { background: #1E6E66; color: #fff; padding: 7px 10px; border-radius: 10px; font-weight: 700; }
+    .mini-rooms { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+    .mini-room { border-radius: 12px; overflow: hidden; background: #fff; font-size: 10px; box-shadow: 0 4px 14px -8px rgba(0,0,0,.25); }
+    .mini-room i { display: block; height: 62px; }
+    .mini-room p { padding: 6px 8px; font-weight: 600; }
+    .mini-wa {
+      position: absolute; right: 14px; bottom: 14px; width: 42px; height: 42px; border-radius: 50%;
+      background: #25D366; display: grid; place-items: center; box-shadow: 0 8px 20px -6px rgba(37,211,102,.7);
+    }
+    .mini-wa svg { width: 22px; height: 22px; color: #fff; }
+    .chip {
+      position: absolute; display: flex; align-items: center; gap: 10px;
+      padding: 12px 16px; border-radius: 16px; font-size: 13px; font-weight: 600;
+      background: rgba(255,255,255,.95); color: var(--ink);
+      box-shadow: 0 20px 40px -18px rgba(0,0,0,.6);
+      animation: float2 5s ease-in-out infinite;
+    }
+    .chip .ic { width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; font-size: 16px; }
+    .chip small { display: block; font-weight: 500; color: #6B7085; font-size: 11px; }
+    .chip.c1 { top: 60px; left: -10px; }
+    .chip.c2 { bottom: 90px; right: -16px; animation-delay: -2.5s; }
+    .chip.c1 .ic { background: #E7FBD0; }
+    .chip.c2 .ic { background: #DDF6F3; }
+    @keyframes float2 { 50% { transform: translateY(-10px); } }
+
+    @media (max-width: 960px) {
+      .hero .wrap { grid-template-columns: minmax(0,1fr); }
+      .hero h1 .hl { white-space: normal; }
+      .phone-stage { min-height: 500px; margin-top: 10px; }
+      .chip.c1 { left: 0; } .chip.c2 { right: 0; }
+    }
+    @media (max-width: 420px) {
+      .chip { padding: 10px 12px; font-size: 12px; }
+      .chip.c1 { top: 20px; } .chip.c2 { bottom: 40px; }
+    }
+
+    /* ---------- Marquee ---------- */
+    .marquee { background: var(--lime); color: var(--ink); overflow: hidden; padding: 18px 0; transform: rotate(-1.2deg); margin: -14px -10px 0; position: relative; z-index: 2; }
+    .marquee-track { display: flex; gap: 42px; width: max-content; animation: scroll 32s linear infinite; font: 700 22px "Syne"; text-transform: uppercase; white-space: nowrap; }
+    .marquee-track span { display: inline-flex; align-items: center; gap: 42px; }
+    .marquee-track span::after { content: "✦"; font-size: 16px; }
+    @keyframes scroll { to { transform: translateX(-50%); } }
+
+    /* ---------- Sections ---------- */
+    section { padding: 110px 0; }
+    .kicker { font-weight: 700; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--ocean); margin-bottom: 14px; }
+    .sec-title { font-size: clamp(34px, 4.6vw, 56px); font-weight: 800; max-width: 760px; }
+    .sec-sub { font-size: 18px; color: #555A6E; max-width: 620px; margin-top: 18px; }
+
+    /* Problem */
+    .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 56px; }
+    .p-card {
+      background: var(--white); border-radius: var(--radius); padding: 32px;
+      border: 1px solid #E8E5DD; transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .p-card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -30px rgba(11,13,23,.25); }
+    .p-num { font: 800 54px "Syne"; color: var(--coral); line-height: 1; }
+    .p-card h3 { font-size: 22px; margin: 16px 0 10px; }
+    .p-card p { color: #5A5F72; }
+    @media (max-width: 860px) { .problem-grid { grid-template-columns: 1fr; } }
+
+    /* Calculator */
+    .calc { background: var(--ink); color: var(--white); position: relative; overflow: hidden; }
+    .calc .blob.b3 { width: 460px; height: 460px; background: var(--lime); opacity: .14; top: -120px; left: 40%; }
+    .calc .wrap { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .calc .sec-sub { color: rgba(255,255,255,.65); }
+    .calc-box { background: var(--ink-2); border: 1px solid var(--ink-3); border-radius: 28px; padding: 34px; }
+    .field { margin-bottom: 26px; }
+    .field-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; font-weight: 500; color: rgba(255,255,255,.8); }
+    .field-top output { font: 700 22px "Syne"; color: var(--lime); }
+    input[type=range] { width: 100%; appearance: none; -webkit-appearance: none; height: 6px; border-radius: 6px; background: var(--ink-3); outline: none; }
+    input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: var(--lime); cursor: pointer; border: 4px solid var(--ink); box-shadow: 0 0 0 2px var(--lime); }
+    input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: var(--lime); cursor: pointer; border: 4px solid var(--ink); }
+    .result { margin-top: 10px; padding: 26px; border-radius: 20px; background: linear-gradient(135deg, var(--lime), #9BE15D); color: var(--ink); }
+    .result small { font-weight: 600; font-size: 14px; }
+    .result .big { font: 800 clamp(40px, 6vw, 58px) "Syne"; line-height: 1.1; }
+    .result .row { display: flex; justify-content: space-between; border-top: 1px solid rgba(11,13,23,.15); margin-top: 14px; padding-top: 14px; font-weight: 600; font-size: 15px; }
+    .calc-note { font-size: 13px; color: rgba(255,255,255,.45); margin-top: 14px; }
+    @media (max-width: 960px) { .calc .wrap { grid-template-columns: 1fr; } }
+
+    /* Packages */
+    .pkg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 56px; align-items: stretch; }
+    .pkg {
+      background: var(--white); border-radius: 28px; padding: 36px 30px; border: 1px solid #E8E5DD;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .pkg.featured { background: var(--ink); color: var(--white); border-color: var(--ink); transform: scale(1.03); box-shadow: 0 40px 80px -40px rgba(11,13,23,.6); }
+    .pkg .tag { position: absolute; top: -14px; left: 30px; background: var(--lime); color: var(--ink); font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 999px; letter-spacing: .06em; text-transform: uppercase; }
+    .pkg h3 { font-size: 24px; }
+    .pkg .for { color: #6B7085; font-size: 15px; margin-top: 6px; }
+    .pkg.featured .for { color: rgba(255,255,255,.6); }
+    .price { font: 800 46px "Syne"; margin: 22px 0 4px; }
+    .price small { font: 500 15px "Inter"; color: #6B7085; }
+    .pkg.featured .price small { color: rgba(255,255,255,.55); }
+    .pkg ul { list-style: none; margin: 22px 0 30px; display: grid; gap: 12px; flex: 1; }
+    .pkg li { display: flex; gap: 12px; font-size: 15px; }
+    .pkg li::before { content: ""; flex: none; width: 20px; height: 20px; margin-top: 2px; border-radius: 50%; background: var(--ocean) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/12px no-repeat; }
+    .pkg.featured li::before { background-color: var(--lime); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B0D17' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E"); }
+    .pkg .btn { justify-content: center; }
+    .care {
+      margin-top: 30px; padding: 28px 32px; border-radius: 24px; background: var(--white); border: 2px dashed #D9D5CB;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px;
+    }
+    .care h4 { font: 700 20px "Syne"; }
+    .care p { color: #5A5F72; }
+    .care .price { font-size: 34px; margin: 0; }
+    @media (max-width: 960px) { .pkg-grid { grid-template-columns: 1fr; } .pkg.featured { transform: none; } }
+
+    /* Process */
+    .process { background: var(--white); }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 56px; counter-reset: s; }
+    .step { position: relative; padding: 30px 26px; border-radius: var(--radius); background: var(--paper); }
+    .step::before { counter-increment: s; content: "0" counter(s); font: 800 15px "Syne"; color: var(--white); background: var(--ink); width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; margin-bottom: 20px; }
+    .step h3 { font-size: 20px; margin-bottom: 8px; }
+    .step p { color: #5A5F72; font-size: 15px; }
+    .step .when { display: inline-block; margin-top: 14px; font-size: 13px; font-weight: 700; color: var(--ocean); }
+    @media (max-width: 960px) { .steps { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
+
+    /* Guarantee / founding */
+    .founding { background: var(--ink); color: var(--white); position: relative; overflow: hidden; }
+    .founding .wrap { position: relative; display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; }
+    .founding .sec-sub { color: rgba(255,255,255,.65); }
+    .promise-list { display: grid; gap: 14px; }
+    .promise {
+      display: flex; gap: 16px; align-items: flex-start; padding: 22px; border-radius: 20px;
+      background: var(--ink-2); border: 1px solid var(--ink-3);
+    }
+    .promise .ic { flex: none; width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: rgba(200,245,96,.12); color: var(--lime); font-size: 22px; }
+    .promise b { display: block; font-size: 17px; margin-bottom: 2px; }
+    .promise span { color: rgba(255,255,255,.6); font-size: 15px; }
+    .seal {
+      width: 132px; height: 132px; border-radius: 50%; display: grid; place-items: center; text-align: center;
+      background: var(--coral); color: var(--white); font: 800 15px/1.15 "Syne"; text-transform: uppercase;
+      transform: rotate(-12deg); margin-top: 34px; box-shadow: 0 20px 40px -14px rgba(255,106,77,.6);
+    }
+    @media (max-width: 960px) { .founding .wrap { grid-template-columns: 1fr; } }
+
+    /* FAQ */
+    .faq-list { margin-top: 46px; display: grid; gap: 12px; max-width: 860px; }
+    details { background: var(--white); border-radius: 18px; border: 1px solid #E8E5DD; padding: 0 26px; transition: box-shadow .2s ease; }
+    details[open] { box-shadow: 0 20px 40px -30px rgba(11,13,23,.35); }
+    summary { list-style: none; cursor: pointer; padding: 22px 0; font-weight: 600; font-size: 17px; display: flex; justify-content: space-between; gap: 16px; align-items: center; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; font: 400 28px "Inter"; color: var(--ocean); transition: transform .2s ease; }
+    details[open] summary::after { transform: rotate(45deg); }
+    details p { padding: 0 0 22px; color: #5A5F72; }
+
+    /* Contact */
+    .contact { background: var(--ocean); color: var(--ink); position: relative; overflow: hidden; }
+    .contact .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; position: relative; }
+    .contact .sec-title { color: var(--ink); }
+    .contact .sec-sub { color: rgba(11,13,23,.75); }
+    .form { background: var(--white); border-radius: 28px; padding: 34px; box-shadow: 0 40px 80px -40px rgba(11,13,23,.45); }
+    .form label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 8px; }
+    .form input, .form select, .form textarea {
+      width: 100%; padding: 14px 16px; border-radius: 14px; border: 1.5px solid #E3E0D8; background: var(--paper);
+      font: 500 16px "Inter"; color: var(--text); margin-bottom: 18px; outline: none; transition: border-color .2s ease;
+    }
+    .form input:focus, .form select:focus, .form textarea:focus { border-color: var(--ocean); }
+    .form textarea { min-height: 96px; resize: vertical; }
+    .form .btn { width: 100%; justify-content: center; background: #25D366; color: #fff; font-size: 17px; }
+    .form .alt { text-align: center; margin-top: 14px; font-size: 14px; color: #6B7085; }
+    .form .alt a { color: var(--ocean); font-weight: 600; }
+    .contact-facts { display: grid; gap: 12px; margin-top: 30px; font-weight: 600; }
+    .contact-facts span { display: flex; gap: 12px; align-items: center; }
+    @media (max-width: 960px) { .contact .wrap { grid-template-columns: 1fr; } }
+
+    /* Footer */
+    footer { background: var(--ink); color: rgba(255,255,255,.6); padding: 50px 0 36px; font-size: 14px; }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; align-items: center; }
+    .big-word { font: 800 clamp(36px, 11vw, 140px) "Syne"; color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,.14); line-height: 1; margin-bottom: 40px; letter-spacing: -0.04em; white-space: nowrap; overflow: hidden; }
+
+    /* Floating WhatsApp */
+    .wa-float {
+      position: fixed; right: 20px; bottom: 20px; z-index: 60; width: 62px; height: 62px; border-radius: 50%;
+      background: #25D366; display: grid; place-items: center; box-shadow: 0 14px 30px -8px rgba(37,211,102,.75);
+      transition: transform .2s ease;
+    }
+    .wa-float:hover { transform: scale(1.08); }
+    .wa-float svg { width: 32px; height: 32px; color: #fff; }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <div class="wrap">
+      <a href="#" class="logo" aria-label="Njabulisto Digitals home">
+        <span class="logo-mark">N</span>
+        <span>Njabulisto<small>Digitals</small></span>
+      </a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="#calculator">Savings</a>
+        <a href="#packages">Packages</a>
+        <a href="#process">How it works</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a href="#contact" class="btn btn-lime">Get a free mockup</a>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="blob b1"></div><div class="blob b2"></div><div class="grid-bg"></div>
+    <div class="wrap">
+      <div>
+        <span class="eyebrow reveal"><span class="dot"></span> Now taking founding clients in Gqeberha</span>
+        <h1 class="reveal">Stop paying commission on <span class="hl">every guest.<svg viewBox="0 0 300 16" preserveAspectRatio="none" aria-hidden="true"><path d="M2 12 C 80 2, 200 2, 298 10" stroke="#C8F560" stroke-width="5" fill="none" stroke-linecap="round"/></svg></span></h1>
+        <p class="lead reveal">I build guesthouses and local businesses a website that brings bookings straight to your WhatsApp. No middleman. No cut. Live in 7 days.</p>
+        <div class="hero-ctas reveal">
+          <a href="#contact" class="btn btn-lime">
+            See your free mockup
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#calculator" class="btn btn-ghost">How much am I losing?</a>
+        </div>
+        <div class="trust reveal">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Pay 50% now, rest when happy</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Live in 7 days</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Local, in Summerstrand</span>
+        </div>
+      </div>
+
+      <div class="phone-stage reveal" aria-hidden="true">
+        <div class="phone">
+          <div class="screen">
+            <div class="notch"></div>
+            <div class="mini-hero">
+              <svg viewBox="0 0 270 230" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7A26B"/><stop offset=".55" stop-color="#F9C98F"/><stop offset="1" stop-color="#FCE3B8"/></linearGradient>
+                  <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A9D8F"/><stop offset="1" stop-color="#1E6E66"/></linearGradient>
+                </defs>
+                <rect width="270" height="230" fill="url(#sky)"/>
+                <circle cx="190" cy="118" r="34" fill="#FFF3D6" opacity=".95"/>
+                <path d="M0 140 Q 70 128 135 140 T 270 138 V230 H0Z" fill="url(#sea)"/>
+                <path d="M0 160 Q 60 150 120 162 T 270 158 V230 H0Z" fill="#23847A" opacity=".8"/>
+                <path d="M0 190 Q 90 178 170 192 T 270 186 V230 H0Z" fill="#E9D2A6"/>
+                <rect width="270" height="230" fill="url(#sky)" opacity="0"/>
+                <rect y="150" width="270" height="80" fill="#000" opacity=".18"/>
+              </svg>
+              <div class="mini-title"><b>Driftwood House</b><span>Summerstrand · 2 min to Pollock Beach</span></div>
+            </div>
+            <div class="mini-body">
+              <div class="mini-book"><span><b>Book direct</b><br>Best rate, no fees</span><span class="go">Check dates</span></div>
+              <div class="mini-rooms">
+                <div class="mini-room"><i style="background:linear-gradient(135deg,#BFE3DE,#7CC4BA)"></i><p>Sea View Suite</p></div>
+                <div class="mini-room"><i style="background:linear-gradient(135deg,#F6D7B0,#E9B07A)"></i><p>Garden Room</p></div>
+              </div>
+            </div>
+            <div class="mini-wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg></div>
+          </div>
+        </div>
+        <div class="chip c1"><span class="ic">📲</span><span>New booking on WhatsApp<small>3 nights · Sea View Suite</small></span></div>
+        <div class="chip c2"><span class="ic">💸</span><span>R540 commission kept<small>Booked direct, not through an app</small></span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Guesthouses</span><span>B&amp;Bs</span><span>Self-catering</span><span>Student digs</span><span>Restaurants</span><span>Salons</span><span>Local trades</span>
+      <span>Guesthouses</span><span>B&amp;Bs</span><span>Self-catering</span><span>Student digs</span><span>Restaurants</span><span>Salons</span><span>Local trades</span>
+    </div>
+  </div>
+
+  <!-- ============ PROBLEM ============ -->
+  <section id="problem">
+    <div class="wrap">
+      <p class="kicker reveal">The problem</p>
+      <h2 class="sec-title reveal">Your guests find you on an app, and the app takes a cut.</h2>
+      <p class="sec-sub reveal">Booking sites are great for new guests. But when returning guests and Google searchers have nowhere to book with you directly, you pay commission on bookings you earned yourself.</p>
+      <div class="problem-grid">
+        <div class="p-card reveal"><div class="p-num">~15%</div><h3>Gone on every booking</h3><p>Booking platforms commonly take around 15% of each stay. On a busy month, that's thousands of rand.</p></div>
+        <div class="p-card reveal"><div class="p-num">0</div><h3>Places to book you directly</h3><p>Search for your guesthouse on Google. If the only links are booking sites, that's where your guests go.</p></div>
+        <div class="p-card reveal"><div class="p-num">1</div><h3>Thumb is all they use</h3><p>Most travellers search on their phone. An old website that's slow or hard to use on a phone loses guests in seconds. It has to work with one thumb.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CALCULATOR ============ -->
+  <section class="calc" id="calculator">
+    <div class="blob b3"></div>
+    <div class="wrap">
+      <div>
+        <p class="kicker reveal">Do the maths</p>
+        <h2 class="sec-title reveal">How much are booking sites costing you?</h2>
+        <p class="sec-sub reveal">Move the sliders to match your guesthouse. Even moving a few bookings a month to direct pays for your website quickly.</p>
+      </div>
+      <div class="calc-box reveal">
+        <div class="field">
+          <div class="field-top"><label for="rate">Average rate per night</label><output id="rateOut">R1,200</output></div>
+          <input type="range" id="rate" min="400" max="4000" step="50" value="1200">
+        </div>
+        <div class="field">
+          <div class="field-top"><label for="nights">Nights booked through apps per month</label><output id="nightsOut">40</output></div>
+          <input type="range" id="nights" min="5" max="300" step="5" value="40">
+        </div>
+        <div class="field">
+          <div class="field-top"><label for="comm">Commission you pay</label><output id="commOut">15%</output></div>
+          <input type="range" id="comm" min="5" max="25" step="1" value="15">
+        </div>
+        <div class="result">
+          <small>You pay in commission every year</small>
+          <div class="big" id="yearly">R86,400</div>
+          <div class="row"><span>Per month</span><span id="monthly">R7,200</span></div>
+          <div class="row"><span>If just 1 in 4 bookings went direct</span><span id="saved">R21,600/yr kept</span></div>
+        </div>
+        <p class="calc-note">An estimate to start a conversation, not a promise. Your real numbers decide.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PACKAGES ============ -->
+  <section id="packages">
+    <div class="wrap">
+      <p class="kicker reveal">Packages</p>
+      <h2 class="sec-title reveal">Simple prices. No surprises.</h2>
+      <p class="sec-sub reveal">Once-off prices. Pay 50% to start, and the rest only when you've seen it live and you're happy.</p>
+      <div class="pkg-grid">
+        <div class="pkg reveal">
+          <h3>Get Found</h3>
+          <p class="for">For when Google doesn't show you properly</p>
+          <div class="price">R1,500 <small>once-off</small></div>
+          <ul>
+            <li>Google Business Profile set up or fixed</li>
+            <li>Photos, hours, services &amp; map pin done right</li>
+            <li>WhatsApp Business set up with auto-replies</li>
+            <li>A simple way to ask guests for Google reviews</li>
+          </ul>
+          <a href="#contact" class="btn btn-dark" data-pkg="Get Found (R1,500)">Choose Get Found</a>
+        </div>
+        <div class="pkg featured reveal">
+          <span class="tag">Most popular</span>
+          <h3>Book Direct</h3>
+          <p class="for">Your own booking website, live in 7 days</p>
+          <div class="price">R4,500 <small>once-off</small></div>
+          <ul>
+            <li>Beautiful mobile-first website</li>
+            <li>Rooms, prices, gallery &amp; location map</li>
+            <li>"Book direct" form straight to your WhatsApp</li>
+            <li>Your own .co.za domain (first year included)</li>
+            <li>Everything in Get Found</li>
+          </ul>
+          <a href="#contact" class="btn btn-lime" data-pkg="Book Direct (R4,500)">Choose Book Direct</a>
+        </div>
+        <div class="pkg reveal">
+          <h3>Book Direct Plus</h3>
+          <p class="for">For when you want to look like the best on the street</p>
+          <div class="price">R6,500 <small>once-off</small></div>
+          <ul>
+            <li>Everything in Book Direct</li>
+            <li>Logo refresh &amp; brand colours</li>
+            <li>Facebook &amp; Instagram pages set up to match</li>
+            <li>3 months of Care Plan included</li>
+          </ul>
+          <a href="#contact" class="btn btn-dark" data-pkg="Book Direct Plus (R6,500)">Choose Plus</a>
+        </div>
+      </div>
+      <div class="care reveal">
+        <div>
+          <h4>Care Plan: keep it fresh, never think about it</h4>
+          <p>Hosting, security, price and photo updates, and a monthly Google post. Cancel anytime.</p>
+        </div>
+        <div class="price">R350 <small>/ month</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="process" id="process">
+    <div class="wrap">
+      <p class="kicker reveal">How it works</p>
+      <h2 class="sec-title reveal">From chat to live website in 7 days.</h2>
+      <div class="steps">
+        <div class="step reveal"><h3>Free mockup</h3><p>I show you a preview of your website before you pay anything.</p><span class="when">Day 0</span></div>
+        <div class="step reveal"><h3>50% deposit</h3><p>Happy with the direction? Pay half and send me your photos and room details.</p><span class="when">Day 1</span></div>
+        <div class="step reveal"><h3>Build &amp; review</h3><p>I build it, you check it on your phone, and we fix anything you want changed.</p><span class="when">Days 2–6</span></div>
+        <div class="step reveal"><h3>Go live</h3><p>Your site goes live with your own domain. You pay the rest only once you're happy.</p><span class="when">Day 7</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOUNDING / PROMISE ============ -->
+  <section class="founding">
+    <div class="blob b1" style="opacity:.25"></div>
+    <div class="wrap">
+      <div>
+        <p class="kicker reveal" style="color:var(--lime)">My promise</p>
+        <h2 class="sec-title reveal">You take no risk. I take it all.</h2>
+        <p class="sec-sub reveal">I'm a new local business, and I'd rather earn your trust than ask for it. So the deal is simple.</p>
+        <div class="seal reveal">Pay the<br>rest only<br>when happy</div>
+      </div>
+      <div class="promise-list">
+        <div class="promise reveal"><span class="ic">👀</span><div><b>See it before you pay</b><span>A free mockup of your site, with your name on it.</span></div></div>
+        <div class="promise reveal"><span class="ic">🤝</span><div><b>Half now, half when happy</b><span>If it's not right, I fix it until it is.</span></div></div>
+        <div class="promise reveal"><span class="ic">🔑</span><div><b>You own everything</b><span>Your domain, your content, your website. No lock-in.</span></div></div>
+        <div class="promise reveal"><span class="ic">📍</span><div><b>I'm down the road</b><span>Based in Summerstrand. Coffee and a chat, in person.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq">
+    <div class="wrap">
+      <p class="kicker reveal">Questions</p>
+      <h2 class="sec-title reveal">Straight answers.</h2>
+      <div class="faq-list">
+        <details class="reveal"><summary>Do I have to leave Booking.com or Airbnb?</summary><p>No. Keep them for new guests who find you there. Your website catches the guests who already know you, return guests and people who search for you on Google, so those bookings come to you without commission.</p></details>
+        <details class="reveal"><summary>How do bookings come through?</summary><p>Guests pick their dates, room and number of people, then tap "Book". It opens a ready-written WhatsApp message to you. You confirm availability and payment the way you already do. No new system to learn.</p></details>
+        <details class="reveal"><summary>What do I need to give you?</summary><p>Your room photos, room names and prices, and a few lines about your place. If your photos aren't great, I'll tell you honestly.</p></details>
+        <details class="reveal"><summary>What if I already have a website?</summary><p>Send me the link. If it's slow, hard to use on a phone, or doesn't let people book easily, I'll show you a better version for free and you can decide.</p></details>
+        <details class="reveal"><summary>Are there monthly fees?</summary><p>The once-off price covers the build and your first year of domain. The Care Plan (R350/month) is optional and covers hosting, updates and changes. Cancel anytime.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div>
+        <p class="kicker reveal" style="color:var(--ink)">Free mockup</p>
+        <h2 class="sec-title reveal">Want to see your website before you spend a cent?</h2>
+        <p class="sec-sub reveal">Tell me your business name. I'll send you a mockup on WhatsApp within 48 hours. Free, and you don't have to buy.</p>
+        <div class="contact-facts reveal">
+          <span>📍 Summerstrand, Gqeberha</span>
+          <span>⏱ Reply within a few hours</span>
+          <span>💬 WhatsApp is the fastest way</span>
+        </div>
+      </div>
+      <form class="form reveal" id="leadForm">
+        <label for="fName">Your name</label>
+        <input id="fName" required placeholder="e.g. Thandi">
+        <label for="fBiz">Business name</label>
+        <input id="fBiz" required placeholder="e.g. Ocean Breeze Guesthouse">
+        <label for="fPkg">I'm interested in</label>
+        <select id="fPkg">
+          <option>Not sure yet, show me a mockup</option>
+          <option>Get Found (R1,500)</option>
+          <option>Book Direct (R4,500)</option>
+          <option>Book Direct Plus (R6,500)</option>
+        </select>
+        <label for="fMsg">Anything else? (optional)</label>
+        <textarea id="fMsg" placeholder="e.g. We have 6 rooms and an old website"></textarea>
+        <button class="btn" type="submit">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>
+          Send on WhatsApp
+        </button>
+        <p class="alt">Prefer email? <a id="mailLink" href="#">Email me instead</a></p>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap" style="display:block">
+      <div class="big-word">NJABULISTO</div>
+    </div>
+    <div class="wrap">
+      <a href="#" class="logo"><span class="logo-mark">N</span><span>Njabulisto<small>Digitals</small></span></a>
+      <span>© <span id="yr"></span> Njabulisto Digitals · Summerstrand, Gqeberha</span>
+    </div>
+  </footer>
+
+  <a class="wa-float" id="waFloat" href="#" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>
+  </a>
+
+  <script>
+    /* ====== EDIT THESE TWO LINES WITH YOUR REAL DETAILS ====== */
+    const WHATSAPP_NUMBER = "27XXXXXXXXX";   // your number in international format, no + or spaces, e.g. 27821234567
+    const EMAIL = "hello@njabulisto.co.za";   // your email address
+    /* ========================================================= */
+
+    const waLink = (text) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    const notSetUp = () => WHATSAPP_NUMBER.includes("X");
+
+    document.getElementById("waFloat").href = waLink("Hi Njabulisto Digitals, I saw your website and I'd like to chat.");
+    document.getElementById("mailLink").href = `mailto:${EMAIL}?subject=${encodeURIComponent("Free website mockup")}`;
+    document.getElementById("yr").textContent = new Date().getFullYear();
+
+    // Package buttons preselect the form
+    document.querySelectorAll("[data-pkg]").forEach(btn => {
+      btn.addEventListener("click", () => { document.getElementById("fPkg").value = btn.dataset.pkg; });
+    });
+
+    // Lead form -> WhatsApp
+    document.getElementById("leadForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("fName").value.trim();
+      const biz = document.getElementById("fBiz").value.trim();
+      const pkg = document.getElementById("fPkg").value;
+      const msg = document.getElementById("fMsg").value.trim();
+      const text = `Hi Njabulisto Digitals! I'm ${name} from ${biz}.\nInterested in: ${pkg}` + (msg ? `\n\n${msg}` : "") + `\n\nPlease send me a free mockup.`;
+      if (notSetUp()) { alert("WhatsApp number not set up yet. Edit WHATSAPP_NUMBER in the code."); return; }
+      window.open(waLink(text), "_blank");
+    });
+
+    // Savings calculator
+    const fmt = (n) => "R" + Math.round(n).toLocaleString("en-ZA").replace(/ /g, ",").replace(/\s/g, ",");
+    const rate = document.getElementById("rate"), nights = document.getElementById("nights"), comm = document.getElementById("comm");
+    function calc() {
+      const monthly = rate.value * nights.value * (comm.value / 100);
+      document.getElementById("rateOut").textContent = fmt(rate.value);
+      document.getElementById("nightsOut").textContent = nights.value;
+      document.getElementById("commOut").textContent = comm.value + "%";
+      document.getElementById("monthly").textContent = fmt(monthly);
+      document.getElementById("yearly").textContent = fmt(monthly * 12);
+      document.getElementById("saved").textContent = fmt(monthly * 12 / 4) + "/yr kept";
+    }
+    [rate, nights, comm].forEach(el => el.addEventListener("input", calc));
+    calc();
+
+    // Nav background on scroll
+    const nav = document.getElementById("nav");
+    addEventListener("scroll", () => nav.classList.toggle("scrolled", scrollY > 40), { passive: true });
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach((el, i) => { el.style.transitionDelay = (i % 4) * 70 + "ms"; io.observe(el); });
+  </script>
+</body>
+</html>

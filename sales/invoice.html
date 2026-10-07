@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Njabulisto Digitals | Invoice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink: #0B0D17; --lime: #C8F560; --ocean: #1FB5A8; --paper: #FFFFFF; --muted: #6B7085; --line: #E8E5DD; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Inter", sans-serif; background: #DCD9D2; color: var(--ink); font-size: 14px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { width: min(210mm, 100%); min-height: 297mm; margin: 24px auto; background: var(--paper); box-shadow: 0 30px 60px -30px rgba(0,0,0,.4); display: flex; flex-direction: column; }
+    .syne { font-family: "Syne", sans-serif; letter-spacing: -0.02em; }
+    [contenteditable] { outline: none; border-radius: 4px; transition: background .15s; }
+    [contenteditable]:hover { background: #FFF9D6; }
+    [contenteditable]:focus { background: #FFF3B0; }
+    .head { background: var(--ink); color: #fff; padding: 34px 40px; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap; }
+    .logo { display: flex; align-items: center; gap: 10px; font: 800 20px "Syne"; }
+    .mark { width: 38px; height: 38px; border-radius: 11px; background: var(--lime); color: var(--ink); display: grid; place-items: center; }
+    .from { margin-top: 14px; color: rgba(255,255,255,.7); font-size: 13px; line-height: 1.6; }
+    .title { text-align: right; }
+    .title h1 { font: 800 44px "Syne"; color: var(--lime); line-height: 1; }
+    .meta { margin-top: 12px; font-size: 13px; color: rgba(255,255,255,.8); display: grid; gap: 3px; }
+    .meta b { color: #fff; }
+    .body { padding: 34px 40px; flex: 1; }
+    .bill { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
+    .label { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ocean); margin-bottom: 6px; }
+    .bill .to { line-height: 1.6; }
+    .status { align-self: flex-start; background: var(--lime); padding: 8px 16px; border-radius: 99px; font-weight: 700; font-size: 13px; }
+    table { width: 100%; border-collapse: collapse; }
+    thead th { text-align: left; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 10px 8px; border-bottom: 2px solid var(--ink); }
+    th.num, td.num { text-align: right; }
+    tbody td { padding: 14px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    td small { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+    td .del { border: 0; background: none; color: #C44; cursor: pointer; font-size: 16px; padding: 0 4px; }
+    .add { margin-top: 10px; border: 1.5px dashed var(--line); background: none; padding: 8px 14px; border-radius: 10px; font: 600 13px "Inter"; cursor: pointer; color: var(--muted); }
+    .totals { margin-left: auto; width: min(320px, 100%); margin-top: 22px; }
+    .totals div { display: flex; justify-content: space-between; padding: 8px 0; }
+    .totals .due { border-top: 2px solid var(--ink); margin-top: 6px; padding-top: 14px; font: 800 22px "Syne"; }
+    .totals .dep { background: var(--lime); padding: 12px 14px; border-radius: 12px; margin-top: 10px; font-weight: 700; }
+    .vat { color: var(--muted); font-size: 12px; text-align: right; margin-top: 6px; }
+    .split { margin-top: 18px; display: flex; gap: 10px; align-items: center; justify-content: flex-end; font-size: 13px; color: var(--muted); }
+    .split select { font: 600 13px "Inter"; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line); }
+    .bank { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .card { background: #F6F4EF; border-radius: 16px; padding: 20px 22px; line-height: 1.7; }
+    .terms { font-size: 12.5px; color: var(--muted); }
+    .foot { background: var(--lime); padding: 16px 40px; font-weight: 600; font-size: 13px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    .tools { position: fixed; right: 18px; bottom: 18px; display: flex; gap: 8px; }
+    .tools button { background: var(--ink); color: #fff; border: 0; padding: 14px 20px; border-radius: 99px; font: 600 14px "Inter"; cursor: pointer; box-shadow: 0 10px 24px -10px rgba(0,0,0,.6); }
+    .hint { max-width: min(210mm, 100%); margin: 16px auto 0; font-size: 13px; color: #4A4F60; padding: 0 16px; }
+    @media (max-width: 680px) {
+      .page { margin: 0; }
+      .head, .body, .foot { padding-left: 18px; padding-right: 18px; }
+      .title { text-align: left; }
+      .bank { grid-template-columns: 1fr; }
+      thead .hide-sm, tbody .hide-sm { display: none; }
+    }
+    @media print {
+      body { background: none; }
+      .page { margin: 0; box-shadow: none; width: 210mm; min-height: 297mm; }
+      .tools, .add, .del, .hint, .split { display: none !important; }
+      [contenteditable]:hover, [contenteditable]:focus { background: none; }
+      @page { size: A4; margin: 0; }
+    }
+  </style>
+</head>
+<body>
+  <p class="hint">✏️ Tap any yellow-highlighted text to edit it. Totals update by themselves. Then press <b>Save as PDF</b> and send it on WhatsApp.</p>
+  <div class="page">
+    <div class="head">
+      <div>
+        <div class="logo"><span class="mark">N</span> Njabulisto Digitals</div>
+        <div class="from" contenteditable="true">[Your full name], trading as Njabulisto Digitals<br>Summerstrand, Gqeberha, 6001<br>WhatsApp: 0XX XXX XXXX<br>hello@njabulisto.co.za</div>
+      </div>
+      <div class="title">
+        <h1>INVOICE</h1>
+        <div class="meta">
+          <span>Invoice no: <b contenteditable="true">ND-001</b></span>
+          <span>Date: <b contenteditable="true" id="dateIssued"></b></span>
+          <span>Due: <b contenteditable="true" id="dateDue"></b></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="body">
+      <div class="bill">
+        <div>
+          <div class="label">Bill to</div>
+          <div class="to" contenteditable="true"><b>[Client name]</b><br>[Business name]<br>[Address]<br>[Phone / email]</div>
+        </div>
+        <span class="status" id="statusTag">50% deposit</span>
+      </div>
+
+      <table>
+        <thead><tr><th>Description</th><th class="num hide-sm">Qty</th><th class="num">Price</th><th class="num">Amount</th><th></th></tr></thead>
+        <tbody id="items"></tbody>
+      </table>
+      <button class="add" id="addRow">+ Add line</button>
+
+      <div class="split">
+        <label for="mode">This invoice is for:</label>
+        <select id="mode">
+          <option value="dep" selected>50% deposit</option>
+          <option value="bal">50% balance (final)</option>
+          <option value="full">Full amount</option>
+        </select>
+      </div>
+
+      <div class="totals">
+        <div><span>Project total</span><span id="subtotal">R0.00</span></div>
+        <div id="paidRow" style="display:none"><span>Deposit already paid</span><span id="paid">−R0.00</span></div>
+        <div class="due"><span id="dueLabel">Amount due now</span><span id="due">R0.00</span></div>
+        <p class="vat">Not registered for VAT. No VAT charged.</p>
+      </div>
+
+      <div class="bank">
+        <div class="card">
+          <div class="label">Pay by EFT</div>
+          <div contenteditable="true">Bank: [Bank name]<br>Account name: [Your name]<br>Account no: [000 000 0000]<br>Branch code: [000000]<br><b>Reference: <span id="refEcho">ND-001</span></b></div>
+        </div>
+        <div class="card terms">
+          <div class="label">Terms</div>
+          <div contenteditable="true">Work starts once the 50% deposit is received. The balance is due when the website is live and approved. The client owns the domain and all content once paid in full. Care Plan billed monthly and can be cancelled with 30 days' notice.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot"><span>Thank you for supporting a local business 🙏</span><span>njabulisto.co.za</span></div>
+  </div>
+
+  <div class="tools"><button onclick="window.print()">Save as PDF</button></div>
+
+  <script>
+    const items = [
+      { d: "Book Direct website package", s: "Mobile website, booking form to WhatsApp, Google profile, .co.za domain (year 1)", q: 1, p: 4500 },
+    ];
+    const tbody = document.getElementById("items");
+    const R = (n) => "R" + n.toLocaleString("en-ZA", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace(/\s| /g, ",");
+    const num = (t) => parseFloat(String(t).replace(/[^0-9.]/g, "")) || 0;
+
+    function row(it) {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td><span contenteditable="true" class="d">${it.d}</span><small contenteditable="true">${it.s}</small></td>
+        <td class="num hide-sm" contenteditable="true" data-k="q">${it.q}</td>
+        <td class="num" contenteditable="true" data-k="p">${it.p}</td>
+        <td class="num amt"></td>
+        <td><button class="del" title="Remove line">×</button></td>`;
+      tr.querySelector(".del").onclick = () => { tr.remove(); total(); };
+      tr.addEventListener("input", total);
+      tbody.appendChild(tr);
+    }
+    function total() {
+      let sum = 0;
+      tbody.querySelectorAll("tr").forEach(tr => {
+        const q = num(tr.querySelector('[data-k="q"]').textContent) || 1;
+        const p = num(tr.querySelector('[data-k="p"]').textContent);
+        tr.querySelector(".amt").textContent = R(q * p);
+        sum += q * p;
+      });
+      const mode = document.getElementById("mode").value;
+      const half = sum / 2;
+      document.getElementById("subtotal").textContent = R(sum);
+      document.getElementById("paidRow").style.display = mode === "bal" ? "flex" : "none";
+      document.getElementById("paid").textContent = "−" + R(half);
+      document.getElementById("due").textContent = R(mode === "full" ? sum : half);
+      document.getElementById("dueLabel").textContent = mode === "bal" ? "Balance due" : "Amount due now";
+      document.getElementById("statusTag").textContent = { dep: "50% deposit", bal: "Final balance", full: "Full payment" }[mode];
+    }
+    items.forEach(row);
+    document.getElementById("addRow").onclick = () => { row({ d: "New item", s: "Short description", q: 1, p: 0 }); total(); };
+    document.getElementById("mode").onchange = total;
+
+    // Dates: today, due in 7 days
+    const fmtDate = (d) => d.toLocaleDateString("en-ZA", { day: "numeric", month: "long", year: "numeric" });
+    const now = new Date(), due = new Date(); due.setDate(now.getDate() + 7);
+    document.getElementById("dateIssued").textContent = fmtDate(now);
+    document.getElementById("dateDue").textContent = fmtDate(due);
+
+    // Keep the payment reference in sync with the invoice number
+    const invNo = document.querySelector(".meta b");
+    invNo.addEventListener("input", () => document.getElementById("refEcho").textContent = invNo.textContent);
+    total();
+  </script>
+</body>
+</html>
