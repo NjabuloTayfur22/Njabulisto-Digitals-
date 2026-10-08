@@ -69,6 +69,14 @@ Website link for every item (works once GitHub Pages is switched on):
 
 ---
 
+## WhatsApp Status picture
+**Picture:** `whatsapp-status.png` (tall, made for Status)
+
+Post it as a Status every 2–3 days. Everyone who has your number sees it, and owners you've met will remember you. Caption:
+> Summerstrand & Gqeberha guesthouses: want to see your own booking website before you pay anything? Reply MOCKUP 👇
+
+When someone replies "MOCKUP", ask for their business name and make their mockup within 48 hours, as promised.
+
 ## Tips
 - **Share the whole catalog** with a prospect: open a chat → tap 📎 → **Catalog** → send. Or share one item, e.g. Book Direct, after a walk-in.
 - **Set a greeting message** (Business tools → Greeting message):

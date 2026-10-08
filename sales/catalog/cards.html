@@ -7,47 +7,65 @@
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
   <!--
-    One 1080x1080 card per catalog item. Open with ?item=bookdirect (etc.) to see one card.
-    Without ?item, all cards are shown one under the other.
+    WhatsApp catalog pictures (1080x1080) and a Status picture (1080x1920).
+    Open with ?item=bookdirect (mockup, getfound, bookdirect, plus, care, status) to see one.
+    Built to read at thumbnail size: one colour, one hero picture, a big name and a price sticker.
   -->
   <style>
-    :root { --ink: #0B0D17; --ink-2: #151827; --lime: #C8F560; --ocean: #1FB5A8; --coral: #FF6A4D; --violet: #8B6BFF; --muted: #9AA0B4; }
+    :root { --ink: #0B0D17; --lime: #C8F560; --ocean: #1FB5A8; --coral: #FF6A4D; --violet: #8B6BFF; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #222; font-family: "Inter", sans-serif; -webkit-font-smoothing: antialiased; }
-    .card {
-      width: 1080px; height: 1080px; position: relative; overflow: hidden; color: #fff;
-      background: var(--ink); padding: 76px 80px; display: flex; flex-direction: column;
-    }
+    body { background: #1b1b1b; font-family: "Inter", sans-serif; -webkit-font-smoothing: antialiased; }
+    .card { width: 1080px; height: 1080px; position: relative; overflow: hidden; background: var(--bg); color: var(--fg); isolation: isolate; }
+    .card.tall { height: 1920px; }
     .card + .card { margin-top: 40px; }
-    .glow { position: absolute; border-radius: 50%; filter: blur(110px); pointer-events: none; }
-    .g1 { width: 620px; height: 620px; right: -180px; top: -200px; background: var(--accent); opacity: .42; }
-    .g2 { width: 460px; height: 460px; left: -200px; bottom: -220px; background: #6A4DFF; opacity: .28; }
-    .grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px); background-size: 72px 72px; mask-image: radial-gradient(ellipse at 70% 30%, #000 20%, transparent 70%); }
-    .top { position: relative; display: flex; justify-content: space-between; align-items: center; }
-    .brand { display: flex; align-items: center; gap: 14px; font: 800 34px "Syne"; letter-spacing: -0.03em; }
-    .brand img { width: 62px; height: 62px; }
-    .brand b { color: var(--ocean); }
-    .pill { font: 700 22px "Inter"; letter-spacing: .14em; text-transform: uppercase; padding: 12px 22px; border-radius: 999px; background: var(--accent); color: var(--ink); }
-    .body { position: relative; flex: 1; display: grid; grid-template-columns: 560px 1fr; align-items: center; gap: 10px; }
-    h1 { font: 800 86px/0.98 "Syne"; letter-spacing: -0.04em; margin-top: 10px; }
-    .price { font: 800 98px/1 "Syne"; letter-spacing: -0.04em; color: var(--accent); margin-top: 30px; }
-    .price small { display: block; font: 600 30px "Inter"; color: var(--muted); letter-spacing: 0; margin-top: 10px; }
-    ul { list-style: none; margin-top: 34px; display: grid; gap: 18px; }
-    li { font: 600 33px/1.25 "Inter"; display: flex; gap: 16px; align-items: flex-start; color: #E9EBF2; }
-    li::before { content: "✓"; flex: none; width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,.1); color: var(--accent); display: grid; place-items: center; font-size: 24px; font-weight: 700; margin-top: -1px; }
-    .art { position: relative; height: 640px; }
-    .foot { position: relative; display: flex; justify-content: space-between; align-items: center; padding-top: 30px; border-top: 1.5px solid rgba(255,255,255,.12); font: 600 27px "Inter"; color: #C9CDD9; }
-    .foot b { color: #fff; }
 
-    /* Shared illustration pieces */
-    .phone { position: absolute; width: 300px; height: 600px; border-radius: 48px; padding: 13px; background: linear-gradient(160deg, #2C3047, #12141F); box-shadow: 0 50px 90px -30px rgba(0,0,0,.9), inset 0 0 0 2px rgba(255,255,255,.12); }
-    .screen { width: 100%; height: 100%; border-radius: 36px; overflow: hidden; background: #FBF8F2; position: relative; color: #1A1C26; }
-    .notch { position: absolute; top: 10px; left: 50%; translate: -50% 0; width: 90px; height: 24px; border-radius: 20px; background: #12141F; z-index: 3; }
-    .bubble { position: absolute; background: #fff; color: #1A1C26; border-radius: 22px; padding: 18px 22px; box-shadow: 0 30px 60px -24px rgba(0,0,0,.8); font: 600 22px/1.3 "Inter"; }
-    .bubble small { display: block; font-weight: 500; font-size: 17px; color: #6B7085; margin-top: 4px; }
-    .stamp { position: absolute; width: 190px; height: 190px; border-radius: 50%; display: grid; place-items: center; text-align: center; font: 800 34px/1 "Syne"; transform: rotate(-14deg); background: var(--accent); color: var(--ink); box-shadow: 0 30px 60px -20px rgba(0,0,0,.7); }
+    /* Background layers */
+    .noise { position: absolute; inset: 0; z-index: 6; pointer-events: none; opacity: .08; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    .rings { position: absolute; z-index: 0; border-radius: 50%; border: 2px solid var(--line); }
+    .orb { position: absolute; z-index: 0; border-radius: 50%; }
+
+    /* Top bar */
+    .top { position: absolute; top: 56px; left: 60px; right: 60px; display: flex; justify-content: space-between; align-items: center; z-index: 5; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; padding: 10px 24px 10px 10px; border-radius: 999px; background: rgba(11,13,23,.9); color: #fff; font: 800 30px "Syne"; letter-spacing: -0.03em; box-shadow: 0 14px 30px -14px rgba(0,0,0,.6); }
+    .brand img { width: 52px; height: 52px; }
+    .brand b { color: var(--ocean); }
+    .tag { font: 800 24px "Inter"; letter-spacing: .14em; text-transform: uppercase; padding: 15px 26px; border-radius: 999px; background: var(--tagbg); color: var(--tagfg); box-shadow: 0 14px 30px -14px rgba(0,0,0,.5); }
+
+    /* Headline */
+    .head { position: absolute; left: 60px; top: 170px; z-index: 4; }
+    h1 { font: 800 112px/0.9 "Syne"; letter-spacing: -0.05em; text-shadow: var(--tshadow, none); }
+    .hook { font: 700 38px/1.18 "Inter"; margin-top: 24px; max-width: 470px; letter-spacing: -0.01em; }
+    .hook mark { background: none; color: var(--hl); }
+
+    /* Price sticker */
+    .sticker { position: absolute; z-index: 5; width: 320px; height: 320px; display: grid; place-items: center; transform: rotate(-12deg); filter: drop-shadow(0 26px 34px rgba(0,0,0,.45)); }
+    .sticker svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .sticker .in { position: relative; text-align: center; color: var(--sfg); }
+    .sticker .p { font: 800 64px/1 "Syne"; letter-spacing: -0.04em; }
+    .sticker .p.long { font-size: 48px; }
+    .sticker .p.word { font-size: 54px; }
+    .sticker .u { font: 800 20px "Inter"; letter-spacing: .16em; text-transform: uppercase; margin-top: 8px; opacity: .85; }
+    .sticker .s { font: 800 20px "Inter"; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 8px; opacity: .85; }
+
+    /* Bottom promise */
+    .promise { position: absolute; left: 60px; bottom: 56px; z-index: 5; display: inline-flex; gap: 12px; align-items: center; padding: 16px 28px 16px 16px; border-radius: 999px; background: rgba(11,13,23,.92); color: #fff; font: 700 26px "Inter"; box-shadow: 0 18px 40px -18px rgba(0,0,0,.7); }
+    .promise i { width: 36px; height: 36px; border-radius: 50%; background: var(--lime); color: var(--ink); display: grid; place-items: center; font-style: normal; font-size: 20px; font-weight: 800; }
+
+    /* Hero objects */
+    .phone { position: absolute; width: 380px; height: 780px; border-radius: 62px; padding: 15px; z-index: 2;
+      background: linear-gradient(150deg, #3A3F5C 0%, #171A28 45%, #0E1019 100%);
+      box-shadow: 0 80px 120px -40px rgba(0,0,0,.75), 0 30px 50px -30px rgba(0,0,0,.6), inset 0 0 0 2.5px rgba(255,255,255,.18), inset 0 0 0 6px #0E1019; }
+    .phone::after { content: ""; position: absolute; inset: 15px; border-radius: 48px; background: linear-gradient(115deg, rgba(255,255,255,.22) 0%, rgba(255,255,255,0) 32%); pointer-events: none; z-index: 6; }
+    .screen { width: 100%; height: 100%; border-radius: 48px; overflow: hidden; position: relative; background: #FBF8F2; color: #1A1C26; }
+    .island { position: absolute; top: 14px; left: 50%; translate: -50% 0; width: 112px; height: 32px; border-radius: 20px; background: #0B0C12; z-index: 5; }
+    .chip { position: absolute; z-index: 3; display: flex; align-items: center; gap: 16px; padding: 18px 26px 18px 18px; border-radius: 26px; background: #fff; color: #1A1C26;
+      box-shadow: 0 34px 60px -24px rgba(0,0,0,.6); font: 800 27px/1.15 "Inter"; letter-spacing: -0.01em; white-space: nowrap; }
+    .chip small { display: block; font: 600 19px "Inter"; color: #6B7085; margin-top: 4px; letter-spacing: 0; }
+    .chip .ic { width: 58px; height: 58px; flex: none; border-radius: 18px; display: grid; place-items: center; font-size: 30px; }
+    .spark { position: absolute; z-index: 3; }
   </style>
 </head>
 <body>
@@ -55,89 +73,167 @@
 
 <script>
   const LOGO = "../../assets/logo-mark.svg";
-  const FOOT = `<span>✓ <b>Pay 50% now</b>, rest when happy</span><span>WhatsApp 068 483 9679</span>`;
 
-  // Small inline drawings for the phone screens
-  const sea = (h) => `<svg viewBox="0 0 300 ${h}" preserveAspectRatio="xMidYMid slice" style="display:block;width:100%;height:${h}px">
-    <defs><linearGradient id="s${h}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7A26B"/><stop offset=".6" stop-color="#FCE3B8"/></linearGradient></defs>
-    <rect width="300" height="${h}" fill="url(#s${h})"/><circle cx="210" cy="${h*.55}" r="36" fill="#FFF3D6"/>
-    <path d="M0 ${h*.62} Q 80 ${h*.56} 150 ${h*.62} T 300 ${h*.6} V${h} H0Z" fill="#2A9D8F"/>
-    <path d="M0 ${h*.84} Q 100 ${h*.78} 190 ${h*.86} T 300 ${h*.82} V${h} H0Z" fill="#E9D2A6"/></svg>`;
-  const waIcon = `<svg viewBox="0 0 24 24" width="30" height="30" fill="#25D366"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/><path fill="#fff" d="M17.3 16.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>`;
-  const site = (title) => `<div class="notch"></div>${sea(250)}
-    <div style="position:absolute;left:20px;top:176px;color:#fff;font:800 28px/1 Syne;text-shadow:0 2px 12px rgba(0,0,0,.3)">${title}</div>
-    <div style="padding:16px">
-      <div style="display:flex;justify-content:space-between;align-items:center;background:#fff;border-radius:16px;padding:12px 14px;box-shadow:0 8px 22px -10px rgba(0,0,0,.25);font:600 15px Inter">
-        <span>Book direct<br><span style="font-weight:500;color:#6B7085;font-size:13px">Best rate, no fees</span></span>
-        <span style="background:#1E6E66;color:#fff;padding:9px 12px;border-radius:11px;font-size:14px">Check dates</span></div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
-        <div style="height:120px;border-radius:14px;background:linear-gradient(135deg,#BFE3DE,#5FB3A8)"></div>
-        <div style="height:120px;border-radius:14px;background:linear-gradient(135deg,#F6D7B0,#E9A86E)"></div>
+  // ---------- helpers ----------
+  function burst(fill, points = 22, inner = .86) {
+    let d = "";
+    for (let i = 0; i < points * 2; i++) {
+      const r = i % 2 ? inner : 1, a = (Math.PI * i) / points - Math.PI / 2;
+      d += (i ? "L" : "M") + (r * Math.cos(a)).toFixed(4) + " " + (r * Math.sin(a)).toFixed(4);
+    }
+    return `<svg viewBox="-1 -1 2 2"><path d="${d}Z" fill="${fill}"/><circle r=".79" fill="none" stroke="currentColor" stroke-opacity=".18" stroke-width=".014" stroke-dasharray=".035 .03"/></svg>`;
+  }
+  const sticker = (pos, fill, fg, price, unit, small = "") =>
+    `<div class="sticker" style="${pos};--sfg:${fg};color:${fg}">${burst(fill)}<div class="in">${small ? `<div class="s">${small}</div>` : ""}<div class="p${price.length > 4 ? " long" : ""}${price === "FREE" ? " word" : ""}">${price}</div><div class="u">${unit}</div></div></div>`;
+  const spark = (x, y, s, c, rot = 0) => `<svg class="spark" style="left:${x}px;top:${y}px;width:${s}px;height:${s}px;transform:rotate(${rot}deg)" viewBox="-10 -10 20 20"><path d="M0-10C1-3 3-1 10 0 3 1 1 3 0 10-1 3-3 1-10 0-3-1-1-3 0-10Z" fill="${c}"/></svg>`;
+  const waGlyph = (s = 34, c = "#fff") => `<svg viewBox="0 0 24 24" width="${s}" height="${s}"><path fill="${c}" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>`;
+  const rings = (size1, size2, right, top) => `<div class="rings" style="width:${size1}px;height:${size1}px;right:${right}px;top:${top}px"></div><div class="rings" style="width:${size2}px;height:${size2}px;right:${right + (size1 - size2) / 2}px;top:${top + (size1 - size2) / 2}px"></div>`;
+
+  const seaScene = (h, id) => `<svg viewBox="0 0 350 ${h}" preserveAspectRatio="xMidYMid slice" style="display:block;width:100%;height:${h}px">
+    <defs><linearGradient id="sk${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F28B5B"/><stop offset=".55" stop-color="#F9C98F"/><stop offset="1" stop-color="#FCE3B8"/></linearGradient>
+    <linearGradient id="se${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A9D8F"/><stop offset="1" stop-color="#145C56"/></linearGradient></defs>
+    <rect width="350" height="${h}" fill="url(#sk${id})"/><circle cx="245" cy="${h*.5}" r="44" fill="#FFF4D8"/>
+    <path d="M0 ${h*.6} Q 90 ${h*.54} 175 ${h*.6} T 350 ${h*.58} V${h} H0Z" fill="url(#se${id})"/>
+    <path d="M0 ${h*.86} Q 120 ${h*.8} 230 ${h*.88} T 350 ${h*.84} V${h} H0Z" fill="#EBD5AA"/>
+    <g fill="#163634" opacity=".9"><path d="M40 ${h} C 44 ${h*.75} 50 ${h*.6} 62 ${h*.48} L 66 ${h*.49} C 56 ${h*.62} 52 ${h*.76} 50 ${h}Z"/>
+    <path d="M64 ${h*.48} C 40 ${h*.42} 20 ${h*.44} 4 ${h*.5} C 26 ${h*.45} 46 ${h*.46} 64 ${h*.5}Z"/><path d="M64 ${h*.48} C 84 ${h*.4} 106 ${h*.39} 124 ${h*.43} C 102 ${h*.43} 84 ${h*.46} 66 ${h*.5}Z"/>
+    <path d="M64 ${h*.48} C 56 ${h*.38} 40 ${h*.33} 22 ${h*.33} C 40 ${h*.37} 54 ${h*.42} 63 ${h*.5}Z"/></g></svg>`;
+
+  const miniSite = (name, id) => `<div class="island"></div>${seaScene(330, id)}
+    <div style="position:absolute;left:24px;top:214px;color:#fff;font:800 38px/0.95 Syne;letter-spacing:-0.03em;text-shadow:0 3px 16px rgba(0,0,0,.35)">${name}</div>
+    <div style="padding:20px">
+      <div style="display:flex;justify-content:space-between;align-items:center;background:#fff;border-radius:18px;padding:14px 16px;box-shadow:0 10px 26px -12px rgba(0,0,0,.3);font:700 18px Inter">
+        <span>Book direct<br><span style="font-weight:500;color:#6B7085;font-size:15px">Best rate · no fees</span></span>
+        <span style="background:#C8643B;color:#fff;padding:11px 14px;border-radius:12px;font-size:16px">Check dates</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
+        <div style="border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 8px 20px -12px rgba(0,0,0,.3)"><div style="height:120px;background:linear-gradient(135deg,#BFE3DE,#4FA79C)"></div><div style="padding:9px 11px;font:700 15px Inter">Sea View<br><span style="color:#C8643B">R1,650</span></div></div>
+        <div style="border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 8px 20px -12px rgba(0,0,0,.3)"><div style="height:120px;background:linear-gradient(135deg,#F6D7B0,#DE965C)"></div><div style="padding:9px 11px;font:700 15px Inter">Garden<br><span style="color:#C8643B">R1,250</span></div></div>
       </div></div>`;
 
+  const waChat = `<div class="island"></div>
+    <div style="background:#075E54;color:#fff;padding:60px 20px 16px;display:flex;align-items:center;gap:12px">
+      <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#F28B5B,#2A9D8F)"></div>
+      <div style="font:700 20px Inter">Your Guesthouse<br><span style="font:500 14px Inter;opacity:.8">online</span></div></div>
+    <div style="background:#ECE5DD;height:100%;padding:18px 14px;display:flex;flex-direction:column;gap:12px;font:500 17px/1.35 Inter">
+      <div style="align-self:flex-start;background:#fff;border-radius:4px 16px 16px 16px;padding:12px 14px;max-width:90%;box-shadow:0 1px 1px rgba(0,0,0,.1)">
+        <b>Hi! I'd like to book directly 🙂</b><br>Sea View Suite<br>12 → 15 Dec · 2 guests<br><span style="color:#075E54;font-weight:700">Estimate: R4,950</span>
+        <div style="text-align:right;font-size:12px;color:#8A8F99">09:41</div></div>
+      <div style="align-self:flex-end;background:#DCF8C6;border-radius:16px 4px 16px 16px;padding:12px 14px;max-width:82%;box-shadow:0 1px 1px rgba(0,0,0,.1)">
+        Available! ✅ Booked for you. See you on the 12th!<div style="text-align:right;font-size:12px;color:#8A8F99">09:43 ✓✓</div></div>
+      <div style="align-self:flex-start;background:#fff;border-radius:4px 16px 16px 16px;padding:12px 14px;box-shadow:0 1px 1px rgba(0,0,0,.1)">Amazing, thank you! 🙏<div style="text-align:right;font-size:12px;color:#8A8F99">09:44</div></div>
+    </div>`;
+
+  const pin = (w, id) => `<svg viewBox="0 0 300 380" width="${w}" style="display:block;filter:drop-shadow(0 50px 50px rgba(0,0,0,.45))">
+    <defs><radialGradient id="pg${id}" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#FF8A73"/><stop offset=".55" stop-color="#EA4335"/><stop offset="1" stop-color="#A51D12"/></radialGradient>
+    <radialGradient id="ph${id}" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff" stop-opacity=".7"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+    <ellipse cx="150" cy="362" rx="70" ry="14" fill="rgba(0,0,0,.25)"/>
+    <path d="M150 10c-72 0-128 55-128 126 0 94 128 216 128 216s128-122 128-216C278 65 222 10 150 10z" fill="url(#pg${id})"/>
+    <circle cx="150" cy="136" r="54" fill="#7E140B" opacity=".45"/><circle cx="150" cy="132" r="50" fill="#fff"/>
+    <ellipse cx="100" cy="72" rx="44" ry="26" fill="url(#ph${id})" transform="rotate(-30 100 72)"/></svg>`;
+
+  const shield = `<svg viewBox="0 0 320 380" width="460" style="display:block;filter:drop-shadow(0 60px 60px rgba(0,0,0,.6))">
+    <defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE6A3"/><stop offset=".45" stop-color="#F2B84B"/><stop offset="1" stop-color="#B9771C"/></linearGradient>
+    <linearGradient id="si" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1FB5A8"/><stop offset="1" stop-color="#0E5F59"/></linearGradient>
+    <linearGradient id="sh2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+    <path d="M160 8 300 58v108c0 98-62 172-140 204C82 338 20 264 20 166V58z" fill="url(#sg)"/>
+    <path d="M160 38 272 78v88c0 80-50 142-112 170-62-28-112-90-112-170V78z" fill="url(#si)"/>
+    <path d="M160 38 272 78v40C200 100 110 110 48 150V78z" fill="url(#sh2)" opacity=".5"/>
+    <path d="M100 192l42 42 84-92" fill="none" stroke="#fff" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+  const igTile = (s) => `<div style="width:${s}px;height:${s}px;border-radius:${s*.26}px;background:radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);display:grid;place-items:center;box-shadow:0 34px 60px -24px rgba(0,0,0,.7)">
+    <div style="width:${s*.58}px;height:${s*.58}px;border:${s*.07}px solid #fff;border-radius:${s*.18}px;position:relative"><div style="position:absolute;inset:${s*.1}px;border:${s*.07}px solid #fff;border-radius:50%"></div><div style="position:absolute;right:${s*.04}px;top:${s*.04}px;width:${s*.07}px;height:${s*.07}px;border-radius:50%;background:#fff"></div></div></div>`;
+  const fbTile = (s) => `<div style="width:${s}px;height:${s}px;border-radius:${s*.26}px;background:linear-gradient(160deg,#3B8BFF,#1460D9);display:grid;place-items:center;box-shadow:0 34px 60px -24px rgba(0,0,0,.7);font:800 ${s*.7}px/1 Inter;color:#fff;padding-top:${s*.12}px">f</div>`;
+
+  const PROMISE = `<div class="promise"><i>✓</i>Pay 50% now · rest when happy</div>`;
+
+  // ---------- the cards ----------
   const ITEMS = {
     mockup: {
-      accent: "#FF6A4D", pill: "Start here", title: "Free<br>Mockup", price: "FREE", unit: "no catch, no obligation",
-      points: ["See your website before you pay", "Made with your name & photos", "Sent to you in 48 hours"],
-      art: `<div class="phone" style="right:30px;top:20px;transform:rotate(6deg)"><div class="screen">${site("Your Name<br>Here")}</div></div>
-            <div class="stamp" style="left:0;bottom:30px">FREE<br><span style="font-size:22px">preview</span></div>`
+      vars: "--bg: radial-gradient(circle at 80% 15%, #FFA585 0%, #FF6A4D 40%, #E2391F 100%); --fg: #fff; --tagbg: #fff; --tagfg: #E2391F; --hl: #0B0D17; --line: rgba(255,255,255,.22); --tshadow: 0 6px 30px rgba(120,20,0,.25)",
+      tag: "Start here", h1: 96, title: "Free<br>Mockup", hook: "See your new website <mark>before you pay a cent.</mark>",
+      body: `${rings(900, 620, -330, 60)}
+        <div class="phone" style="right:40px;top:235px;transform:rotate(8deg)"><div class="screen">${miniSite("Your Name<br>Here", "a")}</div></div>
+        ${sticker("left:70px;top:560px", "#C8F560", "#0B0D17", "FREE", "no obligation", "100%")}
+        <div class="chip" style="right:290px;top:875px;transform:rotate(-3deg)"><span class="ic" style="background:#FFE7E1">⏱</span><span>Ready in 48 hours<small>Sent to your WhatsApp</small></span></div>
+        ${spark(560, 165, 70, "#fff", 10)}${spark(990, 560, 46, "#FFE1B0")}${spark(410, 520, 34, "#fff")}`
     },
     getfound: {
-      accent: "#1FB5A8", pill: "Show up on Google", title: "Get<br>Found", price: "R1,500", unit: "once-off",
-      points: ["Google profile set up properly", "Photos, hours & map pin", "WhatsApp Business + auto-replies"],
-      art: `<svg viewBox="0 0 300 300" style="position:absolute;right:40px;top:40px;width:380px;filter:drop-shadow(0 40px 50px rgba(0,0,0,.6))">
-              <path d="M150 20c-55 0-98 42-98 96 0 72 98 164 98 164s98-92 98-164c0-54-43-96-98-96z" fill="#1FB5A8"/>
-              <circle cx="150" cy="116" r="44" fill="#0B0D17"/><circle cx="150" cy="116" r="20" fill="#C8F560"/></svg>
-            <div class="bubble" style="left:0;bottom:70px;width:400px">
-              <div style="font:700 25px Inter">Your Guesthouse</div>
-              <div style="color:#F4B400;font-size:24px;letter-spacing:2px;margin-top:4px">★★★★★ <span style="color:#1A1C26;font-size:20px;letter-spacing:0">4.9</span></div>
-              <small>Guest house · Summerstrand · Open now</small>
-              <div style="display:flex;gap:8px;margin-top:12px"><span style="background:#E8F0FE;color:#1A73E8;border-radius:99px;padding:7px 14px;font-size:16px">Directions</span><span style="background:#E7F8EE;color:#128C4A;border-radius:99px;padding:7px 14px;font-size:16px">WhatsApp</span></div>
-            </div>`
+      vars: "--bg: radial-gradient(circle at 75% 30%, #47DECE 0%, #1FB5A8 35%, #0B676A 100%); --fg: #fff; --tagbg: #0B0D17; --tagfg: #C8F560; --hl: #C8F560; --line: rgba(255,255,255,.2); --tshadow: 0 6px 30px rgba(0,60,60,.3)",
+      tag: "Show up on Google", title: "Get<br>Found", hook: "Be the <mark>first thing</mark> guests see on Google.",
+      body: `${rings(840, 560, -260, 120)}
+        <div style="position:absolute;right:120px;top:140px;z-index:1">${pin(360, "a")}</div>
+        <div class="chip" style="right:56px;top:560px;width:560px;display:block;padding:24px 26px;transform:rotate(-4deg)">
+          <div style="display:flex;align-items:center;gap:10px;font:600 18px Arial;color:#5F6368;margin-bottom:12px"><span style="display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#1A73E8;color:#fff;font:800 15px Inter">1</span>Top result · guest house summerstrand</div>
+          <div style="font:700 32px Arial;color:#1A0DAB;letter-spacing:-0.01em">Your Guesthouse</div>
+          <div style="font:600 22px Arial;color:#3C4043;margin-top:6px"><span style="color:#F4B400;letter-spacing:2px">★★★★★</span> 4.9 · Open now</div>
+          <div style="display:flex;gap:10px;margin-top:16px"><span style="background:#E8F0FE;color:#1A73E8;border-radius:99px;padding:10px 18px;font:700 19px Inter">📍 Directions</span><span style="background:#E7F8EE;color:#128C4A;border-radius:99px;padding:10px 18px;font:700 19px Inter">💬 WhatsApp</span></div>
+        </div>
+        ${sticker("left:70px;top:590px", "#0B0D17", "#C8F560", "R1,500", "once-off")}
+        ${spark(560, 160, 60, "#C8F560", 10)}${spark(990, 140, 40, "#fff")}${spark(470, 470, 30, "#fff")}`
     },
     bookdirect: {
-      accent: "#C8F560", pill: "Most popular", title: "Book<br>Direct", price: "R4,500", unit: "once-off",
-      points: ["Your own booking website", "Bookings straight to WhatsApp", "No commission. Live in 7 days"],
-      art: `<div class="phone" style="right:40px;top:10px;transform:rotate(-5deg)"><div class="screen">${site("Your<br>Guesthouse")}</div></div>
-            <div class="bubble" style="left:-10px;top:120px;display:flex;gap:14px;align-items:center">${waIcon}<span>New booking<small>3 nights · Sea View Suite</small></span></div>
-            <div class="bubble" style="left:30px;bottom:60px;display:flex;gap:14px;align-items:center"><span style="font-size:30px">💸</span><span>R540 commission kept<small>Booked direct, no app</small></span></div>`
+      vars: "--bg: radial-gradient(circle at 78% 20%, #F2FFC4 0%, #C8F560 38%, #86C934 100%); --fg: #0B0D17; --tagbg: #0B0D17; --tagfg: #C8F560; --hl: #0B6B62; --line: rgba(11,13,23,.12)",
+      tag: "★ Most popular", title: "Book<br>Direct", hook: "Bookings straight to your WhatsApp. <mark>Zero commission.</mark>",
+      body: `${rings(900, 620, -320, 80)}
+        <div class="phone" style="right:60px;top:190px;transform:rotate(-6deg)"><div class="screen">${waChat}</div></div>
+        <div class="chip" style="right:300px;top:600px;transform:rotate(-4deg)"><span class="ic" style="background:#25D366">${waGlyph(34)}</span><span>New booking!<small>3 nights · R4,950</small></span></div>
+        <div class="chip" style="right:40px;top:850px;transform:rotate(4deg)"><span class="ic" style="background:#0B0D17">💸</span><span>R742 kept<small>No app commission</small></span></div>
+        ${sticker("left:70px;top:600px", "#0B0D17", "#C8F560", "R4,500", "once-off", "live in 7 days")}
+        ${spark(590, 170, 56, "#0B0D17", 10)}${spark(1000, 160, 34, "#0B0D17")}`
     },
     plus: {
-      accent: "#8B6BFF", pill: "Look the best", title: "Book Direct<br>Plus", price: "R6,500", unit: "once-off",
-      points: ["Everything in Book Direct", "Logo refresh & brand colours", "Facebook & Instagram set up"],
-      art: `<div class="phone" style="right:20px;top:30px;transform:rotate(5deg)"><div class="screen">${site("Your<br>Brand")}</div></div>
-            <div style="position:absolute;left:10px;top:90px;width:170px;height:170px;border-radius:40px;background:linear-gradient(135deg,#8B6BFF,#FF6A4D);display:grid;place-items:center;box-shadow:0 30px 60px -20px rgba(0,0,0,.8);transform:rotate(-10deg)">
-              <div style="width:96px;height:96px;border-radius:28px;border:9px solid #fff;position:relative"><div style="position:absolute;inset:18px;border-radius:50%;border:9px solid #fff"></div></div></div>
-            <div style="position:absolute;left:40px;bottom:80px;width:150px;height:150px;border-radius:36px;background:#1877F2;display:grid;place-items:center;font:800 110px/1 Inter;color:#fff;box-shadow:0 30px 60px -20px rgba(0,0,0,.8);transform:rotate(8deg)">f</div>`
+      vars: "--bg: radial-gradient(circle at 78% 22%, #CDA8FF 0%, #8B6BFF 40%, #4527C4 100%); --fg: #fff; --tagbg: #fff; --tagfg: #5B3BE8; --hl: #FFD36B; --line: rgba(255,255,255,.2); --tshadow: 0 6px 30px rgba(30,0,90,.35)",
+      tag: "Full glow-up", title: "Book<br>Direct<br><span style='color:#FFD36B'>Plus</span>", hook: "Look like the <mark>best on the street.</mark>", h1: 104, hookTop: 18, headTop: 160,
+      body: `${rings(900, 620, -320, 80)}
+        <div class="phone" style="right:70px;top:200px;transform:rotate(7deg)"><div class="screen">${miniSite("Your<br>Brand", "b")}</div></div>
+        <div style="position:absolute;right:40px;top:150px;z-index:3;transform:rotate(12deg)">${igTile(150)}</div>
+        <div style="position:absolute;right:420px;top:640px;z-index:3;transform:rotate(9deg)">${fbTile(140)}</div>
+        <div class="chip" style="right:40px;top:870px;transform:rotate(-3deg)"><span class="ic" style="background:#F1EBFF">✨</span><span>New logo + colours<small>Website, Facebook, Instagram</small></span></div>
+        ${sticker("left:60px;top:650px", "#FFD36B", "#2A1470", "R6,500", "once-off", "all-in")}
+        ${spark(600, 150, 64, "#FFD36B", 10)}${spark(1000, 130, 40, "#fff")}`
     },
     care: {
-      accent: "#1FB5A8", pill: "Monthly", title: "Care<br>Plan", price: "R350", unit: "/ month",
-      points: ["Hosting & security handled", "Price & photo updates", "Cancel anytime"],
-      art: `<svg viewBox="0 0 300 340" style="position:absolute;right:60px;top:40px;width:360px;filter:drop-shadow(0 40px 50px rgba(0,0,0,.6))">
-              <defs><linearGradient id="sh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1FB5A8"/><stop offset="1" stop-color="#C8F560"/></linearGradient></defs>
-              <path d="M150 10 270 55v95c0 85-55 150-120 180C85 300 30 235 30 150V55z" fill="url(#sh)"/>
-              <path d="M95 170l40 40 75-85" fill="none" stroke="#0B0D17" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <div class="bubble" style="left:0;bottom:150px;display:flex;gap:12px;align-items:center"><span style="font-size:28px">✅</span><span>Prices updated<small>Today, 09:14</small></span></div>
-            <div class="bubble" style="left:60px;bottom:40px;display:flex;gap:12px;align-items:center"><span style="font-size:28px">🔒</span><span>Site secure & online<small>Checked this week</small></span></div>`
+      vars: "--bg: radial-gradient(circle at 75% 32%, #24395A 0%, #131A2E 45%, #0B0D17 100%); --fg: #fff; --tagbg: #F2B84B; --tagfg: #0B0D17; --hl: #F2B84B; --line: rgba(242,184,75,.2)",
+      tag: "Monthly", title: "Care<br>Plan", hook: "I look after your site. <mark>You run your guesthouse.</mark>",
+      body: `<div class="orb" style="width:760px;height:760px;right:-200px;top:100px;background:radial-gradient(circle, rgba(31,181,168,.5), transparent 65%)"></div>
+        ${rings(860, 580, -280, 110)}
+        <div style="position:absolute;right:100px;top:160px;z-index:1">${shield}</div>
+        <div class="chip" style="right:40px;top:700px;transform:rotate(3deg)"><span class="ic" style="background:#E3F7F5">🔒</span><span>Secure &amp; online<small>Checked weekly</small></span></div>
+        <div class="chip" style="right:220px;top:860px;transform:rotate(-2deg)"><span class="ic" style="background:#FFF4DC">🏷️</span><span>Prices &amp; photos updated<small>Same day, just WhatsApp me</small></span></div>
+        ${sticker("left:70px;top:590px", "#F2B84B", "#0B0D17", "R350", "per month", "cancel anytime")}
+        ${spark(600, 170, 56, "#F2B84B", 10)}${spark(1000, 150, 34, "#fff")}`
+    },
+    status: {
+      tall: true, noPromise: true, h1: 150,
+      vars: "--bg: radial-gradient(circle at 70% 25%, #FFA585 0%, #FF6A4D 32%, #C8341E 100%); --fg: #fff; --tagbg: #0B0D17; --tagfg: #C8F560; --hl: #0B0D17; --line: rgba(255,255,255,.2); --tshadow: 0 6px 30px rgba(120,20,0,.25)",
+      tag: "Gqeberha", title: "Free<br>website<br>mockup<span style='color:#0B0D17'>.</span>", hook: "For guesthouses &amp; B&amp;Bs. <mark>See it before you pay.</mark>",
+      body: `${rings(1200, 820, -500, 640)}
+        <div class="phone" style="right:80px;top:820px;transform:rotate(7deg);width:430px;height:880px"><div class="screen">${miniSite("Your Name<br>Here", "c")}</div></div>
+        <div class="chip" style="left:60px;top:1060px;transform:rotate(-4deg)"><span class="ic" style="background:#25D366">${waGlyph(34)}</span><span>Bookings to WhatsApp<small>No commission to the apps</small></span></div>
+        <div class="chip" style="left:90px;top:1240px;transform:rotate(3deg)"><span class="ic" style="background:#FFE7E1">⏱</span><span>Live in 7 days<small>Pay 50% now, rest when happy</small></span></div>
+        ${sticker("left:80px;top:1390px", "#C8F560", "#0B0D17", "FREE", "no obligation", "100%")}
+        <div style="position:absolute;left:60px;right:60px;bottom:70px;z-index:5;background:#0B0D17;color:#fff;border-radius:40px;padding:36px 40px;display:flex;align-items:center;gap:28px;box-shadow:0 40px 80px -30px rgba(0,0,0,.7)">
+          <div style="width:110px;height:110px;flex:none;border-radius:32px;background:#25D366;display:grid;place-items:center">${waGlyph(64)}</div>
+          <div><div style="font:800 50px/1.05 Syne;letter-spacing:-0.03em">Reply <span style="color:#C8F560">"MOCKUP"</span></div><div style="font:700 34px Inter;color:#C9CDD9;margin-top:8px">068 483 9679</div></div>
+        </div>
+        ${spark(660, 200, 80, "#fff", 10)}${spark(990, 640, 50, "#FFE1B0")}`
     }
   };
 
   const only = new URLSearchParams(location.search).get("item");
-  const html = Object.entries(ITEMS).filter(([k]) => !only || k === only).map(([k, it]) => `
-    <section class="card" id="${k}" style="--accent:${it.accent}">
-      <div class="glow g1"></div><div class="glow g2"></div><div class="grid"></div>
-      <div class="top"><div class="brand"><img src="${LOGO}" alt=""><span>njabulisto<b>.</b></span></div><span class="pill">${it.pill}</span></div>
-      <div class="body">
-        <div>
-          <h1>${it.title}</h1>
-          <div class="price">${it.price}<small>${it.unit}</small></div>
-          <ul>${it.points.map(p => `<li>${p}</li>`).join("")}</ul>
-        </div>
-        <div class="art">${it.art}</div>
+  document.getElementById("cards").innerHTML = Object.entries(ITEMS)
+    .filter(([k]) => only ? k === only : k !== "status")
+    .map(([k, it]) => `
+    <section class="card${it.tall ? " tall" : ""}" id="${k}" style="${it.vars}">
+      <div class="noise"></div>
+      <div class="top"><span class="brand"><img src="${LOGO}" alt=""><span>njabulisto<b>.</b></span></span><span class="tag">${it.tag}</span></div>
+      <div class="head" style="${it.headTop ? `top:${it.headTop}px` : ""}">
+        <h1 style="${it.h1 ? `font-size:${it.h1}px` : ""}">${it.title}</h1>
+        <p class="hook" style="${it.hookTop ? `margin-top:${it.hookTop}px` : ""}">${it.hook}</p>
       </div>
-      <div class="foot">${FOOT}</div>
+      ${it.body}
+      ${it.noPromise ? "" : PROMISE}
     </section>`).join("");
-  document.getElementById("cards").innerHTML = html;
 </script>
 </body>
 </html>
