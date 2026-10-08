@@ -8,6 +8,8 @@
   <meta property="og:title" content="Njabulisto Digitals">
   <meta property="og:description" content="Stop paying commission on every guest. Direct-booking websites for Gqeberha guesthouses, live in 7 days.">
   <meta name="theme-color" content="#0B0D17">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:image" content="assets/logo-dark.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -44,6 +46,12 @@
     .wrap > *, .row2 > * { min-width: 0; }
     input, select, textarea { min-width: 0; max-width: 100%; }
 
+    .progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 100; background: linear-gradient(90deg, var(--ocean), var(--lime)); box-shadow: 0 0 12px rgba(200,245,96,.7); }
+    .noise { position: absolute; inset: 0; pointer-events: none; opacity: .07; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    .grad-text { background: linear-gradient(100deg, var(--lime), #7DF0C8 50%, var(--lime)); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 6s linear infinite; }
+    @keyframes shine { to { background-position: 200% center; } }
+
     /* ---------- Buttons ---------- */
     .btn {
       display: inline-flex; align-items: center; gap: 10px;
@@ -67,15 +75,18 @@
     .nav.scrolled { background: rgba(11,13,23,.82); backdrop-filter: blur(14px); padding: 12px 0; }
     .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .logo { display: flex; align-items: center; gap: 10px; color: var(--white); font: 800 20px "Syne", sans-serif; }
-    .logo-mark {
-      width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center;
-      background: var(--lime); color: var(--ink); font-size: 20px;
-    }
+    .logo-mark { width: 40px; height: 40px; flex: none; filter: drop-shadow(0 6px 16px rgba(200,245,96,.25)); transition: transform .4s cubic-bezier(.3,1.6,.5,1); }
+    .logo:hover .logo-mark { transform: rotate(-8deg) scale(1.06); }
+    .logo-mark svg { width: 100%; height: 100%; }
+    .logo { font-size: 22px; letter-spacing: -0.03em; }
+    .logo .dot { color: var(--ocean); }
     .logo small { display: block; font: 500 11px "Inter"; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
     .nav-links { display: flex; gap: 28px; color: rgba(255,255,255,.75); font-weight: 500; font-size: 15px; }
     .nav-links a:hover { color: var(--lime); }
     .nav .btn { padding: 11px 20px; font-size: 14px; }
     @media (max-width: 860px) { .nav-links { display: none; } }
+    .nav .btn .short { display: none; }
+    @media (max-width: 480px) { .logo { font-size: 18px; gap: 8px; } .logo-mark { width: 34px; height: 34px; } .nav .btn { padding: 10px 14px; font-size: 13px; } .nav .btn .long { display: none; } .nav .btn .short { display: inline; } }
 
     /* ---------- Hero ---------- */
     .hero {
@@ -83,8 +94,11 @@
       padding: 150px 0 90px; overflow: hidden;
     }
     .blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .55; pointer-events: none; }
-    .blob.b1 { width: 520px; height: 520px; background: var(--ocean); top: -160px; right: -120px; }
-    .blob.b2 { width: 420px; height: 420px; background: #6A4DFF; bottom: -200px; left: -140px; opacity: .35; }
+    .blob.b1 { width: 520px; height: 520px; background: var(--ocean); top: -160px; right: -120px; animation: roam1 18s ease-in-out infinite alternate; }
+    .blob.b4 { width: 360px; height: 360px; background: var(--lime); opacity: .18; top: 40%; left: 35%; animation: roam2 22s ease-in-out infinite alternate; }
+    @keyframes roam1 { to { transform: translate(-140px, 120px) scale(1.15); } }
+    @keyframes roam2 { to { transform: translate(160px, -90px) scale(.85); } }
+    .blob.b2 { width: 420px; height: 420px; background: #6A4DFF; bottom: -200px; left: -140px; opacity: .35; animation: roam2 20s ease-in-out infinite alternate-reverse; }
     .grid-bg {
       position: absolute; inset: 0; pointer-events: none;
       background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
@@ -99,8 +113,10 @@
     }
     .eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 4px rgba(200,245,96,.2); animation: pulse 2s infinite; }
     @keyframes pulse { 50% { box-shadow: 0 0 0 8px rgba(200,245,96,0); } }
-    .hero h1 { font-size: clamp(34px, 9.4vw, 82px); font-weight: 800; margin: 24px 0 22px; }
-    .hero h1 .hl { color: var(--lime); position: relative; white-space: nowrap; }
+    .hero h1 { font-size: clamp(34px, 9.4vw, 74px); font-weight: 800; margin: 24px 0 22px; }
+    .hero h1 .hl { color: var(--lime); position: relative; white-space: nowrap; display: inline-block; }
+    .rot { display: inline-block; transition: opacity .35s ease, transform .35s ease, filter .35s ease; }
+    .rot.out { opacity: 0; transform: translateY(18px); filter: blur(6px); }
     .hero h1 .hl svg { position: absolute; left: 0; right: 0; bottom: -10px; width: 100%; height: 16px; }
     .hero p.lead { font-size: clamp(17px, 2vw, 20px); color: rgba(255,255,255,.72); max-width: 560px; }
     .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
@@ -190,6 +206,51 @@
     .p-card p { color: #5A5F72; }
     @media (max-width: 860px) { .problem-grid { grid-template-columns: 1fr; } }
 
+
+    /* Before / after */
+    .ba { background: var(--white); }
+    .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 56px; }
+    .ba-card { border-radius: 26px; padding: 26px; position: relative; }
+    .ba-card.before { background: #F3F1EC; }
+    .ba-card.after { background: linear-gradient(160deg, #F2FCE0, #E2F7F4); box-shadow: 0 40px 80px -50px rgba(31,181,168,.7); }
+    .ba-tag { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; padding: 7px 14px; border-radius: 999px; margin-bottom: 18px; }
+    .before .ba-tag { background: #FFE2DB; color: #C2412A; }
+    .after .ba-tag { background: var(--ink); color: var(--lime); }
+    .gsearch { display: flex; align-items: center; gap: 10px; background: #fff; border-radius: 999px; padding: 11px 18px; font-size: 14px; color: #3C4043; box-shadow: 0 2px 8px rgba(0,0,0,.08); margin-bottom: 16px; }
+    .gsearch svg { width: 16px; height: 16px; flex: none; }
+    .gres { background: #fff; border-radius: 16px; padding: 14px 16px; margin-bottom: 10px; font-family: Arial, sans-serif; }
+    .gres .src { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #4D5156; }
+    .gres .fav { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; font-weight: 700; color: #fff; flex: none; }
+    .gres h4 { font: 400 17px Arial, sans-serif; color: #1A0DAB; margin: 4px 0 2px; }
+    .gres p { font-size: 13px; color: #4D5156; line-height: 1.45; }
+    .gres .cut { margin-top: 6px; display: inline-block; font-size: 12px; font-weight: 700; color: #C2412A; background: #FFE2DB; padding: 3px 8px; border-radius: 6px; font-family: Inter, sans-serif; }
+    .gres.win { outline: 2px solid var(--ocean); }
+    .gres .links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .gres .links span { font-size: 13px; color: #1A0DAB; background: #F1F3F4; padding: 6px 12px; border-radius: 999px; }
+    .gres .keep { margin-top: 8px; display: inline-block; font-size: 12px; font-weight: 700; color: #0B6B62; background: #D5F5F0; padding: 3px 8px; border-radius: 6px; font-family: Inter, sans-serif; }
+    .faded { opacity: .45; }
+    .stars-g { color: #F4B400; letter-spacing: 1px; }
+    @media (max-width: 860px) { .ba-grid { grid-template-columns: 1fr; } }
+
+    /* Showcase */
+    .show { background: var(--paper); overflow: hidden; }
+    .show-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+    .stage { position: relative; margin-top: 56px; padding-bottom: 40px; }
+    .laptop { width: 86%; margin-inline: auto 0; background: #1A1D2B; border-radius: 22px 22px 10px 10px; padding: 14px 14px 18px; box-shadow: 0 60px 120px -50px rgba(11,13,23,.6); }
+    .bar { display: flex; gap: 7px; align-items: center; padding: 0 4px 12px; }
+    .bar i { width: 11px; height: 11px; border-radius: 50%; background: #FF5F57; }
+    .bar i:nth-child(2) { background: #FEBC2E; } .bar i:nth-child(3) { background: #28C840; }
+    .bar span { margin-left: 14px; flex: 1; background: #262A3B; color: #9AA0B4; font-size: 12px; padding: 6px 14px; border-radius: 8px; }
+    .viewport { position: relative; overflow: hidden; border-radius: 10px; background: #fff; aspect-ratio: 16 / 10; }
+    .viewport iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: 0 0; pointer-events: none; }
+    .phone2 { position: absolute; left: 0; bottom: 0; width: 22%; min-width: 150px; background: #1A1D2B; border-radius: 34px; padding: 9px; box-shadow: 0 40px 80px -30px rgba(11,13,23,.8); }
+    .phone2 .viewport { aspect-ratio: 9 / 19.5; border-radius: 26px; }
+    .show-cta { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 36px; }
+    .show-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+    .show-points div { background: var(--white); border-radius: 18px; padding: 20px 22px; font-weight: 600; display: flex; gap: 12px; align-items: center; }
+    .show-points span { font-size: 22px; }
+    @media (max-width: 760px) { .laptop { width: 100%; } .phone2 { display: none; } .show-points { grid-template-columns: 1fr; } }
+
     /* Calculator */
     .calc { background: var(--ink); color: var(--white); position: relative; overflow: hidden; }
     .calc .blob.b3 { width: 460px; height: 460px; background: var(--lime); opacity: .14; top: -120px; left: 40%; }
@@ -215,13 +276,19 @@
       background: var(--white); border-radius: 28px; padding: 36px 30px; border: 1px solid #E8E5DD;
       display: flex; flex-direction: column; position: relative;
     }
-    .pkg.featured { background: var(--ink); color: var(--white); border-color: var(--ink); transform: scale(1.03); box-shadow: 0 40px 80px -40px rgba(11,13,23,.6); }
+    .pkg.featured { background: var(--ink); color: var(--white); border-color: transparent; transform: scale(1.03); box-shadow: 0 40px 80px -40px rgba(11,13,23,.6), 0 0 60px -20px rgba(200,245,96,.45); isolation: isolate; }
+    .pkg.featured::before { content: ""; position: absolute; inset: -2px; border-radius: 30px; z-index: -1; background: conic-gradient(from var(--ang, 0deg), var(--lime), var(--ocean), #6A4DFF, var(--lime)); animation: spin 6s linear infinite; }
+    .pkg.featured::after { content: ""; position: absolute; inset: 0; border-radius: 28px; z-index: -1; background: var(--ink); }
+    @property --ang { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+    @keyframes spin { to { --ang: 360deg; } }
+    .pkg:not(.featured):hover { border-color: var(--ocean); box-shadow: 0 30px 60px -36px rgba(31,181,168,.6); }
+    .pkg { transition: border-color .25s ease, box-shadow .25s ease; }
     .pkg .tag { position: absolute; top: -14px; left: 30px; background: var(--lime); color: var(--ink); font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 999px; letter-spacing: .06em; text-transform: uppercase; }
     .pkg h3 { font-size: 24px; }
     .pkg .for { color: #6B7085; font-size: 15px; margin-top: 6px; }
     .pkg.featured .for { color: rgba(255,255,255,.6); }
     .price { font: 800 46px "Syne"; margin: 22px 0 4px; }
-    .price small { font: 500 15px "Inter"; color: #6B7085; }
+    .price small { font: 500 15px "Inter"; color: #6B7085; white-space: nowrap; }
     .pkg.featured .price small { color: rgba(255,255,255,.55); }
     .pkg ul { list-style: none; margin: 22px 0 30px; display: grid; gap: 12px; flex: 1; }
     .pkg li { display: flex; gap: 12px; font-size: 15px; }
@@ -321,31 +388,33 @@
   </style>
 </head>
 <body>
+  <div class="progress" id="progress"></div>
 
   <!-- ============ NAV ============ -->
   <header class="nav" id="nav">
     <div class="wrap">
       <a href="#" class="logo" aria-label="Njabulisto Digitals home">
-        <span class="logo-mark">N</span>
-        <span>Njabulisto<small>Digitals</small></span>
+        <span class="logo-mark"><svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="ndg1" x1="14" y1="50" x2="54" y2="14" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1FB5A8"/><stop offset="1" stop-color="#C8F560"/></linearGradient></defs><rect width="64" height="64" rx="18" fill="#151827"/><path d="M18 46V19L46 46V19M38.5 26.5L46 18.5l7.5 8" fill="none" stroke="url(#ndg1)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>njabulisto<b class="dot">.</b><small>Digitals</small></span>
       </a>
       <nav class="nav-links" aria-label="Main">
+        <a href="#work">Demo</a>
         <a href="#calculator">Savings</a>
         <a href="#packages">Packages</a>
         <a href="#process">How it works</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a href="#contact" class="btn btn-lime">Get a free mockup</a>
+      <a href="#contact" class="btn btn-lime"><span class="long">Get a free mockup</span><span class="short">Free mockup</span></a>
     </div>
   </header>
 
   <!-- ============ HERO ============ -->
   <section class="hero">
-    <div class="blob b1"></div><div class="blob b2"></div><div class="grid-bg"></div>
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b4"></div><div class="grid-bg"></div><div class="noise"></div>
     <div class="wrap">
       <div>
         <span class="eyebrow reveal"><span class="dot"></span> Now taking founding clients in Gqeberha</span>
-        <h1 class="reveal">Stop paying commission on <span class="hl">every guest.<svg viewBox="0 0 300 16" preserveAspectRatio="none" aria-hidden="true"><path d="M2 12 C 80 2, 200 2, 298 10" stroke="#C8F560" stroke-width="5" fill="none" stroke-linecap="round"/></svg></span></h1>
+        <h1 class="reveal">Stop paying commission on <span class="hl"><span class="rot" id="rot">every guest.</span><svg viewBox="0 0 300 16" preserveAspectRatio="none" aria-hidden="true"><path d="M2 12 C 80 2, 200 2, 298 10" stroke="#C8F560" stroke-width="5" fill="none" stroke-linecap="round"/></svg></span></h1>
         <p class="lead reveal">I build guesthouses and local businesses a website that brings bookings straight to your WhatsApp. No middleman. No cut. Live in 7 days.</p>
         <div class="hero-ctas reveal">
           <a href="#contact" class="btn btn-lime">
@@ -418,6 +487,31 @@
     </div>
   </section>
 
+  <!-- ============ BEFORE / AFTER ============ -->
+  <section class="ba">
+    <div class="wrap">
+      <p class="kicker reveal">The difference</p>
+      <h2 class="sec-title reveal">Same guesthouse. Same Google search. Very different result.</h2>
+      <div class="ba-grid">
+        <div class="ba-card before reveal">
+          <span class="ba-tag">✕ Before</span>
+          <div class="gsearch"><svg viewBox="0 0 24 24" fill="none" stroke="#4D5156" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>guest house summerstrand</div>
+          <div class="gres"><div class="src"><span class="fav" style="background:#003580">B.</span>Booking.com</div><h4>Your Guesthouse, Summerstrand. Updated prices</h4><p>Book now and pay later. See photos and great deals…</p><span class="cut">You pay ~15% on this booking</span></div>
+          <div class="gres"><div class="src"><span class="fav" style="background:#FF385C">a</span>Airbnb</div><h4>Rooms in Summerstrand. Guesthouses</h4><p>Find unique places to stay with local hosts…</p><span class="cut">Another platform fee</span></div>
+          <div class="gres faded"><div class="src"><span class="fav" style="background:#9AA0B4">?</span>Your guesthouse</div><h4>Nowhere to be found</h4><p>No website. Guests can't book you directly.</p></div>
+        </div>
+        <div class="ba-card after reveal">
+          <span class="ba-tag">✓ After Njabulisto</span>
+          <div class="gsearch"><svg viewBox="0 0 24 24" fill="none" stroke="#4D5156" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>your guesthouse summerstrand</div>
+          <div class="gres win"><div class="src"><span class="fav" style="background:#1E6E66">Y</span>yourguesthouse.co.za</div><h4>Your Guesthouse | Book Direct, Best Rate</h4><p><span class="stars-g">★★★★★</span> 4.9 · Boutique guesthouse, 2 min to Pollock Beach…</p>
+            <div class="links"><span>Book direct</span><span>Rooms</span><span>WhatsApp us</span></div><span class="keep">You keep 100% of this booking</span></div>
+          <div class="gres"><div class="src"><span class="fav" style="background:#4285F4">G</span>Google Maps</div><h4>Your Guesthouse · Open now</h4><p>Photos, hours, directions and a tap-to-WhatsApp button.</p></div>
+          <div class="gres faded"><div class="src"><span class="fav" style="background:#003580">B.</span>Booking.com</div><h4>Still there for new guests</h4><p>You keep the apps. Your own site catches the rest.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ CALCULATOR ============ -->
   <section class="calc" id="calculator">
     <div class="blob b3"></div>
@@ -447,6 +541,35 @@
           <div class="row"><span>If just 1 in 4 bookings went direct</span><span id="saved">R21,600/yr kept</span></div>
         </div>
         <p class="calc-note">An estimate to start a conversation, not a promise. Your real numbers decide.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SHOWCASE ============ -->
+  <section class="show" id="work">
+    <div class="wrap">
+      <div class="show-head">
+        <div>
+          <p class="kicker reveal">See it live</p>
+          <h2 class="sec-title reveal">This is what your guests will see.</h2>
+        </div>
+        <p class="reveal" style="color:#555A6E;max-width:380px">A real, working demo. Pick dates and tap "Book". It opens WhatsApp with the booking already written.</p>
+      </div>
+      <div class="stage reveal">
+        <div class="laptop">
+          <div class="bar"><i></i><i></i><i></i><span>yourguesthouse.co.za</span></div>
+          <div class="viewport" data-w="1366"><iframe src="demo/guesthouse/?art=1" title="Guesthouse demo, desktop" loading="lazy" tabindex="-1"></iframe></div>
+        </div>
+        <div class="phone2"><div class="viewport" data-w="390"><iframe src="demo/guesthouse/?art=1" title="Guesthouse demo, phone" loading="lazy" tabindex="-1"></iframe></div></div>
+      </div>
+      <div class="show-points">
+        <div class="reveal"><span>⚡</span>Loads fast on any phone</div>
+        <div class="reveal"><span>📲</span>Bookings straight to WhatsApp</div>
+        <div class="reveal"><span>🔑</span>You own it. No lock-in</div>
+      </div>
+      <div class="show-cta reveal">
+        <a href="demo/guesthouse/?art=1" target="_blank" rel="noopener" class="btn btn-dark">Open the live demo ↗</a>
+        <a href="#contact" class="btn btn-lime">Get one with your name on it</a>
       </div>
     </div>
   </section>
@@ -593,10 +716,10 @@
 
   <footer>
     <div class="wrap" style="display:block">
-      <div class="big-word">NJABULISTO</div>
+      <div class="big-word">njabulisto.</div>
     </div>
     <div class="wrap">
-      <a href="#" class="logo"><span class="logo-mark">N</span><span>Njabulisto<small>Digitals</small></span></a>
+      <a href="#" class="logo"><span class="logo-mark"><svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="ndg2" x1="14" y1="50" x2="54" y2="14" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1FB5A8"/><stop offset="1" stop-color="#C8F560"/></linearGradient></defs><rect width="64" height="64" rx="18" fill="#151827"/><path d="M18 46V19L46 46V19M38.5 26.5L46 18.5l7.5 8" fill="none" stroke="url(#ndg2)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>njabulisto<b class="dot">.</b><small>Digitals</small></span></a>
       <span>© <span id="yr"></span> Njabulisto Digitals · Summerstrand, Gqeberha</span>
     </div>
   </footer>
@@ -649,6 +772,27 @@
     }
     [rate, nights, comm].forEach(el => el.addEventListener("input", calc));
     calc();
+
+    // Rotating hero word
+    const words = ["every guest.", "every night.", "every stay."];
+    const rot = document.getElementById("rot"); let wi = 0;
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) setInterval(() => {
+      rot.classList.add("out");
+      setTimeout(() => { wi = (wi + 1) % words.length; rot.textContent = words[wi]; rot.classList.remove("out"); }, 350);
+    }, 2600);
+
+    // Scroll progress
+    const prog = document.getElementById("progress");
+    addEventListener("scroll", () => { prog.style.width = (scrollY / (document.documentElement.scrollHeight - innerHeight) * 100) + "%"; }, { passive: true });
+
+    // Scale demo iframes to fit their frames
+    function fitFrames() {
+      document.querySelectorAll(".viewport[data-w]").forEach(v => {
+        const w = +v.dataset.w, f = v.querySelector("iframe"), k = v.clientWidth / w;
+        f.style.width = w + "px"; f.style.height = (v.clientHeight / k) + "px"; f.style.transform = `scale(${k})`;
+      });
+    }
+    addEventListener("resize", fitFrames); fitFrames();
 
     // Nav background on scroll
     const nav = document.getElementById("nav");

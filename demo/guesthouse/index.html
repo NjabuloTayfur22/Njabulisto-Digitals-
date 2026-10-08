@@ -472,6 +472,11 @@
     };
     /* ===================================================================== */
 
+    // "?art" in the address shows the drawn artwork instead of photos (used by the showcase on the main site)
+    if (new URLSearchParams(location.search).has("art")) {
+      SITE.heroPhoto = ""; SITE.aboutPhotos = ["", ""]; SITE.galleryPhotos = []; SITE.rooms.forEach(r => r.photo = "");
+    }
+
     // Drawn artwork used when there is no photo
     const palettes = [
       ["#BFE3DE", "#5FB3A8", "#1E6E66"], ["#F6D7B0", "#E9A86E", "#C8643B"], ["#F3E6CF", "#D9C29A", "#8C7A5B"],
