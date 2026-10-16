@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rooms near work in Summerstrand | R2,500 a month</title>
+  <meta name="description" content="Affordable rooms in Summerstrand, Gqeberha for people who work nearby. R2,500 a month. Walk to work, save taxi money. Apply on WhatsApp.">
+  <meta property="og:title" content="Rooms near work in Summerstrand: R2,500 a month">
+  <meta property="og:description" content="Walk to work. Save taxi money. View the room first, pay after.">
+  <meta name="theme-color" content="#14213D">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #14213D;
+      --navy-2: #1F2F55;
+      --sun: #FFC93C;
+      --sun-2: #FFB400;
+      --green: #1DB954;
+      --mint: #E6F8EE;
+      --cream: #FFF9EC;
+      --white: #FFFFFF;
+      --text: #1B2235;
+      --muted: #5D6478;
+      --line: #ECE6D6;
+      --red: #E5484D;
+      --wrap: 1100px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html, body { overflow-x: clip; }
+    body { font-family: "Inter", system-ui, sans-serif; background: var(--cream); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, .display { font-family: "Bricolage Grotesque", "Inter", sans-serif; line-height: 1.02; letter-spacing: -0.02em; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(var(--wrap), 100% - 32px); margin-inline: auto; }
+    .wrap > * { min-width: 0; }
+    input, select, textarea, button { font: inherit; min-width: 0; max-width: 100%; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 26px; border-radius: 16px; border: 0; cursor: pointer; font-weight: 700; font-size: 16px; transition: transform .15s ease, box-shadow .15s ease; }
+    .btn:active { transform: scale(.98); }
+    .btn-wa { background: var(--green); color: #fff; box-shadow: 0 10px 24px -10px rgba(29,185,84,.7); }
+    .btn-sun { background: var(--sun); color: var(--navy); box-shadow: 0 10px 24px -10px rgba(255,180,0,.7); }
+    .btn-ghost { background: rgba(255,255,255,.1); color: #fff; border: 1.5px solid rgba(255,255,255,.3); }
+    .btn svg { width: 22px; height: 22px; flex: none; }
+
+    /* Top bar */
+    .bar { position: sticky; top: 0; z-index: 40; background: var(--navy); color: #fff; }
+    .bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; font: 800 19px "Bricolage Grotesque"; }
+    .brand .key { width: 36px; height: 36px; border-radius: 11px; background: var(--sun); display: grid; place-items: center; flex: none; }
+    .brand .key svg { width: 20px; height: 20px; }
+    .lang { display: inline-flex; background: rgba(255,255,255,.1); border-radius: 12px; padding: 4px; }
+    .lang button { border: 0; background: none; color: #fff; padding: 7px 12px; border-radius: 9px; font-weight: 700; font-size: 13px; cursor: pointer; opacity: .7; }
+    .lang button[aria-pressed="true"] { background: var(--sun); color: var(--navy); opacity: 1; }
+
+    /* Hero */
+    .hero { background: var(--navy); color: #fff; position: relative; overflow: hidden; padding: 46px 0 70px; }
+    .hero::before { content: ""; position: absolute; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(255,201,60,.35), transparent 65%); right: -160px; top: -160px; }
+    .hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 40px; background: var(--cream); clip-path: ellipse(70% 100% at 50% 100%); }
+    .hero .wrap { position: relative; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 40px; align-items: center; }
+    .pill { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; }
+    .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(29,185,84,.25); }
+    .hero h1 { font-size: clamp(40px, 8vw, 76px); font-weight: 800; margin: 18px 0 14px; }
+    .hero h1 .hl { color: var(--sun); }
+    .hero .lead { font-size: clamp(17px, 2.2vw, 20px); color: rgba(255,255,255,.82); max-width: 520px; }
+    .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+    .facts { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 24px; font-size: 14px; color: rgba(255,255,255,.75); font-weight: 600; }
+    .facts span { display: inline-flex; align-items: center; gap: 7px; }
+    .facts b { color: var(--sun); }
+
+    .price-card { position: relative; background: #fff; color: var(--text); border-radius: 28px; padding: 26px; box-shadow: 0 40px 80px -30px rgba(0,0,0,.6); transform: rotate(2deg); }
+    .price-card .tag { position: absolute; top: -16px; right: 22px; background: var(--sun); color: var(--navy); font-weight: 800; font-size: 13px; padding: 8px 14px; border-radius: 999px; transform: rotate(-4deg); }
+    .price-card .lbl { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+    .price-card .big { font: 800 64px/1 "Bricolage Grotesque"; color: var(--navy); margin: 6px 0 2px; }
+    .price-card .big small { font: 600 18px "Inter"; color: var(--muted); }
+    .price-card ul { list-style: none; margin-top: 16px; display: grid; gap: 10px; }
+    .price-card li { display: flex; gap: 10px; align-items: flex-start; font-weight: 600; font-size: 15px; }
+    .price-card li i { font-style: normal; width: 24px; height: 24px; flex: none; border-radius: 50%; background: var(--mint); color: var(--green); display: grid; place-items: center; font-size: 13px; font-weight: 800; }
+    .price-card .avail { margin-top: 18px; padding: 12px 14px; border-radius: 14px; background: var(--cream); font-weight: 700; display: flex; justify-content: space-between; gap: 8px; align-items: center; }
+    .bar-meter { height: 8px; border-radius: 8px; background: var(--line); overflow: hidden; margin-top: 8px; }
+    .bar-meter span { display: block; height: 100%; background: linear-gradient(90deg, var(--green), #6BE39A); border-radius: 8px; }
+    @media (max-width: 860px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); } .price-card { transform: none; } }
+
+    /* Trust strip */
+    .trust { margin-top: -6px; }
+    .trust .wrap { background: #fff; border: 2px solid var(--green); border-radius: 22px; padding: 18px 22px; display: flex; gap: 16px; align-items: center; box-shadow: 0 20px 40px -30px rgba(20,33,61,.5); }
+    .trust .shield { width: 52px; height: 52px; flex: none; border-radius: 16px; background: var(--mint); display: grid; place-items: center; font-size: 26px; }
+    .trust b { display: block; font-size: 17px; }
+    .trust p { color: var(--muted); font-size: 15px; }
+
+    section { padding: 70px 0; }
+    .kicker { font-weight: 800; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--sun-2); margin-bottom: 10px; }
+    .title { font-size: clamp(32px, 5vw, 50px); font-weight: 800; color: var(--navy); max-width: 720px; }
+    .sub { color: var(--muted); font-size: 17px; max-width: 600px; margin-top: 12px; }
+
+    /* Who */
+    .who-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 30px; }
+    .who { background: #fff; border-radius: 20px; padding: 20px; border: 1px solid var(--line); }
+    .who span { font-size: 30px; }
+    .who b { display: block; margin-top: 8px; font-size: 16px; }
+    .who p { color: var(--muted); font-size: 14px; }
+    @media (max-width: 860px) { .who-grid { grid-template-columns: 1fr 1fr; } }
+
+    /* Calculator */
+    .calc { background: var(--navy); color: #fff; border-radius: 32px; padding: 34px; margin-top: 10px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 34px; }
+    .calc .title { color: #fff; }
+    .calc .sub { color: rgba(255,255,255,.7); }
+    .field { margin-bottom: 20px; }
+    .field-top { display: flex; justify-content: space-between; gap: 10px; font-weight: 600; margin-bottom: 8px; color: rgba(255,255,255,.85); }
+    .field-top output { font: 800 22px "Bricolage Grotesque"; color: var(--sun); white-space: nowrap; }
+    input[type=range] { width: 100%; -webkit-appearance: none; appearance: none; height: 8px; border-radius: 8px; background: var(--navy-2); outline: none; }
+    input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 28px; height: 28px; border-radius: 50%; background: var(--sun); border: 5px solid var(--navy); box-shadow: 0 0 0 2px var(--sun); cursor: pointer; }
+    input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--sun); border: 5px solid var(--navy); cursor: pointer; }
+    .result { background: var(--sun); color: var(--navy); border-radius: 22px; padding: 22px; }
+    .result .row { display: flex; justify-content: space-between; gap: 10px; padding: 9px 0; border-bottom: 1px dashed rgba(20,33,61,.2); font-weight: 600; }
+    .result .row:last-of-type { border-bottom: 0; }
+    .result .row b { font: 800 20px "Bricolage Grotesque"; white-space: nowrap; }
+    .result .verdict { margin-top: 12px; background: var(--navy); color: #fff; border-radius: 14px; padding: 14px 16px; font-weight: 700; }
+    .result .verdict b { color: var(--sun); }
+    .calc .note { font-size: 13px; color: rgba(255,255,255,.5); margin-top: 12px; }
+    @media (max-width: 860px) { .calc { grid-template-columns: minmax(0, 1fr); padding: 24px; } }
+
+    /* Rooms */
+    .rooms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; }
+    .room { background: #fff; border-radius: 24px; overflow: hidden; border: 1px solid var(--line); display: flex; flex-direction: column; }
+    .room .ph { aspect-ratio: 4/3; background-size: cover; background-position: center; position: relative; }
+    .room .status { position: absolute; top: 12px; left: 12px; padding: 7px 12px; border-radius: 999px; font-weight: 800; font-size: 13px; }
+    .status.available { background: var(--green); color: #fff; }
+    .status.taken { background: var(--navy); color: #fff; }
+    .status.soon { background: var(--sun); color: var(--navy); }
+    .room .body { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+    .room h3 { font-size: 22px; color: var(--navy); }
+    .room .meta { color: var(--muted); font-size: 14px; margin: 4px 0 10px; }
+    .room .price { font: 800 28px "Bricolage Grotesque"; color: var(--navy); }
+    .room .price small { font: 600 14px "Inter"; color: var(--muted); }
+    .room .btn { margin-top: 14px; }
+    .photo-note { margin-top: 14px; color: var(--muted); font-size: 14px; }
+    @media (max-width: 860px) { .rooms-grid { grid-template-columns: 1fr; } }
+
+    /* Included */
+    .inc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 26px; }
+    .inc { background: #fff; border-radius: 16px; padding: 16px; display: flex; gap: 12px; align-items: center; font-weight: 600; border: 1px solid var(--line); }
+    .inc span { font-size: 24px; }
+    .inc.no { opacity: .65; }
+    .inc.no em { font-style: normal; font-size: 12px; color: var(--muted); display: block; font-weight: 500; }
+    @media (max-width: 860px) { .inc-grid { grid-template-columns: 1fr 1fr; } }
+
+    /* Steps */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 30px; counter-reset: s; }
+    .step { background: #fff; border-radius: 20px; padding: 22px; border: 1px solid var(--line); position: relative; }
+    .step::before { counter-increment: s; content: counter(s); width: 40px; height: 40px; border-radius: 12px; background: var(--navy); color: var(--sun); display: grid; place-items: center; font: 800 18px "Bricolage Grotesque"; margin-bottom: 12px; }
+    .step b { display: block; font-size: 17px; color: var(--navy); }
+    .step p { color: var(--muted); font-size: 14px; margin-top: 4px; }
+    @media (max-width: 860px) { .steps { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .steps { grid-template-columns: 1fr; } }
+
+    /* Rules */
+    .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 26px; margin-top: 24px; list-style: none; }
+    .rules li { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); font-weight: 500; }
+    .rules li span { font-size: 20px; }
+    @media (max-width: 760px) { .rules { grid-template-columns: 1fr; } }
+
+    /* Apply */
+    .apply { background: var(--navy); color: #fff; }
+    .apply .wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 40px; align-items: start; }
+    .apply .title { color: #fff; }
+    .apply .sub { color: rgba(255,255,255,.72); }
+    .scam { margin-top: 24px; background: rgba(229,72,77,.12); border: 1.5px solid rgba(229,72,77,.5); border-radius: 18px; padding: 18px; }
+    .scam b { display: block; color: #FF8A8E; margin-bottom: 6px; }
+    .scam ul { padding-left: 18px; color: rgba(255,255,255,.85); font-size: 15px; display: grid; gap: 4px; }
+    .form { background: #fff; color: var(--text); border-radius: 26px; padding: 26px; box-shadow: 0 40px 80px -40px rgba(0,0,0,.7); }
+    .form label { display: block; font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+    .form input, .form select, .form textarea { width: 100%; padding: 14px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--cream); font-size: 16px; margin-bottom: 14px; outline: none; color: var(--text); }
+    .form input:focus, .form select:focus, .form textarea:focus { border-color: var(--sun-2); }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .row2 > * { min-width: 0; }
+    .check { display: flex !important; gap: 10px; align-items: flex-start; font-weight: 500 !important; font-size: 14px !important; color: var(--muted); margin-bottom: 16px !important; }
+    .check input { width: 20px !important; height: 20px; margin: 2px 0 0 !important; flex: none; accent-color: var(--green); }
+    .form .btn { width: 100%; font-size: 17px; }
+    .form .small { text-align: center; font-size: 13px; color: var(--muted); margin-top: 10px; }
+    .saved { font-size: 13px; color: var(--green); font-weight: 600; min-height: 18px; margin-top: 6px; text-align: center; }
+    @media (max-width: 860px) { .apply .wrap { grid-template-columns: minmax(0, 1fr); } }
+    @media (max-width: 420px) { .row2 { grid-template-columns: 1fr; } }
+
+    /* Share */
+    .share { text-align: center; }
+    .share-box { background: var(--sun); border-radius: 30px; padding: 36px 24px; }
+    .share-box .title { margin-inline: auto; }
+    .share-box p { color: var(--navy); font-weight: 600; margin: 10px auto 22px; max-width: 520px; }
+    .share-box .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .share-box .btn-navy { background: var(--navy); color: #fff; }
+
+    /* FAQ */
+    .faq { display: grid; gap: 10px; margin-top: 24px; max-width: 820px; }
+    details { background: #fff; border-radius: 16px; border: 1px solid var(--line); padding: 0 20px; }
+    summary { cursor: pointer; list-style: none; padding: 18px 0; font-weight: 700; display: flex; justify-content: space-between; gap: 12px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; font-size: 24px; line-height: 1; color: var(--sun-2); }
+    details[open] summary::after { content: "–"; }
+    details p { padding-bottom: 18px; color: var(--muted); }
+
+    footer { background: var(--navy); color: rgba(255,255,255,.7); padding: 34px 0 90px; font-size: 14px; }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+    /* Sticky mobile apply bar */
+    .sticky { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 50; display: none; gap: 10px; }
+    .sticky .btn { flex: 1; padding: 15px 12px; font-size: 15px; }
+    @media (max-width: 760px) { .sticky { display: flex; } }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } .reveal { opacity: 1; transform: none; } }
+  </style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a href="#" class="brand"><span class="key"><svg viewBox="0 0 24 24" fill="none" stroke="#14213D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></span><span id="houseName">Summerstrand Rooms</span></a>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="xh" aria-pressed="false">isiXhosa</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" style="padding-top:46px">
+  <div class="wrap">
+    <div>
+      <span class="pill"><span class="dot"></span><span data-t="pill">Rooms available now in Summerstrand</span></span>
+      <h1><span data-t="h1a">Live close to work.</span><br><span class="hl" data-t="h1b">R2,500 a month.</span></h1>
+      <p class="lead" data-t="lead">A safe, clean room for people who work in Summerstrand. Walk to work, stop paying taxi money, and stay over December when you can't go home.</p>
+      <div class="ctas">
+        <a href="#apply" class="btn btn-wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg><span data-t="ctaApply">Apply on WhatsApp</span></a>
+        <a href="#calc" class="btn btn-ghost" data-t="ctaCalc">How much will I save?</a>
+      </div>
+      <div class="facts">
+        <span>✓ <span data-t="f1">View first, pay after</span></span>
+        <span>✓ <span data-t="f2">Written lease</span></span>
+        <span>✓ <span data-t="f3">Monthly or December stay</span></span>
+      </div>
+    </div>
+
+    <div class="price-card" aria-label="Price">
+      <span class="tag" data-t="tag">Near work · no taxi</span>
+      <div class="lbl" data-t="rentLbl">Monthly rent</div>
+      <div class="big" id="heroPrice">R2,500<small data-t="perMonth"> / month</small></div>
+      <ul id="heroIncluded"></ul>
+      <div class="avail"><span id="availText">3 of 6 rooms available</span><span id="availPct"></span></div>
+      <div class="bar-meter"><span id="availBar" style="width:50%"></span></div>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap reveal">
+    <span class="shield">🛡️</span>
+    <div><b data-t="trustB">We will never ask you to pay before you have seen the room.</b><p data-t="trustP">Come and view it, meet the owner, read the lease. Only then do you pay the deposit.</p></div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <p class="kicker reveal" data-t="whoK">Who it's for</p>
+    <h2 class="title reveal" data-t="whoT">Made for people who keep Summerstrand running.</h2>
+    <div class="who-grid">
+      <div class="who reveal"><span>🍽️</span><b data-t="w1">Restaurants & hotels</b><p data-t="w1p">Late shifts, early starts, December rush.</p></div>
+      <div class="who reveal"><span>🛍️</span><b data-t="w2">Shops & the Boardwalk</b><p data-t="w2p">Walk to work in minutes.</p></div>
+      <div class="who reveal"><span>🛡️</span><b data-t="w3">Security & cleaning</b><p data-t="w3p">Night shift? No taxi at midnight.</p></div>
+      <div class="who reveal"><span>🎓</span><b data-t="w4">NMU staff & contractors</b><p data-t="w4p">Close to campus and the beachfront.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="calc" style="padding-top:10px">
+  <div class="wrap">
+    <div class="calc reveal">
+      <div>
+        <p class="kicker" data-t="calcK">Do the maths</p>
+        <h2 class="title" data-t="calcT">How much do taxis cost you?</h2>
+        <p class="sub" data-t="calcS">Move the sliders to match your life now. See the money and the hours you lose every month.</p>
+        <p class="note" data-t="calcNote">An estimate. Change the numbers to your real fare.</p>
+      </div>
+      <div>
+        <div class="field"><div class="field-top"><label for="fare" data-t="fare">Taxi fare, one way</label><output id="fareOut">R25</output></div><input type="range" id="fare" min="10" max="60" step="1" value="25"></div>
+        <div class="field"><div class="field-top"><label for="days" data-t="days">Work days per week</label><output id="daysOut">6</output></div><input type="range" id="days" min="1" max="7" step="1" value="6"></div>
+        <div class="field"><div class="field-top"><label for="mins" data-t="mins">Travel time, one way (minutes)</label><output id="minsOut">60</output></div><input type="range" id="mins" min="10" max="150" step="5" value="60"></div>
+        <div class="field"><div class="field-top"><label for="rent" data-t="rentNow">Rent you pay now</label><output id="rentOut">R1,500</output></div><input type="range" id="rent" min="0" max="5000" step="100" value="1500"></div>
+        <div class="result">
+          <div class="row"><span data-t="rTaxi">Taxi money per month</span><b id="rTaxi">R1,300</b></div>
+          <div class="row"><span data-t="rHours">Hours in taxis per month</span><b id="rHours">52 h</b></div>
+          <div class="row"><span data-t="rNow">Rent + taxi now</span><b id="rNow">R2,800</b></div>
+          <div class="row"><span data-t="rHere">Living here (walk to work)</span><b id="rHere">R2,500</b></div>
+          <div class="verdict" id="verdict"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="rooms" style="padding-top:20px">
+  <div class="wrap">
+    <p class="kicker reveal" data-t="roomsK">The rooms</p>
+    <h2 class="title reveal" data-t="roomsT">Pick your room.</h2>
+    <div class="rooms-grid" id="roomsGrid"></div>
+    <p class="photo-note" id="photoNote" data-t="photoNote">Real photos coming soon. Book a viewing to see the rooms in person.</p>
+  </div>
+</section>
+
+<section style="padding-top:10px">
+  <div class="wrap">
+    <p class="kicker reveal" data-t="incK">What you get</p>
+    <h2 class="title reveal" data-t="incT">What's included in R2,500.</h2>
+    <div class="inc-grid" id="incGrid"></div>
+  </div>
+</section>
+
+<section style="padding-top:10px">
+  <div class="wrap">
+    <p class="kicker reveal" data-t="howK">How it works</p>
+    <h2 class="title reveal" data-t="howT">Four steps to your room.</h2>
+    <div class="steps">
+      <div class="step reveal"><b data-t="s1">Apply on WhatsApp</b><p data-t="s1p">Fill in the short form below. It takes 1 minute.</p></div>
+      <div class="step reveal"><b data-t="s2">View the room</b><p data-t="s2p">Come and see it. Meet the owner. Ask anything.</p></div>
+      <div class="step reveal"><b data-t="s3">Sign the lease</b><p data-t="s3p">A written lease with the rent, deposit and rules.</p></div>
+      <div class="step reveal"><b data-t="s4">Move in</b><p data-t="s4p">Pay the deposit and first month, get your key.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:10px">
+  <div class="wrap">
+    <p class="kicker reveal" data-t="rulesK">House rules</p>
+    <h2 class="title reveal" data-t="rulesT">A quiet, respectful home.</h2>
+    <ul class="rules" id="rulesList"></ul>
+  </div>
+</section>
+
+<section class="apply" id="apply">
+  <div class="wrap">
+    <div>
+      <p class="kicker" data-t="appK">Apply</p>
+      <h2 class="title" data-t="appT">Ask for a room in 1 minute.</h2>
+      <p class="sub" data-t="appS">Your answers go straight to the owner on WhatsApp. We reply to book a viewing.</p>
+      <div class="scam">
+        <b data-t="scamB">⚠️ Stay safe from room scams</b>
+        <ul>
+          <li data-t="sc1">Never pay before you have seen the room in person.</li>
+          <li data-t="sc2">Only use the WhatsApp number on this page.</li>
+          <li data-t="sc3">Always ask for a written lease and a receipt.</li>
+        </ul>
+      </div>
+    </div>
+    <form class="form" id="appForm" novalidate>
+      <div class="row2">
+        <div><label for="aName" data-t="aName">Your name</label><input id="aName" required autocomplete="name"></div>
+        <div><label for="aPhone" data-t="aPhone">Phone number</label><input id="aPhone" required inputmode="tel" autocomplete="tel" placeholder="06x xxx xxxx"></div>
+      </div>
+      <div class="row2">
+        <div><label for="aWork" data-t="aWork">Where do you work?</label><input id="aWork" required placeholder="e.g. Boardwalk"></div>
+        <div><label for="aJob" data-t="aJob">Your job</label><input id="aJob" placeholder="e.g. Waiter"></div>
+      </div>
+      <div class="row2">
+        <div><label for="aMove" data-t="aMove">When do you want to move in?</label><input id="aMove" type="date" required></div>
+        <div><label for="aStay" data-t="aStay">How long will you stay?</label>
+          <select id="aStay">
+            <option value="1" data-t="st1">December season only</option>
+            <option value="2" data-t="st2">1–3 months</option>
+            <option value="3" data-t="st3" selected>6 months</option>
+            <option value="4" data-t="st4">12 months or longer</option>
+          </select></div>
+      </div>
+      <label for="aRoom" data-t="aRoom">Which room?</label>
+      <select id="aRoom"></select>
+      <label for="aNote" data-t="aNote">Anything else? (optional)</label>
+      <textarea id="aNote" rows="2"></textarea>
+      <label class="check"><input type="checkbox" id="aOk" required><span data-t="aOk">I understand I will view the room before paying anything.</span></label>
+      <button class="btn btn-wa" type="submit"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg><span data-t="send">Send on WhatsApp</span></button>
+      <p class="saved" id="saved" aria-live="polite"></p>
+      <p class="small" data-t="small">Free to apply. No payment now.</p>
+    </form>
+  </div>
+</section>
+
+<section class="share">
+  <div class="wrap">
+    <div class="share-box reveal">
+      <h2 class="title" data-t="shT">Know someone who needs a room?</h2>
+      <p data-t="shP">Send this page to a friend or your work WhatsApp group.</p>
+      <div class="btns">
+        <a class="btn btn-wa" id="shareWa" href="#"><span data-t="shWa">Share on WhatsApp</span></a>
+        <button class="btn btn-navy" id="shareCopy" type="button"><span data-t="shCopy">Copy link</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:10px">
+  <div class="wrap">
+    <p class="kicker reveal" data-t="faqK">Questions</p>
+    <h2 class="title reveal" data-t="faqT">Straight answers.</h2>
+    <div class="faq">
+      <details class="reveal"><summary data-t="q1">What do I pay to move in?</summary><p id="a1"></p></details>
+      <details class="reveal"><summary data-t="q2">Can I stay only for December?</summary><p data-t="a2">Yes, if a room is free. Choose "December season only" in the form and we'll tell you what's possible.</p></details>
+      <details class="reveal"><summary data-t="q3">Can I share my room with someone?</summary><p data-t="a3">Each room is for one person, so the house stays calm and safe for everyone.</p></details>
+      <details class="reveal"><summary data-t="q4">Where exactly is it?</summary><p id="a4"></p></details>
+      <details class="reveal"><summary data-t="q5">When can I view a room?</summary><p id="a5"></p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr"></span> <span id="footName"></span> · Summerstrand, Gqeberha</span>
+    <span>Website by <b style="color:#fff">Njabulisto Digitals</b></span>
+  </div>
+</footer>
+
+<div class="sticky">
+  <a href="#apply" class="btn btn-wa"><span data-t="ctaApply">Apply on WhatsApp</span></a>
+  <a href="#calc" class="btn btn-sun"><span data-t="stickySave">My savings</span></a>
+</div>
+
+<script>
+  /* =====================================================================
+     EDIT THIS BLOCK. Everything on the page updates itself.
+     Items marked CHECK must be confirmed with the owner before going live.
+     ===================================================================== */
+  const HOUSE = {
+    name: "Summerstrand Rooms",                 // CHECK: the property's name
+    whatsapp: "27684839679",                     // number that receives applications
+    price: 2500,
+    deposit: 2500,                               // CHECK
+    areaText: "Summerstrand, Gqeberha. We share the exact address when you book a viewing.",
+    viewing: "Monday to Saturday, 09:00–17:00",  // CHECK
+    totalRooms: 6,                               // CHECK
+    included: [                                  // CHECK every item
+      { icon: "🛏️", en: "Furnished room with bed", xh: "Igumbi elinefenitshala nebhedi" },
+      { icon: "💡", en: "Water & electricity", xh: "Amanzi nombane" },
+      { icon: "📶", en: "Free Wi-Fi", xh: "I-Wi-Fi yasimahla" },
+      { icon: "🍳", en: "Shared kitchen", xh: "Ikhitshi ekwabelwana ngalo" },
+      { icon: "🚿", en: "Shared bathroom", xh: "Igumbi lokuhlambela ekwabelwana ngalo" },
+      { icon: "🔒", en: "Lockable door", xh: "Ucango olutshixwayo" },
+      { icon: "🧺", en: "Washing line", xh: "Intambo yokuxhoma iimpahla" },
+      { icon: "🚶", en: "Walk to the beachfront", xh: "Uhamba ngeenyawo ukuya elwandle" }
+    ],
+    notIncluded: [                               // CHECK, or leave empty []
+      { icon: "🍽️", en: "Meals", xh: "Ukutya", noteEn: "Cook your own", noteXh: "Uzipheka" }
+    ],
+    rooms: [                                     // status: "available", "taken" or "soon". photo: "file.jpg" or ""
+      { name: { en: "Single room A", xh: "Igumbi A" }, price: 2500, status: "available", photo: "" },
+      { name: { en: "Single room B", xh: "Igumbi B" }, price: 2500, status: "available", photo: "" },
+      { name: { en: "Single room C", xh: "Igumbi C" }, price: 2500, status: "soon", photo: "" }
+    ],
+    rules: [
+      { icon: "🔇", en: "Quiet after 22:00", xh: "Kuthule emva kwe-22:00" },
+      { icon: "🚭", en: "No smoking inside", xh: "Akutshaywa ngaphakathi" },
+      { icon: "👤", en: "One person per room", xh: "Umntu omnye kwigumbi ngalinye" },
+      { icon: "🧼", en: "Keep shared spaces clean", xh: "Gcina iindawo ekwabelwana ngazo zicocekile" },
+      { icon: "🌙", en: "Overnight visitors must be agreed first", xh: "Iindwendwe zobusuku kufuneka zivunyelwe kuqala" },
+      { icon: "📅", en: "Rent paid by the 1st of each month", xh: "Irente ihlawulwa ngomhla woku-1 wenyanga" }
+    ]
+  };
+  /* ===================================================================== */
+
+  // ---------- Translations (isiXhosa: have a first-language speaker check before going live) ----------
+  const T = {
+    en: {
+      pill: "Rooms available now in Summerstrand", h1a: "Live close to work.", h1b: "R2,500 a month.",
+      lead: "A safe, clean room for people who work in Summerstrand. Walk to work, stop paying taxi money, and stay over December when you can't go home.",
+      ctaApply: "Apply on WhatsApp", ctaCalc: "How much will I save?", f1: "View first, pay after", f2: "Written lease", f3: "Monthly or December stay",
+      tag: "Near work · no taxi", rentLbl: "Monthly rent", perMonth: " / month",
+      trustB: "We will never ask you to pay before you have seen the room.", trustP: "Come and view it, meet the owner, read the lease. Only then do you pay the deposit.",
+      whoK: "Who it's for", whoT: "Made for people who keep Summerstrand running.",
+      w1: "Restaurants & hotels", w1p: "Late shifts, early starts, December rush.", w2: "Shops & the Boardwalk", w2p: "Walk to work in minutes.",
+      w3: "Security & cleaning", w3p: "Night shift? No taxi at midnight.", w4: "NMU staff & contractors", w4p: "Close to campus and the beachfront.",
+      calcK: "Do the maths", calcT: "How much do taxis cost you?", calcS: "Move the sliders to match your life now. See the money and the hours you lose every month.",
+      calcNote: "An estimate. Change the numbers to your real fare.", fare: "Taxi fare, one way", days: "Work days per week", mins: "Travel time, one way (minutes)", rentNow: "Rent you pay now",
+      rTaxi: "Taxi money per month", rHours: "Hours in taxis per month", rNow: "Rent + taxi now", rHere: "Living here (walk to work)",
+      vSave: (m, h) => `You save <b>${m}</b> a month and get <b>${h} hours</b> of your life back.`,
+      vTime: (m, h) => `It costs <b>${m}</b> more a month, but you get <b>${h} hours</b> back and no late-night taxis.`,
+      roomsK: "The rooms", roomsT: "Pick your room.", photoNote: "Real photos coming soon. Book a viewing to see the rooms in person.",
+      available: "Available", taken: "Taken", soon: "Available soon", choose: "Ask for this room", waitlist: "Join the waiting list", anyRoom: "Any available room",
+      incK: "What you get", incT: "What's included in R2,500.", notInc: "Not included",
+      howK: "How it works", howT: "Four steps to your room.",
+      s1: "Apply on WhatsApp", s1p: "Fill in the short form below. It takes 1 minute.", s2: "View the room", s2p: "Come and see it. Meet the owner. Ask anything.",
+      s3: "Sign the lease", s3p: "A written lease with the rent, deposit and rules.", s4: "Move in", s4p: "Pay the deposit and first month, get your key.",
+      rulesK: "House rules", rulesT: "A quiet, respectful home.",
+      appK: "Apply", appT: "Ask for a room in 1 minute.", appS: "Your answers go straight to the owner on WhatsApp. We reply to book a viewing.",
+      scamB: "⚠️ Stay safe from room scams", sc1: "Never pay before you have seen the room in person.", sc2: "Only use the WhatsApp number on this page.", sc3: "Always ask for a written lease and a receipt.",
+      aName: "Your name", aPhone: "Phone number", aWork: "Where do you work?", aJob: "Your job", aMove: "When do you want to move in?", aStay: "How long will you stay?",
+      st1: "December season only", st2: "1–3 months", st3: "6 months", st4: "12 months or longer",
+      aRoom: "Which room?", aNote: "Anything else? (optional)", aOk: "I understand I will view the room before paying anything.",
+      send: "Send on WhatsApp", small: "Free to apply. No payment now.", draft: "✓ Saved on your phone. You won't need to type it again.",
+      need: "Please fill in your name, phone, where you work and move-in date, and tick the box.",
+      shT: "Know someone who needs a room?", shP: "Send this page to a friend or your work WhatsApp group.", shWa: "Share on WhatsApp", shCopy: "Copy link", copied: "Link copied ✓",
+      shareMsg: (n, p) => `Rooms near work in Summerstrand for ${p} a month (${n}). View first, pay after: `,
+      faqK: "Questions", faqT: "Straight answers.",
+      q1: "What do I pay to move in?", a1: (d, p) => `The deposit (${d}) and your first month's rent (${p}), only after you've viewed the room and signed the lease. You get a receipt for everything.`,
+      q2: "Can I stay only for December?", a2: "Yes, if a room is free. Choose \"December season only\" in the form and we'll tell you what's possible.",
+      q3: "Can I share my room with someone?", a3: "Each room is for one person, so the house stays calm and safe for everyone.",
+      q4: "Where exactly is it?", q5: "When can I view a room?", a5: (v) => `${v}. Send your application and we'll agree a time.`,
+      avail: (a, t) => `${a} of ${t} rooms available`, stickySave: "My savings",
+      msg: {
+        hi: "Hi! I'd like to apply for a room.", ref: "Ref", name: "Name", phone: "Phone", work: "Works at", job: "Job",
+        move: "Move in", stay: "Stay", room: "Room", note: "Note", ok: "I'll view the room before paying."
+      }
+    },
+    xh: {
+      pill: "Amagumbi akhoyo ngoku eSummerstrand", h1a: "Hlala kufutshane nomsebenzi.", h1b: "R2,500 ngenyanga.",
+      lead: "Igumbi elikhuselekileyo nelicocekileyo labantu abasebenza eSummerstrand. Hamba ngeenyawo uye emsebenzini, uyeke ukuhlawula iteksi, uhlale nangoDisemba xa ungakwazi ukugoduka.",
+      ctaApply: "Faka isicelo ku-WhatsApp", ctaCalc: "Ndiza kugcina malini?", f1: "Bona kuqala, uhlawule emva", f2: "Isivumelwano esibhaliweyo", f3: "Ngenyanga okanye ngoDisemba",
+      tag: "Kufutshane nomsebenzi", rentLbl: "Irente yenyanga", perMonth: " / ngenyanga",
+      trustB: "Asisoze sikucele ukuba uhlawule ngaphambi kokuba ulibone igumbi.", trustP: "Yiza ulibone, udibane nomnini, ufunde isivumelwano. Emva koko kuphela uhlawula idiphozithi.",
+      whoK: "Elenzelwe bani", whoT: "Lenzelwe abantu abasebenza eSummerstrand.",
+      w1: "Iindawo zokutya neehotele", w1p: "Iishifti zasebusuku, ukuqala kusasa, uDisemba oxakekileyo.", w2: "Iivenkile neBoardwalk", w2p: "Hamba uye emsebenzini ngemizuzu.",
+      w3: "Ukhuseleko nokucoca", w3p: "Ishifti yasebusuku? Akukho teksi ezinzulwini zobusuku.", w4: "Abasebenzi be-NMU", w4p: "Kufutshane nekhampasi nolwandle.",
+      calcK: "Bala", calcT: "Iteksi ikuxabisa malini?", calcS: "Shukumisa ezi zinto zilingane nobomi bakho ngoku. Bona imali neeyure ozilahlekelwayo nyanga nganye.",
+      calcNote: "Uqikelelo. Tshintsha amanani abe yimali yakho yeteksi.", fare: "Imali yeteksi, indlela enye", days: "Iintsuku zomsebenzi ngeveki", mins: "Ixesha lokuhamba, indlela enye (imizuzu)", rentNow: "Irente oyihlawulayo ngoku",
+      rTaxi: "Imali yeteksi ngenyanga", rHours: "Iiyure eteksini ngenyanga", rNow: "Irente + iteksi ngoku", rHere: "Ukuhlala apha (uhamba ngeenyawo)",
+      vSave: (m, h) => `Ugcina <b>${m}</b> ngenyanga kwaye ubuyiselwa <b>iiyure ezi-${h}</b> zobomi bakho.`,
+      vTime: (m, h) => `Kubiza <b>${m}</b> ngaphezulu ngenyanga, kodwa ubuyiselwa <b>iiyure ezi-${h}</b> kwaye akukho teksi zasebusuku.`,
+      roomsK: "Amagumbi", roomsT: "Khetha igumbi lakho.", photoNote: "Iifoto zokwenyani ziyeza. Bhukisha ukuza kubona amagumbi.",
+      available: "Likhona", taken: "Lithathiwe", soon: "Liza kufumaneka", choose: "Cela eli gumbi", waitlist: "Joyina uluhlu lokulinda", anyRoom: "Naliphi na igumbi elikhoyo",
+      incK: "Ofumana ntoni", incT: "Okubandakanyiweyo kwi-R2,500.", notInc: "Akubandakanywanga",
+      howK: "Indlela esebenza ngayo", howT: "Amanyathelo amane ukuya kwigumbi lakho.",
+      s1: "Faka isicelo ku-WhatsApp", s1p: "Gcwalisa le fomu imfutshane ingezantsi. Ithatha umzuzu omnye.", s2: "Bona igumbi", s2p: "Yiza ulibone. Dibana nomnini. Buza nantoni na.",
+      s3: "Sayina isivumelwano", s3p: "Isivumelwano esibhaliweyo esinerente, idiphozithi nemithetho.", s4: "Ngena", s4p: "Hlawula idiphozithi nenyanga yokuqala, ufumane isitshixo.",
+      rulesK: "Imithetho yendlu", rulesT: "Ikhaya elizolileyo nelinentlonipho.",
+      appK: "Faka isicelo", appT: "Cela igumbi ngomzuzu omnye.", appS: "Iimpendulo zakho ziya ngqo kumnini ku-WhatsApp. Siza kuphendula ukuze sibhukishe ixesha lokubona.",
+      scamB: "⚠️ Zikhusele kubaqhathi bamagumbi", sc1: "Ungaze uhlawule ngaphambi kokuba ulibone igumbi ngamehlo akho.", sc2: "Sebenzisa kuphela inombolo ye-WhatsApp ekweli phepha.", sc3: "Soloko ucela isivumelwano esibhaliweyo nerisithi.",
+      aName: "Igama lakho", aPhone: "Inombolo yefowuni", aWork: "Usebenza phi?", aJob: "Umsebenzi wakho", aMove: "Ufuna ukungena nini?", aStay: "Uza kuhlala ixesha elingakanani?",
+      st1: "NgoDisemba kuphela", st2: "Iinyanga ezi-1 ukuya kwezi-3", st3: "Iinyanga ezi-6", st4: "Iinyanga ezi-12 nangaphezulu",
+      aRoom: "Leliphi igumbi?", aNote: "Ikhona enye into? (ayinyanzelekanga)", aOk: "Ndiyaqonda ukuba ndiza kulibona igumbi ngaphambi kokuhlawula nantoni na.",
+      send: "Thumela ku-WhatsApp", small: "Ukufaka isicelo kusimahla. Akukho ntlawulo ngoku.", draft: "✓ Kugcinwe kwifowuni yakho. Akuzukufuneka uphinde ubhale.",
+      need: "Nceda ugcwalise igama, ifowuni, apho usebenza khona nomhla wokungena, uze uthikithe ibhokisi.",
+      shT: "Ukhona umntu odinga igumbi?", shP: "Thumela eli phepha kumhlobo okanye kwiqela le-WhatsApp lomsebenzi.", shWa: "Yabelana ku-WhatsApp", shCopy: "Kopa ilinki", copied: "Ilinki ikopiwe ✓",
+      shareMsg: (n, p) => `Amagumbi kufutshane nomsebenzi eSummerstrand nge-${p} ngenyanga (${n}). Bona kuqala, uhlawule emva: `,
+      faqK: "Imibuzo", faqT: "Iimpendulo ezicacileyo.",
+      q1: "Ndihlawula malini xa ndingena?", a1: (d, p) => `Idiphozithi (${d}) nerente yenyanga yokuqala (${p}), kuphela emva kokuba ulibonile igumbi waza wasayina isivumelwano. Ufumana irisithi ngayo yonke into.`,
+      q2: "Ndingahlala ngoDisemba kuphela?", a2: "Ewe, ukuba likhona igumbi elingenamntu. Khetha \"NgoDisemba kuphela\" kwifomu kwaye siza kukuxelela okunokwenzeka.",
+      q3: "Ndingabelana ngegumbi nomnye umntu?", a3: "Igumbi ngalinye lelomntu omnye, ukuze indlu ihlale izolile kwaye ikhuselekile kubo bonke.",
+      q4: "Iphi kanye kanye?", q5: "Ndingalibona nini igumbi?", a5: (v) => `${v}. Thumela isicelo sakho kwaye siza kuvumelana ngexesha.`,
+      avail: (a, t) => `Amagumbi ali-${a} kwali-${t} akhoyo`, stickySave: "Imali endiyigcinayo",
+      msg: {
+        hi: "Molo! Ndingathanda ukufaka isicelo segumbi.", ref: "Ref", name: "Igama", phone: "Ifowuni", work: "Indawo yomsebenzi", job: "Umsebenzi",
+        move: "Ukungena", stay: "Ixesha", room: "Igumbi", note: "Inqaku", ok: "Ndiza kulibona igumbi ngaphambi kokuhlawula."
+      }
+    }
+  };
+
+  // ---------- helpers ----------
+  const $ = (id) => document.getElementById(id);
+  const R = (n) => "R" + Math.round(n).toLocaleString("en-ZA").replace(/\s| /g, ",");
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  };
+  let lang = store.get("rooms-lang") === "xh" ? "xh" : "en";
+  const t = (k) => T[lang][k] ?? T.en[k];
+  const wa = (text) => `https://wa.me/${HOUSE.whatsapp}?text=${encodeURIComponent(text)}`;
+  const art = (i) => {
+    const pal = [["#FFE7A6", "#FFC93C"], ["#CFE9FF", "#7DB7F0"], ["#D7F5E2", "#7FD9A3"]][i % 3];
+    const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='${pal[0]}'/><stop offset='1' stop-color='${pal[1]}'/></linearGradient></defs><rect width='400' height='300' fill='url(#g)'/><rect x='250' y='50' width='100' height='90' rx='6' fill='#fff' opacity='.6'/><path d='M300 50v90M250 95h100' stroke='${pal[1]}' stroke-width='4'/><rect x='50' y='170' width='230' height='70' rx='12' fill='#fff' opacity='.9'/><rect x='50' y='150' width='230' height='30' rx='10' fill='#14213D' opacity='.18'/><rect x='66' y='132' width='80' height='34' rx='12' fill='#fff'/><rect x='300' y='180' width='50' height='60' rx='6' fill='#fff' opacity='.75'/></svg>`;
+    return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
+  };
+
+  // ---------- render ----------
+  function render() {
+    document.documentElement.lang = lang === "xh" ? "xh" : "en";
+    document.querySelectorAll("[data-t]").forEach(el => { const v = t(el.dataset.t); if (typeof v === "string") el.textContent = v; });
+    document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+
+    $("houseName").textContent = HOUSE.name; $("footName").textContent = HOUSE.name; $("yr").textContent = new Date().getFullYear();
+    $("heroPrice").firstChild.nodeValue = R(HOUSE.price);
+    $("heroIncluded").innerHTML = HOUSE.included.slice(0, 4).map(x => `<li><i>✓</i>${x[lang]}</li>`).join("");
+
+    const open = HOUSE.rooms.filter(r => r.status === "available").length;
+    $("availText").textContent = t("avail")(open, HOUSE.totalRooms);
+    $("availBar").style.width = Math.round(open / HOUSE.totalRooms * 100) + "%";
+
+    $("roomsGrid").innerHTML = HOUSE.rooms.map((r, i) => `
+      <article class="room reveal in">
+        <div class="ph" data-i="${i}"><span class="status ${r.status}">${t(r.status)}</span></div>
+        <div class="body">
+          <h3>${r.name[lang]}</h3>
+          <div class="meta">👤 1 · ${HOUSE.included[0][lang]}</div>
+          <div class="price">${R(r.price)}<small>${t("perMonth")}</small></div>
+          <a href="#apply" class="btn ${r.status === "available" ? "btn-wa" : "btn-sun"}" data-room="${i}">${r.status === "available" ? t("choose") : t("waitlist")}</a>
+        </div>
+      </article>`).join("");
+    document.querySelectorAll("#roomsGrid .ph").forEach(el => { const r = HOUSE.rooms[el.dataset.i]; el.style.backgroundImage = r.photo ? `url("${r.photo}")` : art(+el.dataset.i); });
+    $("photoNote").style.display = HOUSE.rooms.some(r => r.photo) ? "none" : "";
+
+    $("incGrid").innerHTML = HOUSE.included.map(x => `<div class="inc reveal in"><span>${x.icon}</span>${x[lang]}</div>`).join("") +
+      HOUSE.notIncluded.map(x => `<div class="inc no reveal in"><span>${x.icon}</span><div>${x[lang]}<em>${t("notInc")} · ${lang === "xh" ? x.noteXh : x.noteEn}</em></div></div>`).join("");
+    $("rulesList").innerHTML = HOUSE.rules.map(x => `<li><span>${x.icon}</span>${x[lang]}</li>`).join("");
+
+    const sel = $("aRoom"), prev = sel.value;
+    sel.innerHTML = `<option value="any">${t("anyRoom")}</option>` + HOUSE.rooms.map((r, i) => `<option value="${i}">${r.name[lang]} (${t(r.status)})</option>`).join("");
+    if (prev) sel.value = prev;
+
+    $("a1").textContent = t("a1")(R(HOUSE.deposit), R(HOUSE.price));
+    $("a4").textContent = HOUSE.areaText;
+    $("a5").textContent = t("a5")(HOUSE.viewing);
+
+    const url = location.href.split("#")[0];
+    $("shareWa").href = `https://wa.me/?text=${encodeURIComponent(t("shareMsg")(HOUSE.name, R(HOUSE.price)) + url)}`;
+    calc();
+  }
+
+  // ---------- calculator ----------
+  function calc() {
+    const fare = +$("fare").value, days = +$("days").value, mins = +$("mins").value, rent = +$("rent").value;
+    const trips = 2 * days * 4.33, taxi = fare * trips, hours = Math.round(mins * trips / 60);
+    $("fareOut").textContent = R(fare); $("daysOut").textContent = days; $("minsOut").textContent = mins; $("rentOut").textContent = R(rent);
+    $("rTaxi").textContent = R(taxi); $("rHours").textContent = hours + " h";
+    $("rNow").textContent = R(rent + taxi); $("rHere").textContent = R(HOUSE.price);
+    const diff = rent + taxi - HOUSE.price;
+    $("verdict").innerHTML = diff >= 0 ? t("vSave")(R(diff), hours) : t("vTime")(R(-diff), hours);
+  }
+  ["fare", "days", "mins", "rent"].forEach(id => $(id).addEventListener("input", calc));
+
+  // ---------- language ----------
+  document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => { lang = b.dataset.lang; store.set("rooms-lang", lang); render(); }));
+
+  // ---------- room buttons ----------
+  $("roomsGrid").addEventListener("click", (e) => { const b = e.target.closest("[data-room]"); if (b) $("aRoom").value = b.dataset.room; });
+
+  // ---------- application (draft saved on the phone so nothing is lost on a bad connection) ----------
+  const fields = ["aName", "aPhone", "aWork", "aJob", "aMove", "aStay", "aRoom", "aNote"];
+  const draft = store.get("rooms-draft");
+  if (draft) fields.forEach(f => { if (draft[f] != null) $(f).value = draft[f]; });
+  $("aMove").min = new Date().toISOString().slice(0, 10);
+  let savedTimer;
+  $("appForm").addEventListener("input", () => {
+    store.set("rooms-draft", Object.fromEntries(fields.map(f => [f, $(f).value])));
+    clearTimeout(savedTimer); $("saved").textContent = t("draft"); savedTimer = setTimeout(() => $("saved").textContent = "", 2500);
+  });
+
+  $("appForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const req = ["aName", "aPhone", "aWork", "aMove"];
+    const missing = req.filter(f => !$(f).value.trim());
+    if (missing.length || !$("aOk").checked) { $("saved").textContent = t("need"); $(missing[0] || "aOk").focus(); return; }
+    const m = T[lang].msg, roomSel = $("aRoom");
+    const ref = "SR-" + String(Math.floor(1000 + Math.random() * 9000));
+    const lines = [
+      m.hi, "", `${m.ref}: ${ref}`,
+      `${m.name}: ${$("aName").value.trim()}`, `${m.phone}: ${$("aPhone").value.trim()}`,
+      `${m.work}: ${$("aWork").value.trim()}` + ($("aJob").value.trim() ? ` (${m.job}: ${$("aJob").value.trim()})` : ""),
+      `${m.move}: ${$("aMove").value}`, `${m.stay}: ${$("aStay").selectedOptions[0].textContent}`,
+      `${m.room}: ${roomSel.selectedOptions[0].textContent}`
+    ];
+    if ($("aNote").value.trim()) lines.push(`${m.note}: ${$("aNote").value.trim()}`);
+    lines.push("", "✓ " + m.ok);
+    window.open(wa(lines.join("\n")), "_blank");
+  });
+
+  // ---------- share ----------
+  $("shareCopy").addEventListener("click", async () => {
+    const url = location.href.split("#")[0];
+    try {
+      if (navigator.share) { await navigator.share({ title: HOUSE.name, text: t("shareMsg")(HOUSE.name, R(HOUSE.price)), url }); return; }
+      await navigator.clipboard.writeText(url); $("shareCopy").textContent = t("copied");
+    } catch (err) { /* share cancelled */ }
+  });
+
+  // ---------- reveal ----------
+  render();
+  const io = new IntersectionObserver((es) => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }), { threshold: .1 });
+  document.querySelectorAll(".reveal:not(.in)").forEach(el => io.observe(el));
+</script>
+</body>
+</html>
