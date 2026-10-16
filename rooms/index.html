@@ -110,6 +110,20 @@
     @media (max-width: 1000px) { .rooms-grid.four { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 600px) { .rooms-grid.four { grid-template-columns: 1fr; } }
 
+    .room .ph { cursor: default; }
+    .gal-btn { position: absolute; bottom: 12px; right: 12px; border: 0; cursor: pointer; background: rgba(20,33,61,.88); color: #fff; font-weight: 700; font-size: 13px; padding: 9px 13px; border-radius: 999px; }
+    .lb { position: fixed; inset: 0; z-index: 100; background: #0A0E1A; display: none; flex-direction: column; }
+    .lb.open { display: flex; }
+    .lb-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 16px; color: #fff; font-weight: 700; }
+    .lb-top button { border: 0; background: rgba(255,255,255,.12); color: #fff; width: 44px; height: 44px; border-radius: 50%; font-size: 22px; cursor: pointer; }
+    .lb-stage { flex: 1; position: relative; display: grid; place-items: center; padding: 0 12px; min-height: 0; touch-action: pan-y; }
+    .lb-stage img { max-width: 100%; max-height: 100%; border-radius: 14px; object-fit: contain; }
+    .lb-nav { position: absolute; top: 50%; translate: 0 -50%; border: 0; background: rgba(255,255,255,.14); color: #fff; width: 48px; height: 48px; border-radius: 50%; font-size: 24px; cursor: pointer; }
+    .lb-nav.prev { left: 12px; } .lb-nav.next { right: 12px; }
+    .lb-dots { display: flex; gap: 8px; justify-content: center; padding: 16px; }
+    .lb-dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.3); }
+    .lb-dots span.on { background: var(--sun); }
+
     /* Who */
     .who-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 30px; }
     .who { background: #fff; border-radius: 20px; padding: 20px; border: 1px solid var(--line); }
@@ -442,6 +456,16 @@
   </div>
 </footer>
 
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-labelledby="lbTitle">
+  <div class="lb-top"><span id="lbTitle"></span><button type="button" id="lbClose" aria-label="Close">✕</button></div>
+  <div class="lb-stage" id="lbStage">
+    <img id="lbImg" alt="">
+    <button type="button" class="lb-nav prev" id="lbPrev" aria-label="Previous photo">‹</button>
+    <button type="button" class="lb-nav next" id="lbNext" aria-label="Next photo">›</button>
+  </div>
+  <div class="lb-dots" id="lbDots"></div>
+</div>
+
 <div class="sticky">
   <a href="#apply" class="btn btn-wa"><span data-t="ctaApply">Apply on WhatsApp</span></a>
   <a href="#calc" class="btn btn-sun"><span data-t="stickySave">My savings</span></a>
@@ -473,20 +497,22 @@
     notIncluded: [                               // CHECK, or leave empty []
       { icon: "🍽️", en: "Meals", xh: "Ukutya", noteEn: "Cook your own", noteXh: "Uzipheka" }
     ],
-    // The four houses. rooms = how many rooms are free for the holiday. photo: "photos/house.jpg" or "".
+    // The four houses. rooms = how many rooms are free for the holiday. photos: first one is the cover.
     // Facts below come from each house's NSFAS listing; "features" for 4 Tilbury still need checking.
     houses: [
-      { id: "bradley6", address: "6 Bradley Road", grade: "A", rooms: 4, photo: "",            // CHECK rooms
+      { id: "bradley6", address: "6 Bradley Road", grade: "A", rooms: 4,            // CHECK rooms
+        photos: ["photos/bradley6-front.jpg", "photos/bradley6-kitchen.jpg", "photos/bradley6-lounge.jpg", "photos/bradley6-laundry.jpg"],
         about: { en: "Newly renovated house, close to the Summerstrand campuses.", xh: "Indlu esandula ukulungiswa, kufutshane neekhampasi zaseSummerstrand." },
-        features: [{ en: "Newly renovated", xh: "Isandula ukulungiswa" }] },
-      { id: "admiralty23", address: "23 Admiralty Way", grade: "A", rooms: 4, photo: "",
+        features: [{ en: "Newly renovated", xh: "Isandula ukulungiswa" }, { en: "Big kitchen", xh: "Ikhitshi elikhulu" },
+                   { en: "Washing machine", xh: "Umatshini wokuhlamba" }, { en: "TV", xh: "Umabonakude" }, { en: "Security camera", xh: "Ikhamera yokhuseleko" }] },
+      { id: "admiralty23", address: "23 Admiralty Way", grade: "A", rooms: 4, photos: [],
         about: { en: "Secure house with a pool, a fireplace and parking.", xh: "Indlu ekhuselekileyo enechibi lokuqubha, iziko lomlilo nendawo yokupaka." },
         features: [{ en: "Armed response", xh: "Ukhuseleko oluxhobileyo" }, { en: "CCTV", xh: "Iikhamera ze-CCTV" }, { en: "Internet", xh: "I-intanethi" },
                    { en: "DStv", xh: "I-DStv" }, { en: "Pool", xh: "Ichibi lokuqubha" }, { en: "Parking", xh: "Indawo yokupaka" }] },
-      { id: "admiralty31", address: "31 Admiralty Way", grade: "A", rooms: 4, photo: "",
+      { id: "admiralty31", address: "31 Admiralty Way", grade: "A", rooms: 4, photos: [],
         about: { en: "Comfortable house on the doorstep of the Summerstrand campus. Walk to Pick n Pay.", xh: "Indlu entle esemnyango wekhampasi yaseSummerstrand. Hamba ngeenyawo uye ePick n Pay." },
         features: [{ en: "Walk to Pick n Pay", xh: "Kufutshane nePick n Pay" }, { en: "Next to campus", xh: "Ecaleni kwekhampasi" }] },
-      { id: "tilbury4", address: "4 Tilbury Road", grade: "", rooms: 4, photo: "",                // CHECK: street name, grade, rooms
+      { id: "tilbury4", address: "4 Tilbury Road", grade: "", rooms: 4, photos: [],                // CHECK: street name, grade, rooms
         about: { en: "Quiet street in Summerstrand.", xh: "Isitrato esizolileyo eSummerstrand." },
         features: [] }
     ],
@@ -517,7 +543,7 @@
       rTaxi: "Taxi money per month", rHours: "Hours in taxis per month", rNow: "Rent + taxi now", rHere: "Living here (walk to work)",
       vSave: (m, h) => `You save <b>${m}</b> a month and get <b>${h} hours</b> of your life back.`,
       vTime: (m, h) => `It costs <b>${m}</b> more a month, but you get <b>${h} hours</b> back and no late-night taxis.`,
-      roomsK: "The houses", roomsT: "Choose your house.", photoNote: "Real photos coming soon. Book a viewing to see the house in person.", map: "Open in Maps", roomsFree: (n) => `${n} rooms free`, full: "Full", whyB: "Why only R2,500?", whyP: "These are NSFAS-graded student houses. Over the holidays the students go home and the rooms stand empty. So people who work in Summerstrand can use them, at a fair price.",
+      roomsK: "The houses", roomsT: "Choose your house.", photoNote: "More photos coming soon. Book a viewing to see any house in person.", photos: "photos", seePhotos: "See photos", close: "Close", map: "Open in Maps", roomsFree: (n) => `${n} rooms free`, full: "Full", whyB: "Why only R2,500?", whyP: "These are NSFAS-graded student houses. Over the holidays the students go home and the rooms stand empty. So people who work in Summerstrand can use them, at a fair price.",
       available: "Available", taken: "Taken", soon: "Available soon", choose: "Choose this house", waitlist: "Join the waiting list", anyRoom: "Any house is fine",
       incK: "What you get", incT: "What's included in R2,500.", notInc: "Not included",
       howK: "How it works", howT: "Four steps to your room.",
@@ -558,7 +584,7 @@
       rTaxi: "Imali yeteksi ngenyanga", rHours: "Iiyure eteksini ngenyanga", rNow: "Irente + iteksi ngoku", rHere: "Ukuhlala apha (uhamba ngeenyawo)",
       vSave: (m, h) => `Ugcina <b>${m}</b> ngenyanga kwaye ubuyiselwa <b>iiyure ezi-${h}</b> zobomi bakho.`,
       vTime: (m, h) => `Kubiza <b>${m}</b> ngaphezulu ngenyanga, kodwa ubuyiselwa <b>iiyure ezi-${h}</b> kwaye akukho teksi zasebusuku.`,
-      roomsK: "Izindlu", roomsT: "Khetha indlu yakho.", photoNote: "Iifoto zokwenyani ziyeza. Bhukisha ukuza kuyibona indlu.", map: "Vula kwiMaps", roomsFree: (n) => `Amagumbi ali-${n} akhoyo`, full: "Igcwele", whyB: "Kutheni iR2,500 kuphela?", whyP: "Ezi zizindlu zabafundi ezihlolwe yi-NSFAS. Ngeeholide abafundi bayagoduka kwaye amagumbi ahlala engenamntu. Ngoko ke abantu abasebenza eSummerstrand banokuwasebenzisa, ngexabiso elifanelekileyo.",
+      roomsK: "Izindlu", roomsT: "Khetha indlu yakho.", photoNote: "Iifoto ezingakumbi ziyeza. Bhukisha ukuza kubona nayiphi na indlu.", photos: "iifoto", seePhotos: "Bona iifoto", close: "Vala", map: "Vula kwiMaps", roomsFree: (n) => `Amagumbi ali-${n} akhoyo`, full: "Igcwele", whyB: "Kutheni iR2,500 kuphela?", whyP: "Ezi zizindlu zabafundi ezihlolwe yi-NSFAS. Ngeeholide abafundi bayagoduka kwaye amagumbi ahlala engenamntu. Ngoko ke abantu abasebenza eSummerstrand banokuwasebenzisa, ngexabiso elifanelekileyo.",
       available: "Likhona", taken: "Lithathiwe", soon: "Liza kufumaneka", choose: "Khetha le ndlu", waitlist: "Joyina uluhlu lokulinda", anyRoom: "Nayiphi na indlu ilungile",
       incK: "Ofumana ntoni", incT: "Okubandakanyiweyo kwi-R2,500.", notInc: "Akubandakanywanga",
       howK: "Indlela esebenza ngayo", howT: "Amanyathelo amane ukuya kwigumbi lakho.",
@@ -620,7 +646,7 @@
 
     $("roomsGrid").innerHTML = HOUSE.houses.map((h, i) => `
       <article class="room reveal in">
-        <div class="ph" data-i="${i}"><span class="status ${h.rooms > 0 ? "available" : "taken"}">${h.rooms > 0 ? t("roomsFree")(h.rooms) : t("full")}</span>${h.grade ? `<span class="grade">NSFAS Grade ${h.grade}</span>` : ""}</div>
+        <div class="ph" data-i="${i}">${h.photos.length ? `<button type="button" class="gal-btn" data-gal="${i}" aria-label="${t("seePhotos")}">📷 ${h.photos.length} ${t("photos")}</button>` : ""}<span class="status ${h.rooms > 0 ? "available" : "taken"}">${h.rooms > 0 ? t("roomsFree")(h.rooms) : t("full")}</span>${h.grade ? `<span class="grade">NSFAS Grade ${h.grade}</span>` : ""}</div>
         <div class="body">
           <h3>${h.address}</h3>
           <p class="about">${h.about[lang]}</p>
@@ -630,8 +656,8 @@
           <a href="#apply" class="btn ${h.rooms > 0 ? "btn-wa" : "btn-sun"}" data-room="${h.id}">${h.rooms > 0 ? t("choose") : t("waitlist")}</a>
         </div>
       </article>`).join("");
-    document.querySelectorAll("#roomsGrid .ph").forEach(el => { const h = HOUSE.houses[el.dataset.i]; el.style.backgroundImage = h.photo ? `url("${h.photo}")` : art(+el.dataset.i); });
-    $("photoNote").style.display = HOUSE.houses.every(h => h.photo) ? "none" : "";
+    document.querySelectorAll("#roomsGrid .ph").forEach(el => { const h = HOUSE.houses[el.dataset.i]; el.style.backgroundImage = h.photos.length ? `url("${h.photos[0]}")` : art(+el.dataset.i); });
+    $("photoNote").style.display = HOUSE.houses.every(h => h.photos.length) ? "none" : "";
 
     $("incGrid").innerHTML = HOUSE.included.map(x => `<div class="inc reveal in"><span>${x.icon}</span>${x[lang]}</div>`).join("") +
       HOUSE.notIncluded.map(x => `<div class="inc no reveal in"><span>${x.icon}</span><div>${x[lang]}<em>${t("notInc")} · ${lang === "xh" ? x.noteXh : x.noteEn}</em></div></div>`).join("");
@@ -665,8 +691,35 @@
   // ---------- language ----------
   document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => { lang = b.dataset.lang; store.set("rooms-lang", lang); render(); }));
 
+  // ---------- photo gallery ----------
+  let lbHouse = null, lbIdx = 0, lbFocus = null;
+  function lbShow() {
+    const h = HOUSE.houses[lbHouse], n = h.photos.length;
+    $("lbImg").src = h.photos[lbIdx]; $("lbImg").alt = `${h.address}, ${lbIdx + 1} / ${n}`;
+    $("lbTitle").textContent = `${h.address} · ${lbIdx + 1} / ${n}`;
+    $("lbDots").innerHTML = h.photos.map((_, i) => `<span class="${i === lbIdx ? "on" : ""}"></span>`).join("");
+    $("lbPrev").style.display = $("lbNext").style.display = n > 1 ? "" : "none";
+  }
+  function lbOpen(i) { lbHouse = i; lbIdx = 0; lbFocus = document.activeElement; $("lb").classList.add("open"); document.body.style.overflow = "hidden"; lbShow(); $("lbClose").focus(); }
+  function lbClose() { $("lb").classList.remove("open"); document.body.style.overflow = ""; if (lbFocus) lbFocus.focus(); }
+  function lbStep(d) { const n = HOUSE.houses[lbHouse].photos.length; lbIdx = (lbIdx + d + n) % n; lbShow(); }
+  $("lbClose").addEventListener("click", lbClose);
+  $("lbPrev").addEventListener("click", () => lbStep(-1));
+  $("lbNext").addEventListener("click", () => lbStep(1));
+  $("lb").addEventListener("click", (e) => { if (e.target.id === "lb" || e.target.id === "lbStage") lbClose(); });
+  document.addEventListener("keydown", (e) => {
+    if (!$("lb").classList.contains("open")) return;
+    if (e.key === "Escape") lbClose(); if (e.key === "ArrowLeft") lbStep(-1); if (e.key === "ArrowRight") lbStep(1);
+  });
+  let x0 = null;
+  $("lbStage").addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+  $("lbStage").addEventListener("touchend", (e) => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) lbStep(dx < 0 ? 1 : -1); x0 = null; });
+
   // ---------- room buttons ----------
-  $("roomsGrid").addEventListener("click", (e) => { const b = e.target.closest("[data-room]"); if (b) $("aRoom").value = b.dataset.room; });
+  $("roomsGrid").addEventListener("click", (e) => {
+    const g = e.target.closest("[data-gal]"); if (g) { lbOpen(+g.dataset.gal); return; }
+    const b = e.target.closest("[data-room]"); if (b) $("aRoom").value = b.dataset.room;
+  });
 
   // ---------- application (draft saved on the phone so nothing is lost on a bad connection) ----------
   const fields = ["aName", "aPhone", "aWork", "aJob", "aMove", "aStay", "aRoom", "aNote"];
