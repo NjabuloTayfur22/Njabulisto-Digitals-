@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rooms near work in Summerstrand | R2,500 a month</title>
-  <meta name="description" content="Affordable rooms in Summerstrand, Gqeberha for people who work nearby. R2,500 a month. Walk to work, save taxi money. Apply on WhatsApp.">
-  <meta property="og:title" content="Rooms near work in Summerstrand: R2,500 a month">
+  <title>Holiday Rooms Summerstrand | R2,500 a month</title>
+  <meta name="description" content="Working through December and January? Stay in a graded student house in Summerstrand for R2,500 a month while students are home. Walk to work. Apply on WhatsApp.">
+  <meta property="og:title" content="Holiday rooms in Summerstrand: R2,500 a month">
   <meta property="og:description" content="Walk to work. Save taxi money. View the room first, pay after.">
   <meta name="theme-color" content="#14213D">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -93,6 +93,22 @@
     .kicker { font-weight: 800; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--sun-2); margin-bottom: 10px; }
     .title { font-size: clamp(32px, 5vw, 50px); font-weight: 800; color: var(--navy); max-width: 720px; }
     .sub { color: var(--muted); font-size: 17px; max-width: 600px; margin-top: 12px; }
+
+    /* Why cheap */
+    .why { background: var(--sun); border-radius: 22px; padding: 20px 22px; display: flex; gap: 16px; align-items: center; }
+    .why-ic { width: 52px; height: 52px; flex: none; border-radius: 16px; background: var(--navy); display: grid; place-items: center; font-size: 26px; }
+    .why b { display: block; font-size: 19px; color: var(--navy); font-family: "Bricolage Grotesque", sans-serif; }
+    .why p { color: var(--navy); font-size: 15px; font-weight: 500; }
+
+    /* Houses */
+    .grade { position: absolute; top: 12px; right: 12px; background: #fff; color: var(--navy); font-weight: 800; font-size: 12px; padding: 7px 11px; border-radius: 999px; box-shadow: 0 6px 16px -8px rgba(0,0,0,.4); }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 4px; }
+    .chips span { background: var(--cream); border: 1px solid var(--line); font-size: 12.5px; font-weight: 600; padding: 5px 10px; border-radius: 999px; }
+    .room .about { color: var(--muted); font-size: 14px; }
+    .room .maplink { font-size: 13px; font-weight: 700; color: var(--navy); text-decoration: underline; text-underline-offset: 3px; margin-top: 10px; display: inline-block; }
+    .rooms-grid.four { grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 1000px) { .rooms-grid.four { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .rooms-grid.four { grid-template-columns: 1fr; } }
 
     /* Who */
     .who-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 30px; }
@@ -260,6 +276,15 @@
   </div>
 </div>
 
+<section style="padding:36px 0 0">
+  <div class="wrap">
+    <div class="why reveal">
+      <span class="why-ic">🎓</span>
+      <div><b data-t="whyB">Why only R2,500?</b><p data-t="whyP">These are NSFAS-graded student houses. Over the holidays the students go home and the rooms stand empty. So people who work in Summerstrand can use them, at a fair price.</p></div>
+    </div>
+  </div>
+</section>
+
 <section>
   <div class="wrap">
     <p class="kicker reveal" data-t="whoK">Who it's for</p>
@@ -303,7 +328,7 @@
   <div class="wrap">
     <p class="kicker reveal" data-t="roomsK">The rooms</p>
     <h2 class="title reveal" data-t="roomsT">Pick your room.</h2>
-    <div class="rooms-grid" id="roomsGrid"></div>
+    <div class="rooms-grid four" id="roomsGrid"></div>
     <p class="photo-note" id="photoNote" data-t="photoNote">Real photos coming soon. Book a viewing to see the rooms in person.</p>
   </div>
 </section>
@@ -365,10 +390,10 @@
         <div><label for="aMove" data-t="aMove">When do you want to move in?</label><input id="aMove" type="date" required></div>
         <div><label for="aStay" data-t="aStay">How long will you stay?</label>
           <select id="aStay">
-            <option value="1" data-t="st1">December season only</option>
-            <option value="2" data-t="st2">1–3 months</option>
-            <option value="3" data-t="st3" selected>6 months</option>
-            <option value="4" data-t="st4">12 months or longer</option>
+            <option value="1" data-t="st1" selected>December and January</option>
+            <option value="2" data-t="st2">December only</option>
+            <option value="3" data-t="st3">January only</option>
+            <option value="4" data-t="st4">Longer, if possible</option>
           </select></div>
       </div>
       <label for="aRoom" data-t="aRoom">Which room?</label>
@@ -428,13 +453,13 @@
      Items marked CHECK must be confirmed with the owner before going live.
      ===================================================================== */
   const HOUSE = {
-    name: "Summerstrand Rooms",                 // CHECK: the property's name
+    name: "Summerstrand Holiday Rooms",         // CHECK: the name you want to use
+    season: { en: "1 Dec – 31 Jan", xh: "1 Dis – 31 Jan" },   // CHECK: when the students' rooms are empty
     whatsapp: "27684839679",                     // number that receives applications
     price: 2500,
     deposit: 2500,                               // CHECK
-    areaText: "Summerstrand, Gqeberha. We share the exact address when you book a viewing.",
+    areaText: "Four houses in Summerstrand, Gqeberha, close to the NMU campuses, the beachfront and Pick n Pay. See the addresses above.",
     viewing: "Monday to Saturday, 09:00–17:00",  // CHECK
-    totalRooms: 6,                               // CHECK
     included: [                                  // CHECK every item
       { icon: "🛏️", en: "Furnished room with bed", xh: "Igumbi elinefenitshala nebhedi" },
       { icon: "💡", en: "Water & electricity", xh: "Amanzi nombane" },
@@ -448,10 +473,22 @@
     notIncluded: [                               // CHECK, or leave empty []
       { icon: "🍽️", en: "Meals", xh: "Ukutya", noteEn: "Cook your own", noteXh: "Uzipheka" }
     ],
-    rooms: [                                     // status: "available", "taken" or "soon". photo: "file.jpg" or ""
-      { name: { en: "Single room A", xh: "Igumbi A" }, price: 2500, status: "available", photo: "" },
-      { name: { en: "Single room B", xh: "Igumbi B" }, price: 2500, status: "available", photo: "" },
-      { name: { en: "Single room C", xh: "Igumbi C" }, price: 2500, status: "soon", photo: "" }
+    // The four houses. rooms = how many rooms are free for the holiday. photo: "photos/house.jpg" or "".
+    // Facts below come from each house's NSFAS listing; "features" for 4 Tilbury still need checking.
+    houses: [
+      { id: "bradley6", address: "6 Bradley Road", grade: "A", rooms: 4, photo: "",            // CHECK rooms
+        about: { en: "Newly renovated house, close to the Summerstrand campuses.", xh: "Indlu esandula ukulungiswa, kufutshane neekhampasi zaseSummerstrand." },
+        features: [{ en: "Newly renovated", xh: "Isandula ukulungiswa" }] },
+      { id: "admiralty23", address: "23 Admiralty Way", grade: "A", rooms: 4, photo: "",
+        about: { en: "Secure house with a pool, a fireplace and parking.", xh: "Indlu ekhuselekileyo enechibi lokuqubha, iziko lomlilo nendawo yokupaka." },
+        features: [{ en: "Armed response", xh: "Ukhuseleko oluxhobileyo" }, { en: "CCTV", xh: "Iikhamera ze-CCTV" }, { en: "Internet", xh: "I-intanethi" },
+                   { en: "DStv", xh: "I-DStv" }, { en: "Pool", xh: "Ichibi lokuqubha" }, { en: "Parking", xh: "Indawo yokupaka" }] },
+      { id: "admiralty31", address: "31 Admiralty Way", grade: "A", rooms: 4, photo: "",
+        about: { en: "Comfortable house on the doorstep of the Summerstrand campus. Walk to Pick n Pay.", xh: "Indlu entle esemnyango wekhampasi yaseSummerstrand. Hamba ngeenyawo uye ePick n Pay." },
+        features: [{ en: "Walk to Pick n Pay", xh: "Kufutshane nePick n Pay" }, { en: "Next to campus", xh: "Ecaleni kwekhampasi" }] },
+      { id: "tilbury4", address: "4 Tilbury Road", grade: "", rooms: 4, photo: "",                // CHECK: street name, grade, rooms
+        about: { en: "Quiet street in Summerstrand.", xh: "Isitrato esizolileyo eSummerstrand." },
+        features: [] }
     ],
     rules: [
       { icon: "🔇", en: "Quiet after 22:00", xh: "Kuthule emva kwe-22:00" },
@@ -467,9 +504,9 @@
   // ---------- Translations (isiXhosa: have a first-language speaker check before going live) ----------
   const T = {
     en: {
-      pill: "Rooms available now in Summerstrand", h1a: "Live close to work.", h1b: "R2,500 a month.",
-      lead: "A safe, clean room for people who work in Summerstrand. Walk to work, stop paying taxi money, and stay over December when you can't go home.",
-      ctaApply: "Apply on WhatsApp", ctaCalc: "How much will I save?", f1: "View first, pay after", f2: "Written lease", f3: "Monthly or December stay",
+      pill: "Holiday rooms · 1 Dec – 31 Jan", h1a: "Live close to work.", h1b: "R2,500 a month.",
+      lead: "Working through the holidays? Stay in a graded student house in Summerstrand while the students are home. Walk to work and stop paying taxi money.",
+      ctaApply: "Apply on WhatsApp", ctaCalc: "How much will I save?", f1: "View first, pay after", f2: "Written lease", f3: "December & January",
       tag: "Near work · no taxi", rentLbl: "Monthly rent", perMonth: " / month",
       trustB: "We will never ask you to pay before you have seen the room.", trustP: "Come and view it, meet the owner, read the lease. Only then do you pay the deposit.",
       whoK: "Who it's for", whoT: "Made for people who keep Summerstrand running.",
@@ -480,8 +517,8 @@
       rTaxi: "Taxi money per month", rHours: "Hours in taxis per month", rNow: "Rent + taxi now", rHere: "Living here (walk to work)",
       vSave: (m, h) => `You save <b>${m}</b> a month and get <b>${h} hours</b> of your life back.`,
       vTime: (m, h) => `It costs <b>${m}</b> more a month, but you get <b>${h} hours</b> back and no late-night taxis.`,
-      roomsK: "The rooms", roomsT: "Pick your room.", photoNote: "Real photos coming soon. Book a viewing to see the rooms in person.",
-      available: "Available", taken: "Taken", soon: "Available soon", choose: "Ask for this room", waitlist: "Join the waiting list", anyRoom: "Any available room",
+      roomsK: "The houses", roomsT: "Choose your house.", photoNote: "Real photos coming soon. Book a viewing to see the house in person.", map: "Open in Maps", roomsFree: (n) => `${n} rooms free`, full: "Full", whyB: "Why only R2,500?", whyP: "These are NSFAS-graded student houses. Over the holidays the students go home and the rooms stand empty. So people who work in Summerstrand can use them, at a fair price.",
+      available: "Available", taken: "Taken", soon: "Available soon", choose: "Choose this house", waitlist: "Join the waiting list", anyRoom: "Any house is fine",
       incK: "What you get", incT: "What's included in R2,500.", notInc: "Not included",
       howK: "How it works", howT: "Four steps to your room.",
       s1: "Apply on WhatsApp", s1p: "Fill in the short form below. It takes 1 minute.", s2: "View the room", s2p: "Come and see it. Meet the owner. Ask anything.",
@@ -490,27 +527,27 @@
       appK: "Apply", appT: "Ask for a room in 1 minute.", appS: "Your answers go straight to the owner on WhatsApp. We reply to book a viewing.",
       scamB: "⚠️ Stay safe from room scams", sc1: "Never pay before you have seen the room in person.", sc2: "Only use the WhatsApp number on this page.", sc3: "Always ask for a written lease and a receipt.",
       aName: "Your name", aPhone: "Phone number", aWork: "Where do you work?", aJob: "Your job", aMove: "When do you want to move in?", aStay: "How long will you stay?",
-      st1: "December season only", st2: "1–3 months", st3: "6 months", st4: "12 months or longer",
-      aRoom: "Which room?", aNote: "Anything else? (optional)", aOk: "I understand I will view the room before paying anything.",
+      st1: "December and January", st2: "December only", st3: "January only", st4: "Longer, if possible",
+      aRoom: "Which house?", aNote: "Anything else? (optional)", aOk: "I understand I will view the room before paying anything.",
       send: "Send on WhatsApp", small: "Free to apply. No payment now.", draft: "✓ Saved on your phone. You won't need to type it again.",
       need: "Please fill in your name, phone, where you work and move-in date, and tick the box.",
       shT: "Know someone who needs a room?", shP: "Send this page to a friend or your work WhatsApp group.", shWa: "Share on WhatsApp", shCopy: "Copy link", copied: "Link copied ✓",
       shareMsg: (n, p) => `Rooms near work in Summerstrand for ${p} a month (${n}). View first, pay after: `,
       faqK: "Questions", faqT: "Straight answers.",
       q1: "What do I pay to move in?", a1: (d, p) => `The deposit (${d}) and your first month's rent (${p}), only after you've viewed the room and signed the lease. You get a receipt for everything.`,
-      q2: "Can I stay only for December?", a2: "Yes, if a room is free. Choose \"December season only\" in the form and we'll tell you what's possible.",
+      q2: "Can I stay only for December?", a2: "Yes. Choose \"December only\" in the form. The rooms are free from early December until the students come back in late January.",
       q3: "Can I share my room with someone?", a3: "Each room is for one person, so the house stays calm and safe for everyone.",
       q4: "Where exactly is it?", q5: "When can I view a room?", a5: (v) => `${v}. Send your application and we'll agree a time.`,
-      avail: (a, t) => `${a} of ${t} rooms available`, stickySave: "My savings",
+      avail: (a, t) => `${a} rooms free in ${t} houses`, stickySave: "My savings",
       msg: {
         hi: "Hi! I'd like to apply for a room.", ref: "Ref", name: "Name", phone: "Phone", work: "Works at", job: "Job",
-        move: "Move in", stay: "Stay", room: "Room", note: "Note", ok: "I'll view the room before paying."
+        move: "Move in", stay: "Stay", room: "House", note: "Note", ok: "I'll view the room before paying."
       }
     },
     xh: {
-      pill: "Amagumbi akhoyo ngoku eSummerstrand", h1a: "Hlala kufutshane nomsebenzi.", h1b: "R2,500 ngenyanga.",
-      lead: "Igumbi elikhuselekileyo nelicocekileyo labantu abasebenza eSummerstrand. Hamba ngeenyawo uye emsebenzini, uyeke ukuhlawula iteksi, uhlale nangoDisemba xa ungakwazi ukugoduka.",
-      ctaApply: "Faka isicelo ku-WhatsApp", ctaCalc: "Ndiza kugcina malini?", f1: "Bona kuqala, uhlawule emva", f2: "Isivumelwano esibhaliweyo", f3: "Ngenyanga okanye ngoDisemba",
+      pill: "Amagumbi eholide · 1 Dis – 31 Jan", h1a: "Hlala kufutshane nomsebenzi.", h1b: "R2,500 ngenyanga.",
+      lead: "Usebenza ngeeholide? Hlala kwindlu yabafundi eSummerstrand ngelixa abafundi begodukile. Hamba ngeenyawo uye emsebenzini, uyeke ukuhlawula iteksi.",
+      ctaApply: "Faka isicelo ku-WhatsApp", ctaCalc: "Ndiza kugcina malini?", f1: "Bona kuqala, uhlawule emva", f2: "Isivumelwano esibhaliweyo", f3: "UDisemba noJanuwari",
       tag: "Kufutshane nomsebenzi", rentLbl: "Irente yenyanga", perMonth: " / ngenyanga",
       trustB: "Asisoze sikucele ukuba uhlawule ngaphambi kokuba ulibone igumbi.", trustP: "Yiza ulibone, udibane nomnini, ufunde isivumelwano. Emva koko kuphela uhlawula idiphozithi.",
       whoK: "Elenzelwe bani", whoT: "Lenzelwe abantu abasebenza eSummerstrand.",
@@ -521,8 +558,8 @@
       rTaxi: "Imali yeteksi ngenyanga", rHours: "Iiyure eteksini ngenyanga", rNow: "Irente + iteksi ngoku", rHere: "Ukuhlala apha (uhamba ngeenyawo)",
       vSave: (m, h) => `Ugcina <b>${m}</b> ngenyanga kwaye ubuyiselwa <b>iiyure ezi-${h}</b> zobomi bakho.`,
       vTime: (m, h) => `Kubiza <b>${m}</b> ngaphezulu ngenyanga, kodwa ubuyiselwa <b>iiyure ezi-${h}</b> kwaye akukho teksi zasebusuku.`,
-      roomsK: "Amagumbi", roomsT: "Khetha igumbi lakho.", photoNote: "Iifoto zokwenyani ziyeza. Bhukisha ukuza kubona amagumbi.",
-      available: "Likhona", taken: "Lithathiwe", soon: "Liza kufumaneka", choose: "Cela eli gumbi", waitlist: "Joyina uluhlu lokulinda", anyRoom: "Naliphi na igumbi elikhoyo",
+      roomsK: "Izindlu", roomsT: "Khetha indlu yakho.", photoNote: "Iifoto zokwenyani ziyeza. Bhukisha ukuza kuyibona indlu.", map: "Vula kwiMaps", roomsFree: (n) => `Amagumbi ali-${n} akhoyo`, full: "Igcwele", whyB: "Kutheni iR2,500 kuphela?", whyP: "Ezi zizindlu zabafundi ezihlolwe yi-NSFAS. Ngeeholide abafundi bayagoduka kwaye amagumbi ahlala engenamntu. Ngoko ke abantu abasebenza eSummerstrand banokuwasebenzisa, ngexabiso elifanelekileyo.",
+      available: "Likhona", taken: "Lithathiwe", soon: "Liza kufumaneka", choose: "Khetha le ndlu", waitlist: "Joyina uluhlu lokulinda", anyRoom: "Nayiphi na indlu ilungile",
       incK: "Ofumana ntoni", incT: "Okubandakanyiweyo kwi-R2,500.", notInc: "Akubandakanywanga",
       howK: "Indlela esebenza ngayo", howT: "Amanyathelo amane ukuya kwigumbi lakho.",
       s1: "Faka isicelo ku-WhatsApp", s1p: "Gcwalisa le fomu imfutshane ingezantsi. Ithatha umzuzu omnye.", s2: "Bona igumbi", s2p: "Yiza ulibone. Dibana nomnini. Buza nantoni na.",
@@ -531,21 +568,21 @@
       appK: "Faka isicelo", appT: "Cela igumbi ngomzuzu omnye.", appS: "Iimpendulo zakho ziya ngqo kumnini ku-WhatsApp. Siza kuphendula ukuze sibhukishe ixesha lokubona.",
       scamB: "⚠️ Zikhusele kubaqhathi bamagumbi", sc1: "Ungaze uhlawule ngaphambi kokuba ulibone igumbi ngamehlo akho.", sc2: "Sebenzisa kuphela inombolo ye-WhatsApp ekweli phepha.", sc3: "Soloko ucela isivumelwano esibhaliweyo nerisithi.",
       aName: "Igama lakho", aPhone: "Inombolo yefowuni", aWork: "Usebenza phi?", aJob: "Umsebenzi wakho", aMove: "Ufuna ukungena nini?", aStay: "Uza kuhlala ixesha elingakanani?",
-      st1: "NgoDisemba kuphela", st2: "Iinyanga ezi-1 ukuya kwezi-3", st3: "Iinyanga ezi-6", st4: "Iinyanga ezi-12 nangaphezulu",
-      aRoom: "Leliphi igumbi?", aNote: "Ikhona enye into? (ayinyanzelekanga)", aOk: "Ndiyaqonda ukuba ndiza kulibona igumbi ngaphambi kokuhlawula nantoni na.",
+      st1: "UDisemba noJanuwari", st2: "NgoDisemba kuphela", st3: "NgoJanuwari kuphela", st4: "Ixesha elide, ukuba kunokwenzeka",
+      aRoom: "Yeyiphi indlu?", aNote: "Ikhona enye into? (ayinyanzelekanga)", aOk: "Ndiyaqonda ukuba ndiza kulibona igumbi ngaphambi kokuhlawula nantoni na.",
       send: "Thumela ku-WhatsApp", small: "Ukufaka isicelo kusimahla. Akukho ntlawulo ngoku.", draft: "✓ Kugcinwe kwifowuni yakho. Akuzukufuneka uphinde ubhale.",
       need: "Nceda ugcwalise igama, ifowuni, apho usebenza khona nomhla wokungena, uze uthikithe ibhokisi.",
       shT: "Ukhona umntu odinga igumbi?", shP: "Thumela eli phepha kumhlobo okanye kwiqela le-WhatsApp lomsebenzi.", shWa: "Yabelana ku-WhatsApp", shCopy: "Kopa ilinki", copied: "Ilinki ikopiwe ✓",
       shareMsg: (n, p) => `Amagumbi kufutshane nomsebenzi eSummerstrand nge-${p} ngenyanga (${n}). Bona kuqala, uhlawule emva: `,
       faqK: "Imibuzo", faqT: "Iimpendulo ezicacileyo.",
       q1: "Ndihlawula malini xa ndingena?", a1: (d, p) => `Idiphozithi (${d}) nerente yenyanga yokuqala (${p}), kuphela emva kokuba ulibonile igumbi waza wasayina isivumelwano. Ufumana irisithi ngayo yonke into.`,
-      q2: "Ndingahlala ngoDisemba kuphela?", a2: "Ewe, ukuba likhona igumbi elingenamntu. Khetha \"NgoDisemba kuphela\" kwifomu kwaye siza kukuxelela okunokwenzeka.",
+      q2: "Ndingahlala ngoDisemba kuphela?", a2: "Ewe. Khetha \"NgoDisemba kuphela\" kwifomu. Amagumbi akhululekile ukusuka ekuqaleni kukaDisemba de abafundi babuye ekupheleni kukaJanuwari.",
       q3: "Ndingabelana ngegumbi nomnye umntu?", a3: "Igumbi ngalinye lelomntu omnye, ukuze indlu ihlale izolile kwaye ikhuselekile kubo bonke.",
       q4: "Iphi kanye kanye?", q5: "Ndingalibona nini igumbi?", a5: (v) => `${v}. Thumela isicelo sakho kwaye siza kuvumelana ngexesha.`,
-      avail: (a, t) => `Amagumbi ali-${a} kwali-${t} akhoyo`, stickySave: "Imali endiyigcinayo",
+      avail: (a, t) => `Amagumbi ali-${a} akhoyo kwizindlu ezi-${t}`, stickySave: "Imali endiyigcinayo",
       msg: {
         hi: "Molo! Ndingathanda ukufaka isicelo segumbi.", ref: "Ref", name: "Igama", phone: "Ifowuni", work: "Indawo yomsebenzi", job: "Umsebenzi",
-        move: "Ukungena", stay: "Ixesha", room: "Igumbi", note: "Inqaku", ok: "Ndiza kulibona igumbi ngaphambi kokuhlawula."
+        move: "Ukungena", stay: "Ixesha", room: "Indlu", note: "Inqaku", ok: "Ndiza kulibona igumbi ngaphambi kokuhlawula."
       }
     }
   };
@@ -576,29 +613,32 @@
     $("heroPrice").firstChild.nodeValue = R(HOUSE.price);
     $("heroIncluded").innerHTML = HOUSE.included.slice(0, 4).map(x => `<li><i>✓</i>${x[lang]}</li>`).join("");
 
-    const open = HOUSE.rooms.filter(r => r.status === "available").length;
-    $("availText").textContent = t("avail")(open, HOUSE.totalRooms);
-    $("availBar").style.width = Math.round(open / HOUSE.totalRooms * 100) + "%";
+    const open = HOUSE.houses.reduce((n, h) => n + h.rooms, 0);
+    $("availText").textContent = t("avail")(open, HOUSE.houses.length);
+    $("availPct").textContent = HOUSE.season[lang];
+    $("availBar").style.width = "100%";
 
-    $("roomsGrid").innerHTML = HOUSE.rooms.map((r, i) => `
+    $("roomsGrid").innerHTML = HOUSE.houses.map((h, i) => `
       <article class="room reveal in">
-        <div class="ph" data-i="${i}"><span class="status ${r.status}">${t(r.status)}</span></div>
+        <div class="ph" data-i="${i}"><span class="status ${h.rooms > 0 ? "available" : "taken"}">${h.rooms > 0 ? t("roomsFree")(h.rooms) : t("full")}</span>${h.grade ? `<span class="grade">NSFAS Grade ${h.grade}</span>` : ""}</div>
         <div class="body">
-          <h3>${r.name[lang]}</h3>
-          <div class="meta">👤 1 · ${HOUSE.included[0][lang]}</div>
-          <div class="price">${R(r.price)}<small>${t("perMonth")}</small></div>
-          <a href="#apply" class="btn ${r.status === "available" ? "btn-wa" : "btn-sun"}" data-room="${i}">${r.status === "available" ? t("choose") : t("waitlist")}</a>
+          <h3>${h.address}</h3>
+          <p class="about">${h.about[lang]}</p>
+          <div class="chips">${h.features.map(f => `<span>${f[lang]}</span>`).join("")}</div>
+          <div class="price" style="margin-top:auto">${R(HOUSE.price)}<small>${t("perMonth")}</small></div>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(h.address + ", Summerstrand, Gqeberha")}" target="_blank" rel="noopener">📍 ${t("map")}</a>
+          <a href="#apply" class="btn ${h.rooms > 0 ? "btn-wa" : "btn-sun"}" data-room="${h.id}">${h.rooms > 0 ? t("choose") : t("waitlist")}</a>
         </div>
       </article>`).join("");
-    document.querySelectorAll("#roomsGrid .ph").forEach(el => { const r = HOUSE.rooms[el.dataset.i]; el.style.backgroundImage = r.photo ? `url("${r.photo}")` : art(+el.dataset.i); });
-    $("photoNote").style.display = HOUSE.rooms.some(r => r.photo) ? "none" : "";
+    document.querySelectorAll("#roomsGrid .ph").forEach(el => { const h = HOUSE.houses[el.dataset.i]; el.style.backgroundImage = h.photo ? `url("${h.photo}")` : art(+el.dataset.i); });
+    $("photoNote").style.display = HOUSE.houses.every(h => h.photo) ? "none" : "";
 
     $("incGrid").innerHTML = HOUSE.included.map(x => `<div class="inc reveal in"><span>${x.icon}</span>${x[lang]}</div>`).join("") +
       HOUSE.notIncluded.map(x => `<div class="inc no reveal in"><span>${x.icon}</span><div>${x[lang]}<em>${t("notInc")} · ${lang === "xh" ? x.noteXh : x.noteEn}</em></div></div>`).join("");
     $("rulesList").innerHTML = HOUSE.rules.map(x => `<li><span>${x.icon}</span>${x[lang]}</li>`).join("");
 
     const sel = $("aRoom"), prev = sel.value;
-    sel.innerHTML = `<option value="any">${t("anyRoom")}</option>` + HOUSE.rooms.map((r, i) => `<option value="${i}">${r.name[lang]} (${t(r.status)})</option>`).join("");
+    sel.innerHTML = `<option value="any">${t("anyRoom")}</option>` + HOUSE.houses.map(h => `<option value="${h.id}">${h.address}${h.rooms > 0 ? "" : " (" + t("full") + ")"}</option>`).join("");
     if (prev) sel.value = prev;
 
     $("a1").textContent = t("a1")(R(HOUSE.deposit), R(HOUSE.price));
