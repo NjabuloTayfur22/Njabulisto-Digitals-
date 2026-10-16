@@ -4,20 +4,23 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Holiday Rooms Summerstrand | R2,500 a month</title>
-  <meta name="description" content="Working through December and January? Stay in a graded student house in Summerstrand for R2,500 a month while students are home. Walk to work. Apply on WhatsApp.">
+  <meta name="description" content="Working through December and January? 16 single rooms in 4 graded student houses in Summerstrand, Gqeberha. R2,500 a month. Pick your room and apply on WhatsApp.">
   <meta property="og:title" content="Holiday rooms in Summerstrand: R2,500 a month">
-  <meta property="og:description" content="Walk to work. Save taxi money. View the room first, pay after.">
+  <meta property="og:description" content="16 single rooms in 4 houses. Walk to work. View first, pay after.">
+  <meta property="og:image" content="photos/tilbury4-room.jpg">
   <meta name="theme-color" content="#14213D">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --navy: #14213D;
       --navy-2: #1F2F55;
+      --navy-3: #2A3D6B;
       --sun: #FFC93C;
       --sun-2: #FFB400;
       --green: #1DB954;
+      --green-2: #12A145;
       --mint: #E6F8EE;
       --cream: #FFF9EC;
       --white: #FFFFFF;
@@ -25,7 +28,8 @@
       --muted: #5D6478;
       --line: #ECE6D6;
       --red: #E5484D;
-      --wrap: 1100px;
+      --wrap: 1140px;
+      --r: 22px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -33,85 +37,215 @@
     body { font-family: "Inter", system-ui, sans-serif; background: var(--cream); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
     h1, h2, h3, .display { font-family: "Bricolage Grotesque", "Inter", sans-serif; line-height: 1.02; letter-spacing: -0.02em; }
     a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
     .wrap { width: min(var(--wrap), 100% - 32px); margin-inline: auto; }
     .wrap > * { min-width: 0; }
     input, select, textarea, button { font: inherit; min-width: 0; max-width: 100%; }
+    button { -webkit-tap-highlight-color: transparent; }
 
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 26px; border-radius: 16px; border: 0; cursor: pointer; font-weight: 700; font-size: 16px; transition: transform .15s ease, box-shadow .15s ease; }
-    .btn:active { transform: scale(.98); }
-    .btn-wa { background: var(--green); color: #fff; box-shadow: 0 10px 24px -10px rgba(29,185,84,.7); }
-    .btn-sun { background: var(--sun); color: var(--navy); box-shadow: 0 10px 24px -10px rgba(255,180,0,.7); }
-    .btn-ghost { background: rgba(255,255,255,.1); color: #fff; border: 1.5px solid rgba(255,255,255,.3); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 26px; border-radius: 16px; border: 0; cursor: pointer; font-weight: 800; font-size: 16px; transition: transform .15s ease, box-shadow .2s ease, background .2s ease; }
+    .btn:active { transform: scale(.97); }
+    .btn-wa { background: var(--green); color: #fff; box-shadow: 0 12px 26px -12px rgba(29,185,84,.8); }
+    .btn-wa:hover { background: var(--green-2); }
+    .btn-ghost { background: rgba(255,255,255,.08); color: #fff; border: 1.5px solid rgba(255,255,255,.28); }
+    .btn-line { background: #fff; color: var(--navy); border: 1.5px solid var(--line); }
+    .btn-navy { background: var(--navy); color: #fff; }
     .btn svg { width: 22px; height: 22px; flex: none; }
 
-    /* Top bar */
-    .bar { position: sticky; top: 0; z-index: 40; background: var(--navy); color: #fff; }
-    .bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; }
-    .brand { display: flex; align-items: center; gap: 10px; font: 800 19px "Bricolage Grotesque"; }
-    .brand .key { width: 36px; height: 36px; border-radius: 11px; background: var(--sun); display: grid; place-items: center; flex: none; }
-    .brand .key svg { width: 20px; height: 20px; }
-    .lang { display: inline-flex; background: rgba(255,255,255,.1); border-radius: 12px; padding: 4px; }
-    .lang button { border: 0; background: none; color: #fff; padding: 7px 12px; border-radius: 9px; font-weight: 700; font-size: 13px; cursor: pointer; opacity: .7; }
+    /* ---------- Top bar ---------- */
+    .bar { position: sticky; top: 0; z-index: 40; background: rgba(20,33,61,.95); backdrop-filter: blur(10px); color: #fff; }
+    .bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; font: 800 18px/1.1 "Bricolage Grotesque"; }
+    .brand small { display: block; font: 700 11px "Inter"; letter-spacing: .14em; text-transform: uppercase; color: var(--sun); }
+    .brand .key { width: 38px; height: 38px; border-radius: 12px; background: var(--sun); display: grid; place-items: center; flex: none; }
+    .brand .key svg { width: 21px; height: 21px; }
+    .lang { display: inline-flex; background: rgba(255,255,255,.1); border-radius: 12px; padding: 4px; flex: none; }
+    .lang button { border: 0; background: none; color: #fff; padding: 7px 11px; border-radius: 9px; font-weight: 800; font-size: 13px; cursor: pointer; opacity: .75; }
     .lang button[aria-pressed="true"] { background: var(--sun); color: var(--navy); opacity: 1; }
 
-    /* Hero */
-    .hero { background: var(--navy); color: #fff; position: relative; overflow: hidden; padding: 46px 0 70px; }
-    .hero::before { content: ""; position: absolute; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(255,201,60,.35), transparent 65%); right: -160px; top: -160px; }
-    .hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 40px; background: var(--cream); clip-path: ellipse(70% 100% at 50% 100%); }
-    .hero .wrap { position: relative; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 40px; align-items: center; }
-    .pill { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; }
-    .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(29,185,84,.25); }
-    .hero h1 { font-size: clamp(40px, 8vw, 76px); font-weight: 800; margin: 18px 0 14px; }
-    .hero h1 .hl { color: var(--sun); }
-    .hero .lead { font-size: clamp(17px, 2.2vw, 20px); color: rgba(255,255,255,.82); max-width: 520px; }
+    /* ---------- Hero ---------- */
+    .hero { background: radial-gradient(circle at 85% 10%, #2B4277 0%, var(--navy) 55%); color: #fff; position: relative; overflow: hidden; padding: 40px 0 90px; }
+    .hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 46px; background: var(--cream); clip-path: ellipse(72% 100% at 50% 100%); }
+    .hero .wrap { position: relative; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 36px; align-items: center; }
+    .chips-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.16); padding: 7px 13px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+    .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(29,185,84,.25); animation: pulse 2s infinite; }
+    .pill.sun { background: var(--sun); color: var(--navy); border-color: var(--sun); }
+    @keyframes pulse { 50% { box-shadow: 0 0 0 8px rgba(29,185,84,0); } }
+    .hero h1 { font-size: clamp(42px, 8.4vw, 82px); font-weight: 800; margin: 18px 0 14px; }
+    .hero h1 .hl { color: var(--sun); display: block; }
+    .hero .lead { font-size: clamp(17px, 2.1vw, 20px); color: rgba(255,255,255,.84); max-width: 530px; }
     .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
-    .facts { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 24px; font-size: 14px; color: rgba(255,255,255,.75); font-weight: 600; }
-    .facts span { display: inline-flex; align-items: center; gap: 7px; }
-    .facts b { color: var(--sun); }
+    .stats { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 6px 26px; margin-top: 28px; }
+    .stat b { display: block; font: 800 34px/1 "Bricolage Grotesque"; color: var(--sun); }
+    .stat span { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.72); }
 
-    .price-card { position: relative; background: #fff; color: var(--text); border-radius: 28px; padding: 26px; box-shadow: 0 40px 80px -30px rgba(0,0,0,.6); transform: rotate(2deg); }
-    .price-card .tag { position: absolute; top: -16px; right: 22px; background: var(--sun); color: var(--navy); font-weight: 800; font-size: 13px; padding: 8px 14px; border-radius: 999px; transform: rotate(-4deg); }
-    .price-card .lbl { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-    .price-card .big { font: 800 64px/1 "Bricolage Grotesque"; color: var(--navy); margin: 6px 0 2px; }
-    .price-card .big small { font: 600 18px "Inter"; color: var(--muted); }
-    .price-card ul { list-style: none; margin-top: 16px; display: grid; gap: 10px; }
-    .price-card li { display: flex; gap: 10px; align-items: flex-start; font-weight: 600; font-size: 15px; }
-    .price-card li i { font-style: normal; width: 24px; height: 24px; flex: none; border-radius: 50%; background: var(--mint); color: var(--green); display: grid; place-items: center; font-size: 13px; font-weight: 800; }
-    .price-card .avail { margin-top: 18px; padding: 12px 14px; border-radius: 14px; background: var(--cream); font-weight: 700; display: flex; justify-content: space-between; gap: 8px; align-items: center; }
-    .bar-meter { height: 8px; border-radius: 8px; background: var(--line); overflow: hidden; margin-top: 8px; }
-    .bar-meter span { display: block; height: 100%; background: linear-gradient(90deg, var(--green), #6BE39A); border-radius: 8px; }
-    @media (max-width: 860px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); } .price-card { transform: none; } }
+    .collage { position: relative; height: 470px; }
+    .shot { position: absolute; border-radius: 22px; overflow: hidden; background: var(--navy-2); border: 5px solid #fff; box-shadow: 0 40px 70px -30px rgba(0,0,0,.75); }
+    .shot img { width: 100%; height: 100%; object-fit: cover; }
+    .shot .cap { position: absolute; left: 10px; bottom: 10px; background: rgba(20,33,61,.88); color: #fff; font-weight: 700; font-size: 12px; padding: 6px 10px; border-radius: 999px; }
+    .shot.s1 { width: 64%; height: 300px; right: 0; top: 0; transform: rotate(3deg); z-index: 2; }
+    .shot.s2 { width: 52%; height: 220px; left: 0; top: 150px; transform: rotate(-5deg); z-index: 3; }
+    .shot.s3 { width: 50%; height: 200px; right: 6%; bottom: 0; transform: rotate(2deg); z-index: 1; }
+    .price-badge { position: absolute; z-index: 4; left: 8%; bottom: 22px; width: 150px; height: 150px; border-radius: 50%; background: var(--sun); color: var(--navy); display: grid; place-items: center; text-align: center; transform: rotate(-10deg); box-shadow: 0 24px 40px -18px rgba(0,0,0,.6); }
+    .price-badge b { display: block; font: 800 36px/1 "Bricolage Grotesque"; }
+    .price-badge span { font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+    @media (max-width: 900px) {
+      .hero .wrap { grid-template-columns: minmax(0, 1fr); }
+      .collage { height: 330px; margin-top: 6px; }
+      .shot.s1 { height: 210px; } .shot.s2 { height: 160px; top: 110px; } .shot.s3 { height: 150px; }
+      .price-badge { width: 118px; height: 118px; left: 2%; bottom: 6px; } .price-badge b { font-size: 28px; }
+    }
 
-    /* Trust strip */
-    .trust { margin-top: -6px; }
-    .trust .wrap { background: #fff; border: 2px solid var(--green); border-radius: 22px; padding: 18px 22px; display: flex; gap: 16px; align-items: center; box-shadow: 0 20px 40px -30px rgba(20,33,61,.5); }
-    .trust .shield { width: 52px; height: 52px; flex: none; border-radius: 16px; background: var(--mint); display: grid; place-items: center; font-size: 26px; }
-    .trust b { display: block; font-size: 17px; }
-    .trust p { color: var(--muted); font-size: 15px; }
+    /* ---------- Trust ---------- */
+    .trust-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: -10px; position: relative; z-index: 2; }
+    .tcard { border-radius: var(--r); padding: 18px 20px; display: flex; gap: 14px; align-items: center; box-shadow: 0 20px 40px -30px rgba(20,33,61,.5); }
+    .tcard.safe { background: #fff; border: 2px solid var(--green); }
+    .tcard.cheap { background: var(--sun); }
+    .tcard .ic { width: 50px; height: 50px; flex: none; border-radius: 15px; display: grid; place-items: center; font-size: 25px; }
+    .safe .ic { background: var(--mint); } .cheap .ic { background: var(--navy); }
+    .tcard b { display: block; font-size: 16.5px; color: var(--navy); line-height: 1.3; }
+    .tcard p { color: var(--muted); font-size: 14.5px; margin-top: 3px; }
+    .cheap p { color: var(--navy); }
+    @media (max-width: 820px) { .trust-row { grid-template-columns: 1fr; } }
 
     section { padding: 70px 0; }
     .kicker { font-weight: 800; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--sun-2); margin-bottom: 10px; }
-    .title { font-size: clamp(32px, 5vw, 50px); font-weight: 800; color: var(--navy); max-width: 720px; }
-    .sub { color: var(--muted); font-size: 17px; max-width: 600px; margin-top: 12px; }
+    .title { font-size: clamp(32px, 5vw, 52px); font-weight: 800; color: var(--navy); max-width: 760px; }
+    .sub { color: var(--muted); font-size: 17px; max-width: 620px; margin-top: 12px; }
 
-    /* Why cheap */
-    .why { background: var(--sun); border-radius: 22px; padding: 20px 22px; display: flex; gap: 16px; align-items: center; }
-    .why-ic { width: 52px; height: 52px; flex: none; border-radius: 16px; background: var(--navy); display: grid; place-items: center; font-size: 26px; }
-    .why b { display: block; font-size: 19px; color: var(--navy); font-family: "Bricolage Grotesque", sans-serif; }
-    .why p { color: var(--navy); font-size: 15px; font-weight: 500; }
+    /* ---------- Houses ---------- */
+    .houses { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 32px; }
+    .house { background: #fff; border-radius: 26px; overflow: hidden; border: 1px solid var(--line); display: flex; flex-direction: column; transition: box-shadow .2s ease; }
+    .house:hover { box-shadow: 0 30px 60px -40px rgba(20,33,61,.6); }
+    .house .ph { aspect-ratio: 16/10; background: var(--navy-2) center/cover no-repeat; position: relative; }
+    .badge { position: absolute; top: 12px; padding: 7px 12px; border-radius: 999px; font-weight: 800; font-size: 12.5px; }
+    .badge.free { left: 12px; background: var(--green); color: #fff; }
+    .badge.full { left: 12px; background: var(--navy); color: #fff; }
+    .badge.grade { right: 12px; background: #fff; color: var(--navy); box-shadow: 0 6px 16px -8px rgba(0,0,0,.4); }
+    .gal-btn { position: absolute; bottom: 12px; right: 12px; border: 0; cursor: pointer; background: rgba(20,33,61,.9); color: #fff; font-weight: 800; font-size: 13px; padding: 10px 14px; border-radius: 999px; }
+    .house .body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .house h3 { font-size: 26px; color: var(--navy); }
+    .house .about { color: var(--muted); font-size: 14.5px; }
+    .feat { display: flex; flex-wrap: wrap; gap: 6px; }
+    .feat span { background: var(--cream); border: 1px solid var(--line); font-size: 12.5px; font-weight: 700; padding: 5px 10px; border-radius: 999px; }
+    .pick-lbl { font-size: 13px; font-weight: 800; color: var(--navy); margin-top: auto; padding-top: 8px; }
+    .room-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .rbtn { border: 2px solid var(--line); background: var(--cream); border-radius: 14px; padding: 10px 4px; cursor: pointer; text-align: center; font-weight: 800; font-size: 18px; color: var(--navy); transition: all .15s ease; line-height: 1.2; }
+    .rbtn small { display: block; font-size: 11px; font-weight: 700; color: var(--green-2); }
+    .rbtn:hover:not([disabled]) { border-color: var(--green); background: var(--mint); }
+    .rbtn[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: #fff; box-shadow: 0 10px 20px -10px rgba(29,185,84,.8); }
+    .rbtn[aria-pressed="true"] small { color: #fff; }
+    .rbtn[disabled] { opacity: .5; cursor: not-allowed; text-decoration: line-through; }
+    .rbtn[disabled] small { color: var(--muted); }
+    .house-foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+    .price { font: 800 28px "Bricolage Grotesque"; color: var(--navy); }
+    .price small { font: 600 14px "Inter"; color: var(--muted); }
+    .maplink { font-size: 13px; font-weight: 800; color: var(--navy); text-decoration: underline; text-underline-offset: 3px; }
+    @media (max-width: 860px) { .houses { grid-template-columns: 1fr; } }
 
-    /* Houses */
-    .grade { position: absolute; top: 12px; right: 12px; background: #fff; color: var(--navy); font-weight: 800; font-size: 12px; padding: 7px 11px; border-radius: 999px; box-shadow: 0 6px 16px -8px rgba(0,0,0,.4); }
-    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 4px; }
-    .chips span { background: var(--cream); border: 1px solid var(--line); font-size: 12.5px; font-weight: 600; padding: 5px 10px; border-radius: 999px; }
-    .room .about { color: var(--muted); font-size: 14px; }
-    .room .maplink { font-size: 13px; font-weight: 700; color: var(--navy); text-decoration: underline; text-underline-offset: 3px; margin-top: 10px; display: inline-block; }
-    .rooms-grid.four { grid-template-columns: repeat(4, 1fr); }
-    @media (max-width: 1000px) { .rooms-grid.four { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 600px) { .rooms-grid.four { grid-template-columns: 1fr; } }
+    /* ---------- Who ---------- */
+    .who-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 28px; }
+    .who { background: #fff; border-radius: 20px; padding: 20px; border: 1px solid var(--line); }
+    .who span { font-size: 30px; }
+    .who b { display: block; margin-top: 8px; font-size: 16px; color: var(--navy); }
+    .who p { color: var(--muted); font-size: 14px; }
+    @media (max-width: 860px) { .who-grid { grid-template-columns: 1fr 1fr; } }
 
-    .room .ph { cursor: default; }
-    .gal-btn { position: absolute; bottom: 12px; right: 12px; border: 0; cursor: pointer; background: rgba(20,33,61,.88); color: #fff; font-weight: 700; font-size: 13px; padding: 9px 13px; border-radius: 999px; }
+    /* ---------- Calculator ---------- */
+    .calc { background: var(--navy); color: #fff; border-radius: 32px; padding: 34px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 34px; }
+    .calc .title { color: #fff; } .calc .sub { color: rgba(255,255,255,.72); }
+    .field { margin-bottom: 20px; }
+    .field-top { display: flex; justify-content: space-between; gap: 10px; font-weight: 600; margin-bottom: 8px; color: rgba(255,255,255,.88); }
+    .field-top output { font: 800 22px "Bricolage Grotesque"; color: var(--sun); white-space: nowrap; }
+    input[type=range] { width: 100%; -webkit-appearance: none; appearance: none; height: 8px; border-radius: 8px; background: var(--navy-3); outline: none; }
+    input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 28px; height: 28px; border-radius: 50%; background: var(--sun); border: 5px solid var(--navy); box-shadow: 0 0 0 2px var(--sun); cursor: pointer; }
+    input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--sun); border: 5px solid var(--navy); cursor: pointer; }
+    .result { background: var(--sun); color: var(--navy); border-radius: 22px; padding: 22px; }
+    .result .row { display: flex; justify-content: space-between; gap: 10px; padding: 9px 0; border-bottom: 1px dashed rgba(20,33,61,.2); font-weight: 600; }
+    .result .row:last-of-type { border-bottom: 0; }
+    .result .row b { font: 800 20px "Bricolage Grotesque"; white-space: nowrap; }
+    .verdict { margin-top: 12px; background: var(--navy); color: #fff; border-radius: 14px; padding: 14px 16px; font-weight: 700; }
+    .verdict b { color: var(--sun); }
+    .calc .note { font-size: 13px; color: rgba(255,255,255,.5); margin-top: 12px; }
+    @media (max-width: 860px) { .calc { grid-template-columns: minmax(0, 1fr); padding: 24px; } }
+
+    /* ---------- Included / rules ---------- */
+    .inc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 26px; }
+    .inc { background: #fff; border-radius: 16px; padding: 16px; display: flex; gap: 12px; align-items: center; font-weight: 600; border: 1px solid var(--line); }
+    .inc span { font-size: 24px; }
+    .inc.no { opacity: .7; } .inc.no em { font-style: normal; font-size: 12px; color: var(--muted); display: block; font-weight: 500; }
+    @media (max-width: 860px) { .inc-grid { grid-template-columns: 1fr 1fr; } }
+    .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 0 26px; margin-top: 22px; list-style: none; }
+    .rules li { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); font-weight: 500; }
+    .rules li span { font-size: 20px; }
+    @media (max-width: 760px) { .rules { grid-template-columns: 1fr; } }
+
+    /* ---------- Application wizard ---------- */
+    .apply { background: var(--navy); color: #fff; }
+    .apply .wrap { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 40px; align-items: start; }
+    .apply .title { color: #fff; } .apply .sub { color: rgba(255,255,255,.75); }
+    .scam { margin-top: 24px; background: rgba(229,72,77,.12); border: 1.5px solid rgba(229,72,77,.5); border-radius: 18px; padding: 18px; }
+    .scam b { display: block; color: #FF8A8E; margin-bottom: 6px; }
+    .scam ul { padding-left: 18px; color: rgba(255,255,255,.88); font-size: 15px; display: grid; gap: 4px; }
+    .wiz { background: #fff; color: var(--text); border-radius: 28px; padding: 24px; box-shadow: 0 40px 80px -40px rgba(0,0,0,.7); scroll-margin-top: 80px; }
+    .stepper { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 20px; }
+    .stepper div { font-size: 12.5px; font-weight: 800; color: var(--muted); }
+    .stepper div::before { content: ""; display: block; height: 6px; border-radius: 6px; background: var(--line); margin-bottom: 8px; transition: background .3s ease; }
+    .stepper div.on { color: var(--navy); } .stepper div.on::before { background: var(--green); }
+    .step-title { font: 800 24px "Bricolage Grotesque"; color: var(--navy); margin-bottom: 14px; }
+    .wiz label { display: block; font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+    .wiz input, .wiz select, .wiz textarea { width: 100%; padding: 14px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--cream); font-size: 16px; margin-bottom: 14px; outline: none; color: var(--text); }
+    .wiz input:focus, .wiz select:focus, .wiz textarea:focus { border-color: var(--sun-2); background: #fff; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; } .row2 > * { min-width: 0; }
+    .hpick { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+    .hopt { border: 2px solid var(--line); background: #fff; border-radius: 16px; overflow: hidden; cursor: pointer; text-align: left; padding: 0; color: var(--navy); transition: border-color .15s ease, box-shadow .15s ease; }
+    .hopt .th { height: 74px; background: var(--navy-2) center/cover no-repeat; }
+    .hopt b { display: block; padding: 8px 10px 0; font-size: 14px; line-height: 1.25; }
+    .hopt span { display: block; padding: 2px 10px 9px; font-size: 12px; color: var(--green-2); font-weight: 700; }
+    .hopt[aria-pressed="true"] { border-color: var(--green); box-shadow: 0 0 0 3px rgba(29,185,84,.22); }
+    .err { color: var(--red); font-weight: 700; font-size: 14px; min-height: 20px; margin: 6px 0 6px; }
+    .navb { display: flex; gap: 10px; margin-top: 6px; }
+    .navb .btn { flex: 1; padding: 15px 14px; }
+    .review { background: var(--cream); border-radius: 18px; padding: 6px 16px; margin-bottom: 14px; }
+    .review div { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px dashed var(--line); font-size: 15px; }
+    .review div:last-child { border-bottom: 0; }
+    .review span { color: var(--muted); } .review b { text-align: right; color: var(--navy); overflow-wrap: anywhere; }
+    .check { display: flex !important; gap: 10px; align-items: flex-start; font-weight: 500 !important; font-size: 14px !important; color: var(--muted); }
+    .check input { width: 22px !important; height: 22px; margin: 1px 0 0 !important; flex: none; accent-color: var(--green); }
+    .saved { font-size: 13px; color: var(--green-2); font-weight: 700; min-height: 18px; text-align: center; margin-top: 8px; }
+    .small { text-align: center; font-size: 13px; color: var(--muted); }
+    .done { text-align: center; padding: 10px 0; }
+    .done .big { font-size: 54px; }
+    .done b { display: block; font: 800 26px "Bricolage Grotesque"; color: var(--navy); margin: 6px 0; }
+    .done p { color: var(--muted); }
+    .done .ref { display: inline-block; margin: 14px 0; background: var(--sun); color: var(--navy); font: 800 22px "Bricolage Grotesque"; padding: 8px 18px; border-radius: 12px; }
+    @media (max-width: 900px) { .apply .wrap { grid-template-columns: minmax(0, 1fr); } }
+    @media (max-width: 420px) { .row2 { grid-template-columns: 1fr; } .wiz { padding: 18px; } }
+
+    /* ---------- Share / FAQ / footer ---------- */
+    .share-box { background: var(--sun); border-radius: 30px; padding: 36px 24px; text-align: center; }
+    .share-box .title { margin-inline: auto; }
+    .share-box p { color: var(--navy); font-weight: 600; margin: 10px auto 22px; max-width: 520px; }
+    .share-box .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .faq { display: grid; gap: 10px; margin-top: 24px; max-width: 820px; }
+    details { background: #fff; border-radius: 16px; border: 1px solid var(--line); padding: 0 20px; }
+    summary { cursor: pointer; list-style: none; padding: 18px 0; font-weight: 700; display: flex; justify-content: space-between; gap: 12px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; font-size: 24px; line-height: 1; color: var(--sun-2); }
+    details[open] summary::after { content: "–"; }
+    details p { padding-bottom: 18px; color: var(--muted); }
+    footer { background: var(--navy); color: rgba(255,255,255,.7); padding: 34px 0 110px; font-size: 14px; }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+    /* ---------- Sticky choice bar ---------- */
+    .dock { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 50; display: flex; gap: 10px; align-items: center; background: rgba(20,33,61,.97); color: #fff; padding: 10px 10px 10px 16px; border-radius: 20px; box-shadow: 0 20px 40px -16px rgba(0,0,0,.6); max-width: 560px; margin-inline: auto; transform: translateY(150%); transition: transform .3s ease; }
+    .dock.show { transform: none; }
+    .dock .what { flex: 1; min-width: 0; font-size: 12px; color: rgba(255,255,255,.7); line-height: 1.3; }
+    .dock .what b { display: block; color: #fff; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .dock .btn { padding: 13px 18px; font-size: 15px; flex: none; }
+
+    /* ---------- Lightbox ---------- */
     .lb { position: fixed; inset: 0; z-index: 100; background: #0A0E1A; display: none; flex-direction: column; }
     .lb.open { display: flex; }
     .lb-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 16px; color: #fff; font-weight: 700; }
@@ -124,120 +258,6 @@
     .lb-dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.3); }
     .lb-dots span.on { background: var(--sun); }
 
-    /* Who */
-    .who-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 30px; }
-    .who { background: #fff; border-radius: 20px; padding: 20px; border: 1px solid var(--line); }
-    .who span { font-size: 30px; }
-    .who b { display: block; margin-top: 8px; font-size: 16px; }
-    .who p { color: var(--muted); font-size: 14px; }
-    @media (max-width: 860px) { .who-grid { grid-template-columns: 1fr 1fr; } }
-
-    /* Calculator */
-    .calc { background: var(--navy); color: #fff; border-radius: 32px; padding: 34px; margin-top: 10px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 34px; }
-    .calc .title { color: #fff; }
-    .calc .sub { color: rgba(255,255,255,.7); }
-    .field { margin-bottom: 20px; }
-    .field-top { display: flex; justify-content: space-between; gap: 10px; font-weight: 600; margin-bottom: 8px; color: rgba(255,255,255,.85); }
-    .field-top output { font: 800 22px "Bricolage Grotesque"; color: var(--sun); white-space: nowrap; }
-    input[type=range] { width: 100%; -webkit-appearance: none; appearance: none; height: 8px; border-radius: 8px; background: var(--navy-2); outline: none; }
-    input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 28px; height: 28px; border-radius: 50%; background: var(--sun); border: 5px solid var(--navy); box-shadow: 0 0 0 2px var(--sun); cursor: pointer; }
-    input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--sun); border: 5px solid var(--navy); cursor: pointer; }
-    .result { background: var(--sun); color: var(--navy); border-radius: 22px; padding: 22px; }
-    .result .row { display: flex; justify-content: space-between; gap: 10px; padding: 9px 0; border-bottom: 1px dashed rgba(20,33,61,.2); font-weight: 600; }
-    .result .row:last-of-type { border-bottom: 0; }
-    .result .row b { font: 800 20px "Bricolage Grotesque"; white-space: nowrap; }
-    .result .verdict { margin-top: 12px; background: var(--navy); color: #fff; border-radius: 14px; padding: 14px 16px; font-weight: 700; }
-    .result .verdict b { color: var(--sun); }
-    .calc .note { font-size: 13px; color: rgba(255,255,255,.5); margin-top: 12px; }
-    @media (max-width: 860px) { .calc { grid-template-columns: minmax(0, 1fr); padding: 24px; } }
-
-    /* Rooms */
-    .rooms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; }
-    .room { background: #fff; border-radius: 24px; overflow: hidden; border: 1px solid var(--line); display: flex; flex-direction: column; }
-    .room .ph { aspect-ratio: 4/3; background-size: cover; background-position: center; position: relative; }
-    .room .status { position: absolute; top: 12px; left: 12px; padding: 7px 12px; border-radius: 999px; font-weight: 800; font-size: 13px; }
-    .status.available { background: var(--green); color: #fff; }
-    .status.taken { background: var(--navy); color: #fff; }
-    .status.soon { background: var(--sun); color: var(--navy); }
-    .room .body { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
-    .room h3 { font-size: 22px; color: var(--navy); }
-    .room .meta { color: var(--muted); font-size: 14px; margin: 4px 0 10px; }
-    .room .price { font: 800 28px "Bricolage Grotesque"; color: var(--navy); }
-    .room .price small { font: 600 14px "Inter"; color: var(--muted); }
-    .room .btn { margin-top: 14px; }
-    .photo-note { margin-top: 14px; color: var(--muted); font-size: 14px; }
-    @media (max-width: 860px) { .rooms-grid { grid-template-columns: 1fr; } }
-
-    /* Included */
-    .inc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 26px; }
-    .inc { background: #fff; border-radius: 16px; padding: 16px; display: flex; gap: 12px; align-items: center; font-weight: 600; border: 1px solid var(--line); }
-    .inc span { font-size: 24px; }
-    .inc.no { opacity: .65; }
-    .inc.no em { font-style: normal; font-size: 12px; color: var(--muted); display: block; font-weight: 500; }
-    @media (max-width: 860px) { .inc-grid { grid-template-columns: 1fr 1fr; } }
-
-    /* Steps */
-    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 30px; counter-reset: s; }
-    .step { background: #fff; border-radius: 20px; padding: 22px; border: 1px solid var(--line); position: relative; }
-    .step::before { counter-increment: s; content: counter(s); width: 40px; height: 40px; border-radius: 12px; background: var(--navy); color: var(--sun); display: grid; place-items: center; font: 800 18px "Bricolage Grotesque"; margin-bottom: 12px; }
-    .step b { display: block; font-size: 17px; color: var(--navy); }
-    .step p { color: var(--muted); font-size: 14px; margin-top: 4px; }
-    @media (max-width: 860px) { .steps { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 480px) { .steps { grid-template-columns: 1fr; } }
-
-    /* Rules */
-    .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 26px; margin-top: 24px; list-style: none; }
-    .rules li { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); font-weight: 500; }
-    .rules li span { font-size: 20px; }
-    @media (max-width: 760px) { .rules { grid-template-columns: 1fr; } }
-
-    /* Apply */
-    .apply { background: var(--navy); color: #fff; }
-    .apply .wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 40px; align-items: start; }
-    .apply .title { color: #fff; }
-    .apply .sub { color: rgba(255,255,255,.72); }
-    .scam { margin-top: 24px; background: rgba(229,72,77,.12); border: 1.5px solid rgba(229,72,77,.5); border-radius: 18px; padding: 18px; }
-    .scam b { display: block; color: #FF8A8E; margin-bottom: 6px; }
-    .scam ul { padding-left: 18px; color: rgba(255,255,255,.85); font-size: 15px; display: grid; gap: 4px; }
-    .form { background: #fff; color: var(--text); border-radius: 26px; padding: 26px; box-shadow: 0 40px 80px -40px rgba(0,0,0,.7); }
-    .form label { display: block; font-weight: 700; font-size: 14px; margin-bottom: 6px; }
-    .form input, .form select, .form textarea { width: 100%; padding: 14px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--cream); font-size: 16px; margin-bottom: 14px; outline: none; color: var(--text); }
-    .form input:focus, .form select:focus, .form textarea:focus { border-color: var(--sun-2); }
-    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .row2 > * { min-width: 0; }
-    .check { display: flex !important; gap: 10px; align-items: flex-start; font-weight: 500 !important; font-size: 14px !important; color: var(--muted); margin-bottom: 16px !important; }
-    .check input { width: 20px !important; height: 20px; margin: 2px 0 0 !important; flex: none; accent-color: var(--green); }
-    .form .btn { width: 100%; font-size: 17px; }
-    .form .small { text-align: center; font-size: 13px; color: var(--muted); margin-top: 10px; }
-    .saved { font-size: 13px; color: var(--green); font-weight: 600; min-height: 18px; margin-top: 6px; text-align: center; }
-    @media (max-width: 860px) { .apply .wrap { grid-template-columns: minmax(0, 1fr); } }
-    @media (max-width: 420px) { .row2 { grid-template-columns: 1fr; } }
-
-    /* Share */
-    .share { text-align: center; }
-    .share-box { background: var(--sun); border-radius: 30px; padding: 36px 24px; }
-    .share-box .title { margin-inline: auto; }
-    .share-box p { color: var(--navy); font-weight: 600; margin: 10px auto 22px; max-width: 520px; }
-    .share-box .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .share-box .btn-navy { background: var(--navy); color: #fff; }
-
-    /* FAQ */
-    .faq { display: grid; gap: 10px; margin-top: 24px; max-width: 820px; }
-    details { background: #fff; border-radius: 16px; border: 1px solid var(--line); padding: 0 20px; }
-    summary { cursor: pointer; list-style: none; padding: 18px 0; font-weight: 700; display: flex; justify-content: space-between; gap: 12px; }
-    summary::-webkit-details-marker { display: none; }
-    summary::after { content: "+"; font-size: 24px; line-height: 1; color: var(--sun-2); }
-    details[open] summary::after { content: "–"; }
-    details p { padding-bottom: 18px; color: var(--muted); }
-
-    footer { background: var(--navy); color: rgba(255,255,255,.7); padding: 34px 0 90px; font-size: 14px; }
-    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
-
-    /* Sticky mobile apply bar */
-    .sticky { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 50; display: none; gap: 10px; }
-    .sticky .btn { flex: 1; padding: 15px 12px; font-size: 15px; }
-    @media (max-width: 760px) { .sticky { display: flex; } }
-
     .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
     .reveal.in { opacity: 1; transform: none; }
     @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } .reveal { opacity: 1; transform: none; } }
@@ -247,7 +267,7 @@
 
 <header class="bar">
   <div class="wrap">
-    <a href="#" class="brand"><span class="key"><svg viewBox="0 0 24 24" fill="none" stroke="#14213D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></span><span id="houseName">Summerstrand Rooms</span></a>
+    <a href="#" class="brand"><span class="key"><svg viewBox="0 0 24 24" fill="none" stroke="#14213D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></span><span><span id="houseName">Summerstrand Holiday Rooms</span><small data-t="brandSub">Gqeberha</small></span></a>
     <div class="lang" role="group" aria-label="Language">
       <button type="button" data-lang="en" aria-pressed="true">EN</button>
       <button type="button" data-lang="xh" aria-pressed="false">isiXhosa</button>
@@ -255,59 +275,52 @@
   </div>
 </header>
 
-<section class="hero" style="padding-top:46px">
+<section class="hero">
   <div class="wrap">
     <div>
-      <span class="pill"><span class="dot"></span><span data-t="pill">Rooms available now in Summerstrand</span></span>
-      <h1><span data-t="h1a">Live close to work.</span><br><span class="hl" data-t="h1b">R2,500 a month.</span></h1>
-      <p class="lead" data-t="lead">A safe, clean room for people who work in Summerstrand. Walk to work, stop paying taxi money, and stay over December when you can't go home.</p>
+      <div class="chips-row">
+        <span class="pill"><span class="dot"></span><span id="seasonPill"></span></span>
+        <span class="pill sun" id="countdown"></span>
+      </div>
+      <h1><span data-t="h1a">Live close to work.</span><span class="hl" data-t="h1b">R2,500 a month.</span></h1>
+      <p class="lead" data-t="lead">Working through the holidays? Rent your own room in a graded student house in Summerstrand while the students are home.</p>
       <div class="ctas">
-        <a href="#apply" class="btn btn-wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg><span data-t="ctaApply">Apply on WhatsApp</span></a>
+        <a href="#houses" class="btn btn-wa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg><span data-t="ctaPick">Pick your room</span></a>
         <a href="#calc" class="btn btn-ghost" data-t="ctaCalc">How much will I save?</a>
       </div>
-      <div class="facts">
-        <span>✓ <span data-t="f1">View first, pay after</span></span>
-        <span>✓ <span data-t="f2">Written lease</span></span>
-        <span>✓ <span data-t="f3">Monthly or December stay</span></span>
+      <div class="stats">
+        <div class="stat"><b id="statRooms">16</b><span data-t="statRooms">single rooms</span></div>
+        <div class="stat"><b id="statHouses">4</b><span data-t="statHouses">houses</span></div>
+        <div class="stat"><b>R0</b><span data-t="statFee">to apply</span></div>
       </div>
     </div>
-
-    <div class="price-card" aria-label="Price">
-      <span class="tag" data-t="tag">Near work · no taxi</span>
-      <div class="lbl" data-t="rentLbl">Monthly rent</div>
-      <div class="big" id="heroPrice">R2,500<small data-t="perMonth"> / month</small></div>
-      <ul id="heroIncluded"></ul>
-      <div class="avail"><span id="availText">3 of 6 rooms available</span><span id="availPct"></span></div>
-      <div class="bar-meter"><span id="availBar" style="width:50%"></span></div>
-    </div>
+    <div class="collage" id="collage" aria-hidden="true"></div>
   </div>
 </section>
 
-<div class="trust">
-  <div class="wrap reveal">
-    <span class="shield">🛡️</span>
-    <div><b data-t="trustB">We will never ask you to pay before you have seen the room.</b><p data-t="trustP">Come and view it, meet the owner, read the lease. Only then do you pay the deposit.</p></div>
-  </div>
+<div class="wrap trust-row">
+  <div class="tcard safe reveal"><span class="ic">🛡️</span><div><b data-t="trustB">We never ask you to pay before you've seen the room.</b><p data-t="trustP">View it, meet the owner, read the lease. Only then pay the deposit.</p></div></div>
+  <div class="tcard cheap reveal"><span class="ic">🎓</span><div><b data-t="whyB">Why only R2,500?</b><p data-t="whyP">These are student houses. Over the holidays the students go home and the rooms stand empty.</p></div></div>
 </div>
 
-<section style="padding:36px 0 0">
+<section id="houses">
   <div class="wrap">
-    <div class="why reveal">
-      <span class="why-ic">🎓</span>
-      <div><b data-t="whyB">Why only R2,500?</b><p data-t="whyP">These are NSFAS-graded student houses. Over the holidays the students go home and the rooms stand empty. So people who work in Summerstrand can use them, at a fair price.</p></div>
-    </div>
+    <p class="kicker reveal" data-t="housesK">Choose your room</p>
+    <h2 class="title reveal" data-t="housesT">4 houses. 16 single rooms. Tap the one you want.</h2>
+    <p class="sub reveal" data-t="housesS">Every room is for one person. Tap a room number, then fill in your details.</p>
+    <div class="houses" id="housesGrid"></div>
   </div>
 </section>
 
-<section>
+<section style="padding-top:10px">
   <div class="wrap">
     <p class="kicker reveal" data-t="whoK">Who it's for</p>
     <h2 class="title reveal" data-t="whoT">Made for people who keep Summerstrand running.</h2>
     <div class="who-grid">
       <div class="who reveal"><span>🍽️</span><b data-t="w1">Restaurants & hotels</b><p data-t="w1p">Late shifts, early starts, December rush.</p></div>
       <div class="who reveal"><span>🛍️</span><b data-t="w2">Shops & the Boardwalk</b><p data-t="w2p">Walk to work in minutes.</p></div>
-      <div class="who reveal"><span>🛡️</span><b data-t="w3">Security & cleaning</b><p data-t="w3p">Night shift? No taxi at midnight.</p></div>
-      <div class="who reveal"><span>🎓</span><b data-t="w4">NMU staff & contractors</b><p data-t="w4p">Close to campus and the beachfront.</p></div>
+      <div class="who reveal"><span>🔦</span><b data-t="w3">Security & cleaning</b><p data-t="w3p">Night shift? No taxi at midnight.</p></div>
+      <div class="who reveal"><span>🏗️</span><b data-t="w4">Contractors & seasonal staff</b><p data-t="w4p">Here for the holiday season only.</p></div>
     </div>
   </div>
 </section>
@@ -318,32 +331,23 @@
       <div>
         <p class="kicker" data-t="calcK">Do the maths</p>
         <h2 class="title" data-t="calcT">How much do taxis cost you?</h2>
-        <p class="sub" data-t="calcS">Move the sliders to match your life now. See the money and the hours you lose every month.</p>
+        <p class="sub" data-t="calcS">Move the sliders to match your life now.</p>
         <p class="note" data-t="calcNote">An estimate. Change the numbers to your real fare.</p>
       </div>
       <div>
-        <div class="field"><div class="field-top"><label for="fare" data-t="fare">Taxi fare, one way</label><output id="fareOut">R25</output></div><input type="range" id="fare" min="10" max="60" step="1" value="25"></div>
-        <div class="field"><div class="field-top"><label for="days" data-t="days">Work days per week</label><output id="daysOut">6</output></div><input type="range" id="days" min="1" max="7" step="1" value="6"></div>
-        <div class="field"><div class="field-top"><label for="mins" data-t="mins">Travel time, one way (minutes)</label><output id="minsOut">60</output></div><input type="range" id="mins" min="10" max="150" step="5" value="60"></div>
-        <div class="field"><div class="field-top"><label for="rent" data-t="rentNow">Rent you pay now</label><output id="rentOut">R1,500</output></div><input type="range" id="rent" min="0" max="5000" step="100" value="1500"></div>
+        <div class="field"><div class="field-top"><label for="fare" data-t="fare">Taxi fare, one way</label><output id="fareOut"></output></div><input type="range" id="fare" min="10" max="60" step="1" value="25"></div>
+        <div class="field"><div class="field-top"><label for="days" data-t="days">Work days per week</label><output id="daysOut"></output></div><input type="range" id="days" min="1" max="7" step="1" value="6"></div>
+        <div class="field"><div class="field-top"><label for="mins" data-t="mins">Travel time, one way (minutes)</label><output id="minsOut"></output></div><input type="range" id="mins" min="10" max="150" step="5" value="60"></div>
+        <div class="field"><div class="field-top"><label for="rent" data-t="rentNow">Rent you pay now</label><output id="rentOut"></output></div><input type="range" id="rent" min="0" max="5000" step="100" value="1500"></div>
         <div class="result">
-          <div class="row"><span data-t="rTaxi">Taxi money per month</span><b id="rTaxi">R1,300</b></div>
-          <div class="row"><span data-t="rHours">Hours in taxis per month</span><b id="rHours">52 h</b></div>
-          <div class="row"><span data-t="rNow">Rent + taxi now</span><b id="rNow">R2,800</b></div>
-          <div class="row"><span data-t="rHere">Living here (walk to work)</span><b id="rHere">R2,500</b></div>
+          <div class="row"><span data-t="rTaxi">Taxi money per month</span><b id="rTaxi"></b></div>
+          <div class="row"><span data-t="rHours">Hours in taxis per month</span><b id="rHours"></b></div>
+          <div class="row"><span data-t="rNow">Rent + taxi now</span><b id="rNow"></b></div>
+          <div class="row"><span data-t="rHere">Living here (walk to work)</span><b id="rHere"></b></div>
           <div class="verdict" id="verdict"></div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<section id="rooms" style="padding-top:20px">
-  <div class="wrap">
-    <p class="kicker reveal" data-t="roomsK">The rooms</p>
-    <h2 class="title reveal" data-t="roomsT">Pick your room.</h2>
-    <div class="rooms-grid four" id="roomsGrid"></div>
-    <p class="photo-note" id="photoNote" data-t="photoNote">Real photos coming soon. Book a viewing to see the rooms in person.</p>
   </div>
 </section>
 
@@ -352,19 +356,6 @@
     <p class="kicker reveal" data-t="incK">What you get</p>
     <h2 class="title reveal" data-t="incT">What's included in R2,500.</h2>
     <div class="inc-grid" id="incGrid"></div>
-  </div>
-</section>
-
-<section style="padding-top:10px">
-  <div class="wrap">
-    <p class="kicker reveal" data-t="howK">How it works</p>
-    <h2 class="title reveal" data-t="howT">Four steps to your room.</h2>
-    <div class="steps">
-      <div class="step reveal"><b data-t="s1">Apply on WhatsApp</b><p data-t="s1p">Fill in the short form below. It takes 1 minute.</p></div>
-      <div class="step reveal"><b data-t="s2">View the room</b><p data-t="s2p">Come and see it. Meet the owner. Ask anything.</p></div>
-      <div class="step reveal"><b data-t="s3">Sign the lease</b><p data-t="s3p">A written lease with the rent, deposit and rules.</p></div>
-      <div class="step reveal"><b data-t="s4">Move in</b><p data-t="s4p">Pay the deposit and first month, get your key.</p></div>
-    </div>
   </div>
 </section>
 
@@ -380,8 +371,8 @@
   <div class="wrap">
     <div>
       <p class="kicker" data-t="appK">Apply</p>
-      <h2 class="title" data-t="appT">Ask for a room in 1 minute.</h2>
-      <p class="sub" data-t="appS">Your answers go straight to the owner on WhatsApp. We reply to book a viewing.</p>
+      <h2 class="title" data-t="appT">Ask for your room in 3 quick steps.</h2>
+      <p class="sub" data-t="appS">It's free. Your answers go straight to the owner on WhatsApp, and we reply to book a viewing.</p>
       <div class="scam">
         <b data-t="scamB">⚠️ Stay safe from room scams</b>
         <ul>
@@ -391,38 +382,68 @@
         </ul>
       </div>
     </div>
-    <form class="form" id="appForm" novalidate>
-      <div class="row2">
-        <div><label for="aName" data-t="aName">Your name</label><input id="aName" required autocomplete="name"></div>
-        <div><label for="aPhone" data-t="aPhone">Phone number</label><input id="aPhone" required inputmode="tel" autocomplete="tel" placeholder="06x xxx xxxx"></div>
+
+    <div class="wiz" id="wiz">
+      <div class="stepper" id="stepper"><div data-t="st1h">1. Room</div><div data-t="st2h">2. Your details</div><div data-t="st3h">3. Send</div></div>
+
+      <div class="step" data-step="1">
+        <p class="step-title" data-t="s1T">Which house and room?</p>
+        <div class="hpick" id="hpick"></div>
+        <label data-t="pickRoom">Room number</label>
+        <div class="room-row" id="wizRooms"></div>
+        <p class="err" id="err1" aria-live="polite"></p>
+        <div class="navb"><button type="button" class="btn btn-wa" data-next="2"><span data-t="next">Next</span> →</button></div>
       </div>
-      <div class="row2">
-        <div><label for="aWork" data-t="aWork">Where do you work?</label><input id="aWork" required placeholder="e.g. Boardwalk"></div>
-        <div><label for="aJob" data-t="aJob">Your job</label><input id="aJob" placeholder="e.g. Waiter"></div>
+
+      <div class="step" data-step="2" hidden>
+        <p class="step-title" data-t="s2T">Tell us about you</p>
+        <div class="row2">
+          <div><label for="aName" data-t="aName">Your name</label><input id="aName" autocomplete="name"></div>
+          <div><label for="aPhone" data-t="aPhone">Phone number</label><input id="aPhone" inputmode="tel" autocomplete="tel" placeholder="06x xxx xxxx"></div>
+        </div>
+        <div class="row2">
+          <div><label for="aWork" data-t="aWork">Where do you work?</label><input id="aWork" placeholder="e.g. Boardwalk"></div>
+          <div><label for="aJob" data-t="aJob">Your job</label><input id="aJob" placeholder="e.g. Waiter"></div>
+        </div>
+        <div class="row2">
+          <div><label for="aMove" data-t="aMove">Move-in date</label><input id="aMove" type="date"></div>
+          <div><label for="aStay" data-t="aStay">How long?</label>
+            <select id="aStay">
+              <option value="1" data-t="sto1" selected>December and January</option>
+              <option value="2" data-t="sto2">December only</option>
+              <option value="3" data-t="sto3">January only</option>
+              <option value="4" data-t="sto4">Longer, if possible</option>
+            </select></div>
+        </div>
+        <label for="aNote" data-t="aNote">Anything else? (optional)</label>
+        <textarea id="aNote" rows="2"></textarea>
+        <p class="err" id="err2" aria-live="polite"></p>
+        <div class="navb"><button type="button" class="btn btn-line" data-next="1">← <span data-t="back">Back</span></button><button type="button" class="btn btn-wa" data-next="3"><span data-t="next">Next</span> →</button></div>
       </div>
-      <div class="row2">
-        <div><label for="aMove" data-t="aMove">When do you want to move in?</label><input id="aMove" type="date" required></div>
-        <div><label for="aStay" data-t="aStay">How long will you stay?</label>
-          <select id="aStay">
-            <option value="1" data-t="st1" selected>December and January</option>
-            <option value="2" data-t="st2">December only</option>
-            <option value="3" data-t="st3">January only</option>
-            <option value="4" data-t="st4">Longer, if possible</option>
-          </select></div>
+
+      <div class="step" data-step="3" hidden>
+        <p class="step-title" data-t="s3T">Check and send</p>
+        <div class="review" id="review"></div>
+        <label class="check"><input type="checkbox" id="aOk"><span data-t="aOk">I understand I will view the room before paying anything.</span></label>
+        <p class="err" id="err3" aria-live="polite"></p>
+        <div class="navb"><button type="button" class="btn btn-line" data-next="2">← <span data-t="back">Back</span></button><button type="button" class="btn btn-wa" id="sendBtn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg><span data-t="send">Send on WhatsApp</span></button></div>
+        <p class="small" style="margin-top:10px" data-t="small">Free to apply. No payment now.</p>
       </div>
-      <label for="aRoom" data-t="aRoom">Which room?</label>
-      <select id="aRoom"></select>
-      <label for="aNote" data-t="aNote">Anything else? (optional)</label>
-      <textarea id="aNote" rows="2"></textarea>
-      <label class="check"><input type="checkbox" id="aOk" required><span data-t="aOk">I understand I will view the room before paying anything.</span></label>
-      <button class="btn btn-wa" type="submit"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg><span data-t="send">Send on WhatsApp</span></button>
+
+      <div class="step done" data-step="4" hidden>
+        <div class="big">🎉</div>
+        <b data-t="doneT">Almost done!</b>
+        <p data-t="doneP">WhatsApp has opened with your application. Press send there. Keep your reference number:</p>
+        <div class="ref" id="doneRef"></div>
+        <p data-t="doneP2">We'll reply to book a viewing.</p>
+        <div class="navb" style="margin-top:16px"><button type="button" class="btn btn-line" id="again" data-t="again">Apply for another room</button></div>
+      </div>
       <p class="saved" id="saved" aria-live="polite"></p>
-      <p class="small" data-t="small">Free to apply. No payment now.</p>
-    </form>
+    </div>
   </div>
 </section>
 
-<section class="share">
+<section>
   <div class="wrap">
     <div class="share-box reveal">
       <h2 class="title" data-t="shT">Know someone who needs a room?</h2>
@@ -435,15 +456,15 @@
   </div>
 </section>
 
-<section style="padding-top:10px">
+<section style="padding-top:0">
   <div class="wrap">
     <p class="kicker reveal" data-t="faqK">Questions</p>
     <h2 class="title reveal" data-t="faqT">Straight answers.</h2>
     <div class="faq">
       <details class="reveal"><summary data-t="q1">What do I pay to move in?</summary><p id="a1"></p></details>
-      <details class="reveal"><summary data-t="q2">Can I stay only for December?</summary><p data-t="a2">Yes, if a room is free. Choose "December season only" in the form and we'll tell you what's possible.</p></details>
-      <details class="reveal"><summary data-t="q3">Can I share my room with someone?</summary><p data-t="a3">Each room is for one person, so the house stays calm and safe for everyone.</p></details>
-      <details class="reveal"><summary data-t="q4">Where exactly is it?</summary><p id="a4"></p></details>
+      <details class="reveal"><summary data-t="q2">Can I stay only for December?</summary><p data-t="a2"></p></details>
+      <details class="reveal"><summary data-t="q3">Will I share my room?</summary><p data-t="a3"></p></details>
+      <details class="reveal"><summary data-t="q4">Where are the houses?</summary><p data-t="a4"></p></details>
       <details class="reveal"><summary data-t="q5">When can I view a room?</summary><p id="a5"></p></details>
     </div>
   </div>
@@ -456,6 +477,11 @@
   </div>
 </footer>
 
+<div class="dock" id="dock" aria-live="polite">
+  <div class="what"><span data-t="yourChoice">Your choice</span><b id="dockWhat"></b></div>
+  <a href="#apply" class="btn btn-wa" id="dockBtn"><span data-t="dockBtn">Apply</span> →</a>
+</div>
+
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-labelledby="lbTitle">
   <div class="lb-top"><span id="lbTitle"></span><button type="button" id="lbClose" aria-label="Close">✕</button></div>
   <div class="lb-stage" id="lbStage">
@@ -466,162 +492,161 @@
   <div class="lb-dots" id="lbDots"></div>
 </div>
 
-<div class="sticky">
-  <a href="#apply" class="btn btn-wa"><span data-t="ctaApply">Apply on WhatsApp</span></a>
-  <a href="#calc" class="btn btn-sun"><span data-t="stickySave">My savings</span></a>
-</div>
-
 <script>
   /* =====================================================================
      EDIT THIS BLOCK. Everything on the page updates itself.
      Items marked CHECK must be confirmed with the owner before going live.
+     To mark a room as booked, change { n: 2 } to { n: 2, taken: true }.
      ===================================================================== */
   const HOUSE = {
-    name: "Summerstrand Holiday Rooms",         // CHECK: the name you want to use
-    season: { en: "1 Dec – 31 Jan", xh: "1 Dis – 31 Jan" },   // CHECK: when the students' rooms are empty
+    name: "Summerstrand Holiday Rooms",
     whatsapp: "27684839679",                     // number that receives applications
     price: 2500,
     deposit: 2500,                               // CHECK
-    areaText: "Four houses in Summerstrand, Gqeberha, close to the NMU campuses, the beachfront and Pick n Pay. See the addresses above.",
+    seasonStart: "2026-12-01",                   // CHECK: first night rooms are free
+    seasonEnd: "2027-01-31",                     // CHECK: last night before students return
     viewing: "Monday to Saturday, 09:00–17:00",  // CHECK
     included: [                                  // CHECK every item
-      { icon: "🛏️", en: "Furnished room with bed", xh: "Igumbi elinefenitshala nebhedi" },
+      { icon: "🛏️", en: "Furnished single room", xh: "Igumbi lomntu omnye elinefenitshala" },
       { icon: "💡", en: "Water & electricity", xh: "Amanzi nombane" },
-      { icon: "📶", en: "Free Wi-Fi", xh: "I-Wi-Fi yasimahla" },
+      { icon: "📶", en: "Wi-Fi", xh: "I-Wi-Fi" },
       { icon: "🍳", en: "Shared kitchen", xh: "Ikhitshi ekwabelwana ngalo" },
       { icon: "🚿", en: "Shared bathroom", xh: "Igumbi lokuhlambela ekwabelwana ngalo" },
       { icon: "🔒", en: "Lockable door", xh: "Ucango olutshixwayo" },
-      { icon: "🧺", en: "Washing line", xh: "Intambo yokuxhoma iimpahla" },
-      { icon: "🚶", en: "Walk to the beachfront", xh: "Uhamba ngeenyawo ukuya elwandle" }
+      { icon: "🛡️", en: "Security at every house", xh: "Ukhuseleko kuzo zonke izindlu" },
+      { icon: "🚶", en: "Walk to work & the beach", xh: "Uhamba ngeenyawo uye emsebenzini nasolwandle" }
     ],
-    notIncluded: [                               // CHECK, or leave empty []
+    notIncluded: [
       { icon: "🍽️", en: "Meals", xh: "Ukutya", noteEn: "Cook your own", noteXh: "Uzipheka" }
     ],
-    // The four houses. rooms = how many rooms are free for the holiday. photos: first one is the cover.
-    // Facts below come from each house's NSFAS listing; "features" for 4 Tilbury still need checking.
-    houses: [
-      { id: "bradley6", address: "6 Bradley Road", grade: "A", rooms: 4,            // CHECK rooms
-        photos: ["photos/bradley6-front.jpg", "photos/bradley6-kitchen.jpg", "photos/bradley6-lounge.jpg", "photos/bradley6-laundry.jpg"],
-        about: { en: "Newly renovated house, close to the Summerstrand campuses.", xh: "Indlu esandula ukulungiswa, kufutshane neekhampasi zaseSummerstrand." },
-        features: [{ en: "Newly renovated", xh: "Isandula ukulungiswa" }, { en: "Big kitchen", xh: "Ikhitshi elikhulu" },
-                   { en: "Washing machine", xh: "Umatshini wokuhlamba" }, { en: "TV", xh: "Umabonakude" }, { en: "Security camera", xh: "Ikhamera yokhuseleko" }] },
-      { id: "admiralty23", address: "23 Admiralty Way", grade: "A", rooms: 4,          // CHECK rooms
-        photos: ["photos/admiralty23-room.jpg", "photos/admiralty23-study.jpg", "photos/admiralty23-kitchen.jpg", "photos/admiralty23-front.jpg"],
-        about: { en: "Secure house with armed response, borehole water, a pool and parking.", xh: "Indlu ekhuselekileyo enokhuseleko oluxhobileyo, amanzi omngxuma, ichibi lokuqubha nendawo yokupaka." },
-        features: [{ en: "Borehole water", xh: "Amanzi omngxuma" }, { en: "Armed response", xh: "Ukhuseleko oluxhobileyo" }, { en: "CCTV", xh: "Iikhamera ze-CCTV" },
-                   { en: "Built-in cupboards", xh: "Iikhabhathi ezakhelwe eludongeni" }, { en: "Study desk", xh: "Idesika yokufunda" }, { en: "Internet", xh: "I-intanethi" },
-                   { en: "DStv", xh: "I-DStv" }, { en: "Pool", xh: "Ichibi lokuqubha" }, { en: "Parking", xh: "Indawo yokupaka" }] },
-      { id: "admiralty31", address: "31 Admiralty Way", grade: "A", rooms: 4,          // CHECK rooms; one bedroom has 2 beds (shared?)
-        photos: ["photos/admiralty31-bedroom.jpg", "photos/admiralty31-single.jpg", "photos/admiralty31-lounge.jpg", "photos/admiralty31-shower.jpg"],
-        about: { en: "Bright, comfortable house with wooden floors and a modern shower. Walk to Pick n Pay.", xh: "Indlu eqaqambileyo nentle enemigangatho yomthi neshawari yanamhlanje. Hamba ngeenyawo uye ePick n Pay." },
-        features: [{ en: "Modern shower", xh: "Ishawari yanamhlanje" }, { en: "TV & study lounge", xh: "Igumbi lokufunda nomabonakude" }, { en: "Desk in room", xh: "Idesika egumbini" },
-                   { en: "First aid kit", xh: "Ikhithi yoncedo lokuqala" }, { en: "Walk to Pick n Pay", xh: "Kufutshane nePick n Pay" }, { en: "Next to campus", xh: "Ecaleni kwekhampasi" }] },
-      { id: "tilbury4", address: "4 Tilbury Road", grade: "", rooms: 4,
-        photos: ["photos/tilbury4-room.jpg", "photos/tilbury4-front.jpg"],                // CHECK: street name, grade, rooms
-        about: { en: "Bright rooms with their own fridge, TV, desk and cupboard. Safe house with a security gate.", xh: "Amagumbi aqaqambileyo aneefriji, umabonakude, idesika nekhabhathi. Indlu ekhuselekileyo enesango lokhuseleko." },
-        features: [{ en: "Fridge in room", xh: "Ifriji egumbini" }, { en: "TV in room", xh: "Umabonakude egumbini" }, { en: "Desk", xh: "Idesika" },
-                   { en: "Big cupboard", xh: "Ikhabhathi enkulu" }, { en: "Security gate", xh: "Isango lokhuseleko" }, { en: "Security camera", xh: "Ikhamera yokhuseleko" }] }
-    ],
     rules: [
+      { icon: "👤", en: "One person per room", xh: "Umntu omnye kwigumbi ngalinye" },
       { icon: "🔇", en: "Quiet after 22:00", xh: "Kuthule emva kwe-22:00" },
       { icon: "🚭", en: "No smoking inside", xh: "Akutshaywa ngaphakathi" },
-      { icon: "👤", en: "One person per room", xh: "Umntu omnye kwigumbi ngalinye" },
       { icon: "🧼", en: "Keep shared spaces clean", xh: "Gcina iindawo ekwabelwana ngazo zicocekile" },
       { icon: "🌙", en: "Overnight visitors must be agreed first", xh: "Iindwendwe zobusuku kufuneka zivunyelwe kuqala" },
-      { icon: "📅", en: "Rent paid by the 1st of each month", xh: "Irente ihlawulwa ngomhla woku-1 wenyanga" }
-    ]
+      { icon: "📅", en: "Rent paid before the 1st of each month", xh: "Irente ihlawulwa ngaphambi komhla woku-1 wenyanga" }
+    ],
+    houses: [
+      { id: "bradley6", address: "6 Bradley Road", grade: "A",
+        photos: ["photos/bradley6-front.jpg", "photos/bradley6-kitchen.jpg", "photos/bradley6-lounge.jpg", "photos/bradley6-laundry.jpg"],
+        rooms: [{ n: 1 }, { n: 2 }, { n: 3 }, { n: 4 }],
+        about: { en: "Newly renovated house with a big kitchen and a washing machine.", xh: "Indlu esandula ukulungiswa enekhitshi elikhulu nomatshini wokuhlamba." },
+        features: [{ en: "Newly renovated", xh: "Isandula ukulungiswa" }, { en: "Big kitchen", xh: "Ikhitshi elikhulu" }, { en: "Washing machine", xh: "Umatshini wokuhlamba" },
+                   { en: "TV", xh: "Umabonakude" }, { en: "Security camera", xh: "Ikhamera yokhuseleko" }] },
+      { id: "admiralty23", address: "23 Admiralty Way", grade: "A",
+        photos: ["photos/admiralty23-room.jpg", "photos/admiralty23-study.jpg", "photos/admiralty23-kitchen.jpg", "photos/admiralty23-front.jpg"],
+        rooms: [{ n: 1 }, { n: 2 }, { n: 3 }, { n: 4 }],
+        about: { en: "Secure house with armed response, borehole water, a pool and parking.", xh: "Indlu ekhuselekileyo enokhuseleko oluxhobileyo, amanzi omngxuma, ichibi lokuqubha nendawo yokupaka." },
+        features: [{ en: "Borehole water", xh: "Amanzi omngxuma" }, { en: "Armed response", xh: "Ukhuseleko oluxhobileyo" }, { en: "CCTV", xh: "Iikhamera ze-CCTV" },
+                   { en: "Built-in cupboards", xh: "Iikhabhathi ezakhelweyo" }, { en: "Study desk", xh: "Idesika yokufunda" }, { en: "Pool", xh: "Ichibi lokuqubha" }, { en: "Parking", xh: "Indawo yokupaka" }] },
+      { id: "admiralty31", address: "31 Admiralty Way", grade: "A",
+        photos: ["photos/admiralty31-single.jpg", "photos/admiralty31-lounge.jpg", "photos/admiralty31-shower.jpg"],
+        rooms: [{ n: 1 }, { n: 2 }, { n: 3 }, { n: 4 }],
+        about: { en: "Bright house with wooden floors, a modern shower and a TV lounge. Walk to Pick n Pay.", xh: "Indlu eqaqambileyo enemigangatho yomthi, ishawari yanamhlanje negumbi lomabonakude. Hamba uye ePick n Pay." },
+        features: [{ en: "Modern shower", xh: "Ishawari yanamhlanje" }, { en: "TV & study lounge", xh: "Igumbi lokufunda nomabonakude" }, { en: "Desk in room", xh: "Idesika egumbini" },
+                   { en: "First aid kit", xh: "Ikhithi yoncedo lokuqala" }, { en: "Walk to Pick n Pay", xh: "Kufutshane nePick n Pay" }] },
+      { id: "tilbury4", address: "4 Tilbury Road", grade: "",
+        photos: ["photos/tilbury4-room.jpg", "photos/tilbury4-front.jpg"],
+        rooms: [{ n: 1 }, { n: 2 }, { n: 3 }, { n: 4 }],
+        about: { en: "Bright rooms with their own fridge, TV, desk and cupboard. Security gate.", xh: "Amagumbi aqaqambileyo aneefriji, umabonakude, idesika nekhabhathi. Isango lokhuseleko." },
+        features: [{ en: "Fridge in room", xh: "Ifriji egumbini" }, { en: "TV in room", xh: "Umabonakude egumbini" }, { en: "Desk", xh: "Idesika" },
+                   { en: "Big cupboard", xh: "Ikhabhathi enkulu" }, { en: "Security gate", xh: "Isango lokhuseleko" }] }
+    ],
+    heroPhotos: [{ src: "photos/tilbury4-room.jpg", house: 3 }, { src: "photos/bradley6-front.jpg", house: 0 }, { src: "photos/admiralty23-room.jpg", house: 1 }]
   };
   /* ===================================================================== */
 
   // ---------- Translations (isiXhosa: have a first-language speaker check before going live) ----------
   const T = {
     en: {
-      pill: "Holiday rooms · 1 Dec – 31 Jan", h1a: "Live close to work.", h1b: "R2,500 a month.",
-      lead: "Working through the holidays? Stay in a graded student house in Summerstrand while the students are home. Walk to work and stop paying taxi money.",
-      ctaApply: "Apply on WhatsApp", ctaCalc: "How much will I save?", f1: "View first, pay after", f2: "Written lease", f3: "December & January",
-      tag: "Near work · no taxi", rentLbl: "Monthly rent", perMonth: " / month",
-      trustB: "We will never ask you to pay before you have seen the room.", trustP: "Come and view it, meet the owner, read the lease. Only then do you pay the deposit.",
+      brandSub: "Gqeberha", h1a: "Live close to work.", h1b: "R2,500 a month.",
+      lead: "Working through the holidays? Rent your own room in a graded student house in Summerstrand while the students are home. Walk to work and stop paying taxi money.",
+      ctaPick: "Pick your room", ctaCalc: "How much will I save?", statRooms: "single rooms", statHouses: "houses", statFee: "to apply",
+      season: (a, b) => `Holiday rooms · ${a} – ${b}`, countdown: (d) => d > 0 ? `⏳ Opens in ${d} days` : "✅ Open now",
+      trustB: "We never ask you to pay before you've seen the room.", trustP: "View it, meet the owner, read the lease. Only then pay the deposit.",
+      whyB: "Why only R2,500?", whyP: "These are student houses. Over the holidays the students go home and the rooms stand empty.",
+      housesK: "Choose your room", housesT: "4 houses. 16 single rooms. Tap the one you want.", housesS: "Every room is for one person. Tap a room number, then fill in your details.",
+      roomsFree: (n) => `${n} of 4 rooms free`, full: "Full", photos: "photos", room: "Room", free: "Free", taken: "Taken", pick: "Pick a room:", map: "Open in Maps", perMonth: " / month", month: "a month",
       whoK: "Who it's for", whoT: "Made for people who keep Summerstrand running.",
       w1: "Restaurants & hotels", w1p: "Late shifts, early starts, December rush.", w2: "Shops & the Boardwalk", w2p: "Walk to work in minutes.",
-      w3: "Security & cleaning", w3p: "Night shift? No taxi at midnight.", w4: "NMU staff & contractors", w4p: "Close to campus and the beachfront.",
-      calcK: "Do the maths", calcT: "How much do taxis cost you?", calcS: "Move the sliders to match your life now. See the money and the hours you lose every month.",
+      w3: "Security & cleaning", w3p: "Night shift? No taxi at midnight.", w4: "Contractors & seasonal staff", w4p: "Here for the holiday season only.",
+      calcK: "Do the maths", calcT: "How much do taxis cost you?", calcS: "Move the sliders to match your life now. See the money and hours you lose every month.",
       calcNote: "An estimate. Change the numbers to your real fare.", fare: "Taxi fare, one way", days: "Work days per week", mins: "Travel time, one way (minutes)", rentNow: "Rent you pay now",
       rTaxi: "Taxi money per month", rHours: "Hours in taxis per month", rNow: "Rent + taxi now", rHere: "Living here (walk to work)",
       vSave: (m, h) => `You save <b>${m}</b> a month and get <b>${h} hours</b> of your life back.`,
       vTime: (m, h) => `It costs <b>${m}</b> more a month, but you get <b>${h} hours</b> back and no late-night taxis.`,
-      roomsK: "The houses", roomsT: "Choose your house.", photoNote: "More photos coming soon. Book a viewing to see any house in person.", photos: "photos", seePhotos: "See photos", close: "Close", map: "Open in Maps", roomsFree: (n) => `${n} rooms free`, full: "Full", whyB: "Why only R2,500?", whyP: "These are NSFAS-graded student houses. Over the holidays the students go home and the rooms stand empty. So people who work in Summerstrand can use them, at a fair price.",
-      available: "Available", taken: "Taken", soon: "Available soon", choose: "Choose this house", waitlist: "Join the waiting list", anyRoom: "Any house is fine",
       incK: "What you get", incT: "What's included in R2,500.", notInc: "Not included",
-      howK: "How it works", howT: "Four steps to your room.",
-      s1: "Apply on WhatsApp", s1p: "Fill in the short form below. It takes 1 minute.", s2: "View the room", s2p: "Come and see it. Meet the owner. Ask anything.",
-      s3: "Sign the lease", s3p: "A written lease with the rent, deposit and rules.", s4: "Move in", s4p: "Pay the deposit and first month, get your key.",
       rulesK: "House rules", rulesT: "A quiet, respectful home.",
-      appK: "Apply", appT: "Ask for a room in 1 minute.", appS: "Your answers go straight to the owner on WhatsApp. We reply to book a viewing.",
+      appK: "Apply", appT: "Ask for your room in 3 quick steps.", appS: "It's free. Your answers go straight to the owner on WhatsApp, and we reply to book a viewing.",
       scamB: "⚠️ Stay safe from room scams", sc1: "Never pay before you have seen the room in person.", sc2: "Only use the WhatsApp number on this page.", sc3: "Always ask for a written lease and a receipt.",
-      aName: "Your name", aPhone: "Phone number", aWork: "Where do you work?", aJob: "Your job", aMove: "When do you want to move in?", aStay: "How long will you stay?",
-      st1: "December and January", st2: "December only", st3: "January only", st4: "Longer, if possible",
-      aRoom: "Which house?", aNote: "Anything else? (optional)", aOk: "I understand I will view the room before paying anything.",
-      send: "Send on WhatsApp", small: "Free to apply. No payment now.", draft: "✓ Saved on your phone. You won't need to type it again.",
-      need: "Please fill in your name, phone, where you work and move-in date, and tick the box.",
+      st1h: "1. Room", st2h: "2. Your details", st3h: "3. Send", s1T: "Which house and room?", pickRoom: "Room number", s2T: "Tell us about you", s3T: "Check and send",
+      next: "Next", back: "Back", e1: "Please choose a house and a room.", e2: "Please fill in your name, phone, where you work and move-in date.", e3: "Please tick the box first.",
+      aName: "Your name", aPhone: "Phone number", aWork: "Where do you work?", aJob: "Your job", aMove: "Move-in date", aStay: "How long?",
+      sto1: "December and January", sto2: "December only", sto3: "January only", sto4: "Longer, if possible",
+      aNote: "Anything else? (optional)", aOk: "I understand I will view the room before paying anything.",
+      send: "Send on WhatsApp", small: "Free to apply. No payment now.", draft: "✓ Saved on your phone",
+      rv: { house: "House", room: "Room", name: "Name", phone: "Phone", work: "Work", move: "Move in", stay: "Stay", rent: "Rent" },
+      doneT: "Almost done!", doneP: "WhatsApp has opened with your application. Press send there. Keep your reference number:", doneP2: "We'll reply to book a viewing.", again: "Apply for another room",
+      yourChoice: "Your choice", dockBtn: "Apply",
       shT: "Know someone who needs a room?", shP: "Send this page to a friend or your work WhatsApp group.", shWa: "Share on WhatsApp", shCopy: "Copy link", copied: "Link copied ✓",
-      shareMsg: (n, p) => `Rooms near work in Summerstrand for ${p} a month (${n}). View first, pay after: `,
+      shareMsg: (p) => `Holiday rooms near work in Summerstrand: your own room for ${p} a month. View first, pay after: `,
       faqK: "Questions", faqT: "Straight answers.",
       q1: "What do I pay to move in?", a1: (d, p) => `The deposit (${d}) and your first month's rent (${p}), only after you've viewed the room and signed the lease. You get a receipt for everything.`,
-      q2: "Can I stay only for December?", a2: "Yes. Choose \"December only\" in the form. The rooms are free from early December until the students come back in late January.",
-      q3: "Can I share my room with someone?", a3: "Each room is for one person, so the house stays calm and safe for everyone.",
-      q4: "Where exactly is it?", q5: "When can I view a room?", a5: (v) => `${v}. Send your application and we'll agree a time.`,
-      avail: (a, t) => `${a} rooms free in ${t} houses`, stickySave: "My savings",
-      msg: {
-        hi: "Hi! I'd like to apply for a room.", ref: "Ref", name: "Name", phone: "Phone", work: "Works at", job: "Job",
-        move: "Move in", stay: "Stay", room: "House", note: "Note", ok: "I'll view the room before paying."
-      }
+      q2: "Can I stay only for December?", a2: "Yes. Choose \"December only\" in the form. Rooms are free from early December until the students come back at the end of January.",
+      q3: "Will I share my room?", a3: "No. Every room is a single room for one person. You share the kitchen and bathroom with the other people in the house.",
+      q4: "Where are the houses?", a4: "All four are in Summerstrand: 6 Bradley Road, 23 and 31 Admiralty Way, and 4 Tilbury Road. Close to the NMU campuses, the beachfront and Pick n Pay.",
+      q5: "When can I view a room?", a5: (v) => `${v}. Send your application and we'll agree a time.`,
+      msg: { hi: "Hi! I'd like to apply for a holiday room.", ref: "Ref", house: "House", room: "Room", name: "Name", phone: "Phone", work: "Works at", job: "Job",
+             move: "Move in", stay: "Stay", note: "Note", ok: "I'll view the room before paying." }
     },
     xh: {
-      pill: "Amagumbi eholide · 1 Dis – 31 Jan", h1a: "Hlala kufutshane nomsebenzi.", h1b: "R2,500 ngenyanga.",
-      lead: "Usebenza ngeeholide? Hlala kwindlu yabafundi eSummerstrand ngelixa abafundi begodukile. Hamba ngeenyawo uye emsebenzini, uyeke ukuhlawula iteksi.",
-      ctaApply: "Faka isicelo ku-WhatsApp", ctaCalc: "Ndiza kugcina malini?", f1: "Bona kuqala, uhlawule emva", f2: "Isivumelwano esibhaliweyo", f3: "UDisemba noJanuwari",
-      tag: "Kufutshane nomsebenzi", rentLbl: "Irente yenyanga", perMonth: " / ngenyanga",
-      trustB: "Asisoze sikucele ukuba uhlawule ngaphambi kokuba ulibone igumbi.", trustP: "Yiza ulibone, udibane nomnini, ufunde isivumelwano. Emva koko kuphela uhlawula idiphozithi.",
+      brandSub: "eGqeberha", h1a: "Hlala kufutshane nomsebenzi.", h1b: "R2,500 ngenyanga.",
+      lead: "Usebenza ngeeholide? Qesha igumbi lakho kwindlu yabafundi eSummerstrand ngelixa abafundi begodukile. Hamba ngeenyawo uye emsebenzini, uyeke ukuhlawula iteksi.",
+      ctaPick: "Khetha igumbi lakho", ctaCalc: "Ndiza kugcina malini?", statRooms: "amagumbi omntu omnye", statHouses: "izindlu", statFee: "ukufaka isicelo",
+      season: (a, b) => `Amagumbi eholide · ${a} – ${b}`, countdown: (d) => d > 0 ? `⏳ Kuvulwa kwiintsuku ezi-${d}` : "✅ Kuvuliwe ngoku",
+      trustB: "Asisoze sikucele ukuba uhlawule ngaphambi kokuba ulibone igumbi.", trustP: "Yiza ulibone, udibane nomnini, ufunde isivumelwano. Emva koko uhlawule idiphozithi.",
+      whyB: "Kutheni iR2,500 kuphela?", whyP: "Ezi zizindlu zabafundi. Ngeeholide abafundi bayagoduka kwaye amagumbi ahlala engenamntu.",
+      housesK: "Khetha igumbi lakho", housesT: "Izindlu ezi-4. Amagumbi ali-16 omntu omnye. Cofa elo ulifunayo.", housesS: "Igumbi ngalinye lelomntu omnye. Cofa inombolo yegumbi, uze ugcwalise iinkcukacha zakho.",
+      roomsFree: (n) => `Amagumbi ali-${n} kwali-4 akhoyo`, full: "Igcwele", photos: "iifoto", room: "Igumbi", free: "Likhona", taken: "Lithathiwe", pick: "Khetha igumbi:", map: "Vula kwiMaps", perMonth: " / ngenyanga", month: "ngenyanga",
       whoK: "Elenzelwe bani", whoT: "Lenzelwe abantu abasebenza eSummerstrand.",
       w1: "Iindawo zokutya neehotele", w1p: "Iishifti zasebusuku, ukuqala kusasa, uDisemba oxakekileyo.", w2: "Iivenkile neBoardwalk", w2p: "Hamba uye emsebenzini ngemizuzu.",
-      w3: "Ukhuseleko nokucoca", w3p: "Ishifti yasebusuku? Akukho teksi ezinzulwini zobusuku.", w4: "Abasebenzi be-NMU", w4p: "Kufutshane nekhampasi nolwandle.",
+      w3: "Ukhuseleko nokucoca", w3p: "Ishifti yasebusuku? Akukho teksi ezinzulwini zobusuku.", w4: "Iikontraktha nabasebenzi bexesha", w4p: "Ulapha ngexesha leeholide kuphela.",
       calcK: "Bala", calcT: "Iteksi ikuxabisa malini?", calcS: "Shukumisa ezi zinto zilingane nobomi bakho ngoku. Bona imali neeyure ozilahlekelwayo nyanga nganye.",
       calcNote: "Uqikelelo. Tshintsha amanani abe yimali yakho yeteksi.", fare: "Imali yeteksi, indlela enye", days: "Iintsuku zomsebenzi ngeveki", mins: "Ixesha lokuhamba, indlela enye (imizuzu)", rentNow: "Irente oyihlawulayo ngoku",
       rTaxi: "Imali yeteksi ngenyanga", rHours: "Iiyure eteksini ngenyanga", rNow: "Irente + iteksi ngoku", rHere: "Ukuhlala apha (uhamba ngeenyawo)",
       vSave: (m, h) => `Ugcina <b>${m}</b> ngenyanga kwaye ubuyiselwa <b>iiyure ezi-${h}</b> zobomi bakho.`,
       vTime: (m, h) => `Kubiza <b>${m}</b> ngaphezulu ngenyanga, kodwa ubuyiselwa <b>iiyure ezi-${h}</b> kwaye akukho teksi zasebusuku.`,
-      roomsK: "Izindlu", roomsT: "Khetha indlu yakho.", photoNote: "Iifoto ezingakumbi ziyeza. Bhukisha ukuza kubona nayiphi na indlu.", photos: "iifoto", seePhotos: "Bona iifoto", close: "Vala", map: "Vula kwiMaps", roomsFree: (n) => `Amagumbi ali-${n} akhoyo`, full: "Igcwele", whyB: "Kutheni iR2,500 kuphela?", whyP: "Ezi zizindlu zabafundi ezihlolwe yi-NSFAS. Ngeeholide abafundi bayagoduka kwaye amagumbi ahlala engenamntu. Ngoko ke abantu abasebenza eSummerstrand banokuwasebenzisa, ngexabiso elifanelekileyo.",
-      available: "Likhona", taken: "Lithathiwe", soon: "Liza kufumaneka", choose: "Khetha le ndlu", waitlist: "Joyina uluhlu lokulinda", anyRoom: "Nayiphi na indlu ilungile",
       incK: "Ofumana ntoni", incT: "Okubandakanyiweyo kwi-R2,500.", notInc: "Akubandakanywanga",
-      howK: "Indlela esebenza ngayo", howT: "Amanyathelo amane ukuya kwigumbi lakho.",
-      s1: "Faka isicelo ku-WhatsApp", s1p: "Gcwalisa le fomu imfutshane ingezantsi. Ithatha umzuzu omnye.", s2: "Bona igumbi", s2p: "Yiza ulibone. Dibana nomnini. Buza nantoni na.",
-      s3: "Sayina isivumelwano", s3p: "Isivumelwano esibhaliweyo esinerente, idiphozithi nemithetho.", s4: "Ngena", s4p: "Hlawula idiphozithi nenyanga yokuqala, ufumane isitshixo.",
       rulesK: "Imithetho yendlu", rulesT: "Ikhaya elizolileyo nelinentlonipho.",
-      appK: "Faka isicelo", appT: "Cela igumbi ngomzuzu omnye.", appS: "Iimpendulo zakho ziya ngqo kumnini ku-WhatsApp. Siza kuphendula ukuze sibhukishe ixesha lokubona.",
+      appK: "Faka isicelo", appT: "Cela igumbi lakho ngamanyathelo ama-3.", appS: "Kusimahla. Iimpendulo zakho ziya ngqo kumnini ku-WhatsApp, kwaye siza kuphendula ukuze sibhukishe ixesha lokubona.",
       scamB: "⚠️ Zikhusele kubaqhathi bamagumbi", sc1: "Ungaze uhlawule ngaphambi kokuba ulibone igumbi ngamehlo akho.", sc2: "Sebenzisa kuphela inombolo ye-WhatsApp ekweli phepha.", sc3: "Soloko ucela isivumelwano esibhaliweyo nerisithi.",
-      aName: "Igama lakho", aPhone: "Inombolo yefowuni", aWork: "Usebenza phi?", aJob: "Umsebenzi wakho", aMove: "Ufuna ukungena nini?", aStay: "Uza kuhlala ixesha elingakanani?",
-      st1: "UDisemba noJanuwari", st2: "NgoDisemba kuphela", st3: "NgoJanuwari kuphela", st4: "Ixesha elide, ukuba kunokwenzeka",
-      aRoom: "Yeyiphi indlu?", aNote: "Ikhona enye into? (ayinyanzelekanga)", aOk: "Ndiyaqonda ukuba ndiza kulibona igumbi ngaphambi kokuhlawula nantoni na.",
-      send: "Thumela ku-WhatsApp", small: "Ukufaka isicelo kusimahla. Akukho ntlawulo ngoku.", draft: "✓ Kugcinwe kwifowuni yakho. Akuzukufuneka uphinde ubhale.",
-      need: "Nceda ugcwalise igama, ifowuni, apho usebenza khona nomhla wokungena, uze uthikithe ibhokisi.",
+      st1h: "1. Igumbi", st2h: "2. Iinkcukacha", st3h: "3. Thumela", s1T: "Yeyiphi indlu negumbi?", pickRoom: "Inombolo yegumbi", s2T: "Sixelele ngawe", s3T: "Jonga uze uthumele",
+      next: "Okulandelayo", back: "Buyela umva", e1: "Nceda ukhethe indlu negumbi.", e2: "Nceda ugcwalise igama, ifowuni, apho usebenza khona nomhla wokungena.", e3: "Nceda uthikithe ibhokisi kuqala.",
+      aName: "Igama lakho", aPhone: "Inombolo yefowuni", aWork: "Usebenza phi?", aJob: "Umsebenzi wakho", aMove: "Umhla wokungena", aStay: "Ixesha elingakanani?",
+      sto1: "UDisemba noJanuwari", sto2: "NgoDisemba kuphela", sto3: "NgoJanuwari kuphela", sto4: "Ixesha elide, ukuba kunokwenzeka",
+      aNote: "Ikhona enye into? (ayinyanzelekanga)", aOk: "Ndiyaqonda ukuba ndiza kulibona igumbi ngaphambi kokuhlawula nantoni na.",
+      send: "Thumela ku-WhatsApp", small: "Ukufaka isicelo kusimahla. Akukho ntlawulo ngoku.", draft: "✓ Kugcinwe kwifowuni yakho",
+      rv: { house: "Indlu", room: "Igumbi", name: "Igama", phone: "Ifowuni", work: "Umsebenzi", move: "Ukungena", stay: "Ixesha", rent: "Irente" },
+      doneT: "Sele kuphelile!", doneP: "I-WhatsApp ivulekile nesicelo sakho. Cofa ukuthumela apho. Gcina inombolo yakho yesalathiso:", doneP2: "Siza kuphendula ukuze sibhukishe ixesha lokubona.", again: "Faka isicelo segumbi elinye",
+      yourChoice: "Ukhetho lwakho", dockBtn: "Faka isicelo",
       shT: "Ukhona umntu odinga igumbi?", shP: "Thumela eli phepha kumhlobo okanye kwiqela le-WhatsApp lomsebenzi.", shWa: "Yabelana ku-WhatsApp", shCopy: "Kopa ilinki", copied: "Ilinki ikopiwe ✓",
-      shareMsg: (n, p) => `Amagumbi kufutshane nomsebenzi eSummerstrand nge-${p} ngenyanga (${n}). Bona kuqala, uhlawule emva: `,
+      shareMsg: (p) => `Amagumbi eholide kufutshane nomsebenzi eSummerstrand: igumbi lakho nge-${p} ngenyanga. Bona kuqala, uhlawule emva: `,
       faqK: "Imibuzo", faqT: "Iimpendulo ezicacileyo.",
       q1: "Ndihlawula malini xa ndingena?", a1: (d, p) => `Idiphozithi (${d}) nerente yenyanga yokuqala (${p}), kuphela emva kokuba ulibonile igumbi waza wasayina isivumelwano. Ufumana irisithi ngayo yonke into.`,
       q2: "Ndingahlala ngoDisemba kuphela?", a2: "Ewe. Khetha \"NgoDisemba kuphela\" kwifomu. Amagumbi akhululekile ukusuka ekuqaleni kukaDisemba de abafundi babuye ekupheleni kukaJanuwari.",
-      q3: "Ndingabelana ngegumbi nomnye umntu?", a3: "Igumbi ngalinye lelomntu omnye, ukuze indlu ihlale izolile kwaye ikhuselekile kubo bonke.",
-      q4: "Iphi kanye kanye?", q5: "Ndingalibona nini igumbi?", a5: (v) => `${v}. Thumela isicelo sakho kwaye siza kuvumelana ngexesha.`,
-      avail: (a, t) => `Amagumbi ali-${a} akhoyo kwizindlu ezi-${t}`, stickySave: "Imali endiyigcinayo",
-      msg: {
-        hi: "Molo! Ndingathanda ukufaka isicelo segumbi.", ref: "Ref", name: "Igama", phone: "Ifowuni", work: "Indawo yomsebenzi", job: "Umsebenzi",
-        move: "Ukungena", stay: "Ixesha", room: "Indlu", note: "Inqaku", ok: "Ndiza kulibona igumbi ngaphambi kokuhlawula."
-      }
+      q3: "Ndiza kwabelana ngegumbi?", a3: "Hayi. Igumbi ngalinye lelomntu omnye. Wabelana ngekhitshi nangegumbi lokuhlambela nabanye abantu endlwini.",
+      q4: "Ziphi izindlu?", a4: "Zone zieSummerstrand: 6 Bradley Road, 23 no-31 Admiralty Way, no-4 Tilbury Road. Kufutshane neekhampasi ze-NMU, ulwandle nePick n Pay.",
+      q5: "Ndingalibona nini igumbi?", a5: (v) => `${v}. Thumela isicelo sakho kwaye siza kuvumelana ngexesha.`,
+      msg: { hi: "Molo! Ndingathanda ukufaka isicelo segumbi leeholide.", ref: "Ref", house: "Indlu", room: "Igumbi", name: "Igama", phone: "Ifowuni", work: "Indawo yomsebenzi", job: "Umsebenzi",
+             move: "Ukungena", stay: "Ixesha", note: "Inqaku", ok: "Ndiza kulibona igumbi ngaphambi kokuhlawula." }
     }
   };
 
   // ---------- helpers ----------
   const $ = (id) => document.getElementById(id);
   const R = (n) => "R" + Math.round(n).toLocaleString("en-ZA").replace(/\s| /g, ",");
+  const esc = (s) => String(s).replace(/[<>&"]/g, c => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;" })[c]);
   const store = {
     get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
     set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
@@ -629,66 +654,170 @@
   let lang = store.get("rooms-lang") === "xh" ? "xh" : "en";
   const t = (k) => T[lang][k] ?? T.en[k];
   const wa = (text) => `https://wa.me/${HOUSE.whatsapp}?text=${encodeURIComponent(text)}`;
-  const art = (i) => {
-    const pal = [["#FFE7A6", "#FFC93C"], ["#CFE9FF", "#7DB7F0"], ["#D7F5E2", "#7FD9A3"]][i % 3];
-    const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='${pal[0]}'/><stop offset='1' stop-color='${pal[1]}'/></linearGradient></defs><rect width='400' height='300' fill='url(#g)'/><rect x='250' y='50' width='100' height='90' rx='6' fill='#fff' opacity='.6'/><path d='M300 50v90M250 95h100' stroke='${pal[1]}' stroke-width='4'/><rect x='50' y='170' width='230' height='70' rx='12' fill='#fff' opacity='.9'/><rect x='50' y='150' width='230' height='30' rx='10' fill='#14213D' opacity='.18'/><rect x='66' y='132' width='80' height='34' rx='12' fill='#fff'/><rect x='300' y='180' width='50' height='60' rx='6' fill='#fff' opacity='.75'/></svg>`;
-    return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
-  };
+  const freeIn = (h) => h.rooms.filter(r => !r.taken).length;
+  const fmtDate = (iso) => new Date(iso + "T12:00:00").toLocaleDateString("en-ZA", { day: "numeric", month: "short" });
+  const houseById = (id) => HOUSE.houses.find(h => h.id === id);
 
-  // ---------- render ----------
+  // Choice and form are kept on the phone so nothing is lost on a bad connection
+  const saved = store.get("rooms-app") || {};
+  const state = { house: null, room: null, step: 1 };
+  const savedHouse = houseById(saved.house);
+  if (savedHouse && savedHouse.rooms.some(r => r.n === saved.room && !r.taken)) { state.house = saved.house; state.room = saved.room; }
+  const fields = ["aName", "aPhone", "aWork", "aJob", "aMove", "aStay", "aNote"];
+  let applyVisible = false;
+
+  function persist() {
+    store.set("rooms-app", Object.assign({ house: state.house, room: state.room }, Object.fromEntries(fields.map(f => [f, $(f).value]))));
+  }
+
+  // ---------- render everything that depends on language ----------
   function render() {
-    document.documentElement.lang = lang === "xh" ? "xh" : "en";
+    document.documentElement.lang = lang;
     document.querySelectorAll("[data-t]").forEach(el => { const v = t(el.dataset.t); if (typeof v === "string") el.textContent = v; });
     document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
-
     $("houseName").textContent = HOUSE.name; $("footName").textContent = HOUSE.name; $("yr").textContent = new Date().getFullYear();
-    $("heroPrice").firstChild.nodeValue = R(HOUSE.price);
-    $("heroIncluded").innerHTML = HOUSE.included.slice(0, 4).map(x => `<li><i>✓</i>${x[lang]}</li>`).join("");
 
-    const open = HOUSE.houses.reduce((n, h) => n + h.rooms, 0);
-    $("availText").textContent = t("avail")(open, HOUSE.houses.length);
-    $("availPct").textContent = HOUSE.season[lang];
-    $("availBar").style.width = "100%";
+    $("seasonPill").textContent = t("season")(fmtDate(HOUSE.seasonStart), fmtDate(HOUSE.seasonEnd));
+    const days = Math.ceil((new Date(HOUSE.seasonStart + "T00:00:00") - new Date()) / 86400000);
+    $("countdown").textContent = t("countdown")(days);
+    $("statRooms").textContent = HOUSE.houses.reduce((n, h) => n + freeIn(h), 0);
+    $("statHouses").textContent = HOUSE.houses.length;
 
-    $("roomsGrid").innerHTML = HOUSE.houses.map((h, i) => `
-      <article class="room reveal in">
-        <div class="ph" data-i="${i}">${h.photos.length ? `<button type="button" class="gal-btn" data-gal="${i}" aria-label="${t("seePhotos")}">📷 ${h.photos.length} ${t("photos")}</button>` : ""}<span class="status ${h.rooms > 0 ? "available" : "taken"}">${h.rooms > 0 ? t("roomsFree")(h.rooms) : t("full")}</span>${h.grade ? `<span class="grade">NSFAS Grade ${h.grade}</span>` : ""}</div>
+    $("collage").innerHTML = HOUSE.heroPhotos.map((p, i) =>
+      `<div class="shot s${i + 1}"><img src="${p.src}" alt="" ${i ? 'loading="lazy"' : ""}><span class="cap">📍 ${HOUSE.houses[p.house].address}</span></div>`).join("") +
+      `<div class="price-badge"><div><b>${R(HOUSE.price)}</b><span>${t("month")}</span></div></div>`;
+
+    $("housesGrid").innerHTML = HOUSE.houses.map((h, i) => {
+      const f = freeIn(h);
+      return `<article class="house reveal in" id="h-${h.id}">
+        <div class="ph" style="background-image:url('${h.photos[0]}')">
+          <span class="badge ${f ? "free" : "full"}">${f ? t("roomsFree")(f) : t("full")}</span>
+          ${h.grade ? `<span class="badge grade">NSFAS Grade ${h.grade}</span>` : ""}
+          <button type="button" class="gal-btn" data-gal="${i}">📷 ${h.photos.length} ${t("photos")}</button>
+        </div>
         <div class="body">
           <h3>${h.address}</h3>
           <p class="about">${h.about[lang]}</p>
-          <div class="chips">${h.features.map(f => `<span>${f[lang]}</span>`).join("")}</div>
-          <div class="price" style="margin-top:auto">${R(HOUSE.price)}<small>${t("perMonth")}</small></div>
-          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(h.address + ", Summerstrand, Gqeberha")}" target="_blank" rel="noopener">📍 ${t("map")}</a>
-          <a href="#apply" class="btn ${h.rooms > 0 ? "btn-wa" : "btn-sun"}" data-room="${h.id}">${h.rooms > 0 ? t("choose") : t("waitlist")}</a>
+          <div class="feat">${h.features.map(x => `<span>${x[lang]}</span>`).join("")}</div>
+          <p class="pick-lbl">${t("pick")}</p>
+          <div class="room-row">${roomButtons(h)}</div>
+          <div class="house-foot"><span class="price">${R(HOUSE.price)}<small>${t("perMonth")}</small></span>
+            <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(h.address + ", Summerstrand, Gqeberha")}" target="_blank" rel="noopener">📍 ${t("map")}</a></div>
         </div>
-      </article>`).join("");
-    document.querySelectorAll("#roomsGrid .ph").forEach(el => { const h = HOUSE.houses[el.dataset.i]; el.style.backgroundImage = h.photos.length ? `url("${h.photos[0]}")` : art(+el.dataset.i); });
-    $("photoNote").style.display = HOUSE.houses.every(h => h.photos.length) ? "none" : "";
+      </article>`;
+    }).join("");
+
+    $("hpick").innerHTML = HOUSE.houses.map(h => `<button type="button" class="hopt" data-house="${h.id}" aria-pressed="${state.house === h.id}">
+        <div class="th" style="background-image:url('${h.photos[0]}')"></div><b>${h.address}</b><span>${t("roomsFree")(freeIn(h))}</span></button>`).join("");
+    renderWizRooms();
 
     $("incGrid").innerHTML = HOUSE.included.map(x => `<div class="inc reveal in"><span>${x.icon}</span>${x[lang]}</div>`).join("") +
       HOUSE.notIncluded.map(x => `<div class="inc no reveal in"><span>${x.icon}</span><div>${x[lang]}<em>${t("notInc")} · ${lang === "xh" ? x.noteXh : x.noteEn}</em></div></div>`).join("");
     $("rulesList").innerHTML = HOUSE.rules.map(x => `<li><span>${x.icon}</span>${x[lang]}</li>`).join("");
 
-    const sel = $("aRoom"), prev = sel.value;
-    sel.innerHTML = `<option value="any">${t("anyRoom")}</option>` + HOUSE.houses.map(h => `<option value="${h.id}">${h.address}${h.rooms > 0 ? "" : " (" + t("full") + ")"}</option>`).join("");
-    if (prev) sel.value = prev;
-
     $("a1").textContent = t("a1")(R(HOUSE.deposit), R(HOUSE.price));
-    $("a4").textContent = HOUSE.areaText;
     $("a5").textContent = t("a5")(HOUSE.viewing);
-
-    const url = location.href.split("#")[0];
-    $("shareWa").href = `https://wa.me/?text=${encodeURIComponent(t("shareMsg")(HOUSE.name, R(HOUSE.price)) + url)}`;
-    calc();
+    $("shareWa").href = `https://wa.me/?text=${encodeURIComponent(t("shareMsg")(R(HOUSE.price)) + location.href.split("#")[0])}`;
+    calc(); updateChoice(); if (state.step === 3) renderReview();
   }
+
+  function roomButtons(h) {
+    return h.rooms.map(r => {
+      const on = state.house === h.id && state.room === r.n;
+      return `<button type="button" class="rbtn" data-house="${h.id}" data-room="${r.n}" aria-pressed="${on}" ${r.taken ? "disabled" : ""} aria-label="${h.address}, ${t("room")} ${r.n}">${r.n}<small>${r.taken ? t("taken") : t("free")}</small></button>`;
+    }).join("");
+  }
+  function renderWizRooms() {
+    const h = houseById(state.house);
+    $("wizRooms").innerHTML = h ? roomButtons(h) : [1, 2, 3, 4].map(n => `<button type="button" class="rbtn" disabled>${n}<small>—</small></button>`).join("");
+  }
+
+  // ---------- choosing a room (from a house card or the form) ----------
+  function choose(houseId, room) {
+    state.house = houseId; state.room = room; persist();
+    document.querySelectorAll(".rbtn[data-house]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.house === houseId && +b.dataset.room === room)));
+    document.querySelectorAll(".hopt").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.house === houseId)));
+    renderWizRooms(); updateChoice(); $("err1").textContent = "";
+  }
+  function updateChoice() {
+    const h = houseById(state.house), ok = h && state.room;
+    $("dockWhat").textContent = ok ? `${h.address} · ${t("room")} ${state.room}` : "";
+    $("dock").classList.toggle("show", !!ok && !applyVisible);
+  }
+  document.addEventListener("click", (e) => {
+    const r = e.target.closest(".rbtn[data-house]");
+    if (r && !r.disabled) {
+      choose(r.dataset.house, +r.dataset.room);
+      if (r.closest(".house")) { goStep(2); setTimeout(() => $("wiz").scrollIntoView({ behavior: "smooth", block: "start" }), 200); }
+      return;
+    }
+    const hp = e.target.closest(".hopt");
+    if (hp) {
+      const h = houseById(hp.dataset.house), first = h.rooms.find(x => !x.taken);
+      choose(h.id, state.house === h.id ? state.room : (first ? first.n : null)); return;
+    }
+    const g = e.target.closest("[data-gal]"); if (g) lbOpen(+g.dataset.gal);
+  });
+  $("dockBtn").addEventListener("click", () => { if (state.house && state.room && state.step === 1) goStep(2); });
+
+  // ---------- wizard ----------
+  function goStep(n) {
+    state.step = n;
+    document.querySelectorAll(".step").forEach(s => s.hidden = +s.dataset.step !== n);
+    document.querySelectorAll("#stepper div").forEach((d, i) => d.classList.toggle("on", i < Math.min(n, 3)));
+    $("stepper").style.display = n === 4 ? "none" : "";
+    if (n === 3) renderReview();
+  }
+  const required = ["aName", "aPhone", "aWork", "aMove"];
+  function valid(n) {
+    if (n >= 2 && !(state.house && state.room)) { goStep(1); $("err1").textContent = t("e1"); return false; }
+    const miss = required.find(f => !$(f).value.trim());
+    if (n >= 3 && miss) { goStep(2); $("err2").textContent = t("e2"); $(miss).focus(); return false; }
+    return true;
+  }
+  document.querySelectorAll("[data-next]").forEach(b => b.addEventListener("click", () => {
+    const n = +b.dataset.next;
+    if (n > state.step && !valid(n)) return;
+    $("err1").textContent = $("err2").textContent = "";
+    goStep(n);
+    $("wiz").scrollIntoView({ behavior: "smooth", block: "start" });
+  }));
+  function renderReview() {
+    const h = houseById(state.house), v = t("rv");
+    const rows = [[v.house, h ? h.address : "—"], [v.room, state.room ? `${t("room")} ${state.room}` : "—"], [v.name, $("aName").value], [v.phone, $("aPhone").value],
+      [v.work, $("aWork").value + ($("aJob").value ? ` · ${$("aJob").value}` : "")], [v.move, $("aMove").value], [v.stay, $("aStay").selectedOptions[0].textContent], [v.rent, R(HOUSE.price) + t("perMonth")]];
+    $("review").innerHTML = rows.map(([k, val]) => `<div><span>${k}</span><b>${esc(val)}</b></div>`).join("");
+  }
+  $("sendBtn").addEventListener("click", () => {
+    if (!valid(3)) return;
+    if (!$("aOk").checked) { $("err3").textContent = t("e3"); return; }
+    $("err3").textContent = "";
+    const m = T[lang].msg, h = houseById(state.house);
+    const ref = "SR-" + String(Math.floor(1000 + Math.random() * 9000));
+    const lines = [m.hi, "", `${m.ref}: ${ref}`, `${m.house}: ${h.address}`, `${m.room}: ${state.room}`, "",
+      `${m.name}: ${$("aName").value.trim()}`, `${m.phone}: ${$("aPhone").value.trim()}`,
+      `${m.work}: ${$("aWork").value.trim()}` + ($("aJob").value.trim() ? ` (${m.job}: ${$("aJob").value.trim()})` : ""),
+      `${m.move}: ${$("aMove").value}`, `${m.stay}: ${$("aStay").selectedOptions[0].textContent}`];
+    if ($("aNote").value.trim()) lines.push(`${m.note}: ${$("aNote").value.trim()}`);
+    lines.push("", "✓ " + m.ok);
+    window.open(wa(lines.join("\n")), "_blank");
+    $("doneRef").textContent = ref; goStep(4);
+  });
+  $("again").addEventListener("click", () => { $("aOk").checked = false; goStep(1); });
+
+  // Draft saving
+  let savedTimer;
+  fields.forEach(f => { if (saved[f] != null && saved[f] !== "") $(f).value = saved[f]; });
+  if (!$("aMove").value) $("aMove").value = HOUSE.seasonStart;
+  $("aMove").min = new Date().toISOString().slice(0, 10);
+  $("wiz").addEventListener("input", () => { persist(); clearTimeout(savedTimer); $("saved").textContent = t("draft"); savedTimer = setTimeout(() => $("saved").textContent = "", 2000); });
 
   // ---------- calculator ----------
   function calc() {
     const fare = +$("fare").value, days = +$("days").value, mins = +$("mins").value, rent = +$("rent").value;
     const trips = 2 * days * 4.33, taxi = fare * trips, hours = Math.round(mins * trips / 60);
     $("fareOut").textContent = R(fare); $("daysOut").textContent = days; $("minsOut").textContent = mins; $("rentOut").textContent = R(rent);
-    $("rTaxi").textContent = R(taxi); $("rHours").textContent = hours + " h";
-    $("rNow").textContent = R(rent + taxi); $("rHere").textContent = R(HOUSE.price);
+    $("rTaxi").textContent = R(taxi); $("rHours").textContent = hours + " h"; $("rNow").textContent = R(rent + taxi); $("rHere").textContent = R(HOUSE.price);
     const diff = rent + taxi - HOUSE.price;
     $("verdict").innerHTML = diff >= 0 ? t("vSave")(R(diff), hours) : t("vTime")(R(-diff), hours);
   }
@@ -696,6 +825,15 @@
 
   // ---------- language ----------
   document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => { lang = b.dataset.lang; store.set("rooms-lang", lang); render(); }));
+
+  // ---------- share ----------
+  $("shareCopy").addEventListener("click", async () => {
+    const url = location.href.split("#")[0];
+    try {
+      if (navigator.share) { await navigator.share({ title: HOUSE.name, text: t("shareMsg")(R(HOUSE.price)), url }); return; }
+      await navigator.clipboard.writeText(url); $("shareCopy").textContent = t("copied");
+    } catch (err) { /* cancelled */ }
+  });
 
   // ---------- photo gallery ----------
   let lbHouse = null, lbIdx = 0, lbFocus = null;
@@ -721,53 +859,10 @@
   $("lbStage").addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
   $("lbStage").addEventListener("touchend", (e) => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) lbStep(dx < 0 ? 1 : -1); x0 = null; });
 
-  // ---------- room buttons ----------
-  $("roomsGrid").addEventListener("click", (e) => {
-    const g = e.target.closest("[data-gal]"); if (g) { lbOpen(+g.dataset.gal); return; }
-    const b = e.target.closest("[data-room]"); if (b) $("aRoom").value = b.dataset.room;
-  });
-
-  // ---------- application (draft saved on the phone so nothing is lost on a bad connection) ----------
-  const fields = ["aName", "aPhone", "aWork", "aJob", "aMove", "aStay", "aRoom", "aNote"];
-  const draft = store.get("rooms-draft");
-  if (draft) fields.forEach(f => { if (draft[f] != null) $(f).value = draft[f]; });
-  $("aMove").min = new Date().toISOString().slice(0, 10);
-  let savedTimer;
-  $("appForm").addEventListener("input", () => {
-    store.set("rooms-draft", Object.fromEntries(fields.map(f => [f, $(f).value])));
-    clearTimeout(savedTimer); $("saved").textContent = t("draft"); savedTimer = setTimeout(() => $("saved").textContent = "", 2500);
-  });
-
-  $("appForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const req = ["aName", "aPhone", "aWork", "aMove"];
-    const missing = req.filter(f => !$(f).value.trim());
-    if (missing.length || !$("aOk").checked) { $("saved").textContent = t("need"); $(missing[0] || "aOk").focus(); return; }
-    const m = T[lang].msg, roomSel = $("aRoom");
-    const ref = "SR-" + String(Math.floor(1000 + Math.random() * 9000));
-    const lines = [
-      m.hi, "", `${m.ref}: ${ref}`,
-      `${m.name}: ${$("aName").value.trim()}`, `${m.phone}: ${$("aPhone").value.trim()}`,
-      `${m.work}: ${$("aWork").value.trim()}` + ($("aJob").value.trim() ? ` (${m.job}: ${$("aJob").value.trim()})` : ""),
-      `${m.move}: ${$("aMove").value}`, `${m.stay}: ${$("aStay").selectedOptions[0].textContent}`,
-      `${m.room}: ${roomSel.selectedOptions[0].textContent}`
-    ];
-    if ($("aNote").value.trim()) lines.push(`${m.note}: ${$("aNote").value.trim()}`);
-    lines.push("", "✓ " + m.ok);
-    window.open(wa(lines.join("\n")), "_blank");
-  });
-
-  // ---------- share ----------
-  $("shareCopy").addEventListener("click", async () => {
-    const url = location.href.split("#")[0];
-    try {
-      if (navigator.share) { await navigator.share({ title: HOUSE.name, text: t("shareMsg")(HOUSE.name, R(HOUSE.price)), url }); return; }
-      await navigator.clipboard.writeText(url); $("shareCopy").textContent = t("copied");
-    } catch (err) { /* share cancelled */ }
-  });
-
-  // ---------- reveal ----------
+  // ---------- start ----------
+  new IntersectionObserver((es) => { applyVisible = es[0].isIntersecting; updateChoice(); }, { threshold: .15 }).observe($("apply"));
   render();
+  goStep(1);
   const io = new IntersectionObserver((es) => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }), { threshold: .1 });
   document.querySelectorAll(".reveal:not(.in)").forEach(el => io.observe(el));
 </script>
